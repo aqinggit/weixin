@@ -1,0 +1,5 @@
+update pre_attachments set remote=CONCAT('http://www.jianjuke.cn',filePath);
+#更新文章封面图
+update pre_articles a,pre_attachments att set a.faceImg=att.remote where a.faceId=att.id;
+#更新图片路径
+update pre_attachments set remote=REPLACE(remote,'www.jianjuke.cn','img.jianjuke.cn');
