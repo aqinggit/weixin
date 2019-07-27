@@ -58,14 +58,8 @@ class Q extends Controller {
             }
             $host = $_SERVER['HTTP_HOST'];
             $mhost = zmf::config('mobileDomain'); //手机版网站
-            $miphost = zmf::config('mipDomain'); //mip版网站
             $whost = zmf::config('domain');//PC版网站
-            if (('http://' . $host) == $miphost && $miphost!='') {//是mip版
-                Yii::app()->theme = 'mip';
-                $this->webTheme='mip';
-                $this->spider='baidu';
-                $this->isMobile = true;
-            } elseif (('http://' . $host) == $mhost && $mhost!='') {//是手机版的链接
+            if (('http://' . $host) == $mhost && $mhost!='') {//是手机版的链接
                 Yii::app()->theme = 'mobile';
                 $this->webTheme='mobile';
                 $this->isMobile = true;
