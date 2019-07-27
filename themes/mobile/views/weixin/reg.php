@@ -1,14 +1,41 @@
 <style>
     .reg-tab {
         font-size: 14px;
+        margin: 0;
     }
-    .btn-color:hover{
+
+    .btn-color:hover {
         background-color: #007500;
+    }
+
+    .nav-menu {
+        float: left;
+        padding-right: 10px;
+        font-size: 16px;
+        color: #09bb07;
+        padding-left: 5px;
+
+
+    }
+
+    .col-bac {
+        background: #f7f7fa;
+    }
+
+    .col-fff {
+        background-color: #fff;
     }
 </style>
 
-
+<div class="weui-search-bar clearfix  col-fff">
+    <span class="nav-menu"><&nbsp;返回</span>
+    <span class="nav-menu">登录</span>
+    <span class="nav-menu">注册</span>
+</div>
 <div class="weui-cells weui-cells_form reg-tab">
+    <div class="weui-cell col-bac">
+        <div class="weui-cell__hd "><label class="weui-label">志愿者注册</label></div>
+    </div>
     <div class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">用户名</label></div>
         <div class="weui-cell__bd">
@@ -62,6 +89,12 @@
             <input class="weui-input" type="date" value="">
         </div>
     </div>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label for="" class="weui-label">真实姓名</label></div>
+        <div class="weui-cell__bd">
+            <input class="weui-input" type="text" placeholder="请输入真实姓名">
+        </div>
+    </div>
 
 
     <div class="weui-cell weui-cell_select weui-cell_select-after">
@@ -84,9 +117,10 @@
         </div>
         <div class="weui-cell__bd">
             <select class="weui-select" name="select1">
-                <option selected="" value="1">党员</option>
-                <option value="2">预备党员</option>
-                <option value="3">团员</option>
+                <option selected="" value="1">请选择</option>
+                <option value="2">党员</option>
+                <option value="3">预备党员</option>
+                <option value="4">团员</option>
 
             </select>
         </div>
@@ -139,9 +173,10 @@
         </div>
         <div class="weui-cell__bd">
             <select class="weui-select" name="vol_nationality">
-                <option value="1">博士</option>
-                <option value="2">硕士</option>
-                <option value="3">大学本科</option>
+                <option value="1">请选择</option>
+                <option value="2">博士</option>
+                <option value="3">硕士</option>
+                <option value="4">大学本科</option>
             </select>
         </div>
     </div>
@@ -151,13 +186,40 @@
         </div>
         <div class="weui-cell__bd">
             <select class="weui-select" name="vol_nationality">
-                <option value="1">公务员</option>
-                <option value="2">职员</option>
-                <option value="3">工人</option>
+                <option value="1">请选择</option>
+                <option value="2">公务员</option>
+                <option value="3">职员</option>
+                <option value="4">工人</option>
             </select>
         </div>
     </div>
+    <div class="weui-cell col-bac">
+        <div class="weui-cell__hd "><label class="weui-label" style="width: 200px">服务类别（最多选择4个）</label></div>
+    </div>
+    <div class="weui-cell weui-cell_select weui-cell_select-after">
+        <div class="weui-cell__hd">
+            <label for="" class="weui-label">服务类别</label>
+        </div>
+        <div class="weui-cell__bd">
+            <select class="weui-select" name="vol_nationality">
+                <option value="1">请选择服务类别</option>
+                <option value="2">社区服务</option>
+                <option value="3">生态环保</option>
+            </select>
+        </div>
+    </div>
+    <div class="weui-cell weui-cell_select weui-cell_select-after">
+        <div class="weui-cell__hd">
+            <label for="" class="weui-label">受邀加入项目</label>
+        </div>
+        <div class="weui-cell__bd">
+            <select class="weui-select" name="select1">
+                <option selected="" value="1">是</option>
+                <option value="2">否</option>
 
+            </select>
+        </div>
+    </div>
 
     <label for="weuiAgree" class="weui-agree">
         <input id="weuiAgree" type="checkbox" class="weui-agree__checkbox">
@@ -165,6 +227,7 @@
         阅读并同意<a href="javascript:void(0);">《相关条款》</a>
     </span>
     </label>
+
 </div>
 
 

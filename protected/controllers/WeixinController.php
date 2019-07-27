@@ -52,7 +52,42 @@ class WeixinController extends Q {
         $this->mobileTitle = '注册';
         $this->currentModule='login';
 
-        $this->render('reg');
+        $model=new Users;
+        if(isset($_POST['Users']))
+        {
+            $model->attributes=$_POST['Users'];
+            if($model->validate())
+            {
+                return;
+            }
+        }
+        $this->render('reg',array('model'=>$model));
+
+    }
+
+    public function actionReg1()
+    {
+        $model=new Users;
+
+        // uncomment the following code to enable ajax-based validation
+        /*
+        if(isset($_POST['ajax']) && $_POST['ajax']==='users-reg1-form')
+        {
+            echo CActiveForm::validate($model);
+            Yii::app()->end();
+        }
+        */
+
+        if(isset($_POST['Users']))
+        {
+            $model->attributes=$_POST['Users'];
+            if($model->validate())
+            {
+                // form inputs are valid, do something here
+                return;
+            }
+        }
+        $this->render('reg1',array('model'=>$model));
     }
 
     public function actionIndex() {
