@@ -1,0 +1,1 @@
+<a href="javascript:;" class="weui-btn weui-btn_primary">注册</a>

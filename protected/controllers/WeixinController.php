@@ -30,14 +30,29 @@ class WeixinController extends Q {
         if (!in_array($from, array('web', 'mcenter'))) {
             $from='web';
         }
-        if (!$wxId || !$wxSecret || !$callback) {
-            throw new CHttpException(404, '暂未开放');
-        }
+//        if (!$wxId || !$wxSecret || !$callback) {
+//            throw new CHttpException(404, '暂未开放');
+//        }
         $referer = zmf::val('referer', 1);
         $this->referer = $referer ? $referer : $this->referer;
         $callback.='?action=' . $this->currentAction . '&from='.$from.'&referer=' . $this->referer;
         $this->wx = new weixinSdk($wxId, $wxSecret, $callback);
         $this->pageTitle=  '微信 - '.zmf::config('sitename');
+    }
+
+    public function actionReg() {
+        if (!Yii::app()->user->isGuest) {
+            $this->redirect($this->referer);
+        }
+        if ($this->isMobile) {
+            $this->layout = 'common';
+        }
+
+        $this->pageTitle = '欢迎注册-' . zmf::config('sitename');
+        $this->mobileTitle = '注册';
+        $this->currentModule='login';
+
+        $this->render('reg');
     }
 
     public function actionIndex() {
