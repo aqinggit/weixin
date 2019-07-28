@@ -49,7 +49,6 @@ class assets {
             'allowImgTypes' => zmf::config('imgAllowTypes'),
             'allowImgPerSize' => zmf::formatBytes(zmf::config('imgMaxSize')),
             'perAddImgNum' => zmf::config('imgUploadNum'),
-            'perAddImgNum' => zmf::config('imgUploadNum'),
             'ajaxAttachesUrl' => zmf::config('domain') . Yii::app()->createUrl('admin/attachments/ajaxSelect'),
             'ajaxTagsUrl' => zmf::config('domain') . Yii::app()->createUrl('admin/attachments/ajaxTags'),
             'attachDetailUrl' => zmf::config('domain') . Yii::app()->createUrl('admin/attachments/detail'),
@@ -137,9 +136,11 @@ class assets {
             $coreJsArr = array(
                 'jqMobile' => array('pos' => 'end'),
                 'owl-carousel' => array('pos' => 'end'),
+                'jquery-weui' => array('pos' => 'end'),
             );
             $coreCssArr = array(
                 'weui',
+                'jquery-weui',
                 'font-awesome',
             );
             $cssArr = array(
@@ -172,23 +173,6 @@ class assets {
                 'zmf',
                 'admin',
             );
-        } elseif ($type == 'mip') {
-            $coreCssArr = array(
-                'weui',
-                'font-awesome',
-            );
-            $cssArr = array(
-                'mobile',
-            );
-            if ($action == 'index') {
-                $cssArr[] = 'index';
-            }elseif ($action == 'login') {
-                $cssArr[] = 'login';
-            }elseif ($action == 'area') {
-                $cssArr[] = 'area';
-            }elseif ($action == 'keywords') {
-                $cssArr[] = 'rank';
-            }
         }
         $timeCssArr = $timeJsArr = $cssFilesArr = $jsFilesArr = [];
         //处理样式文件
