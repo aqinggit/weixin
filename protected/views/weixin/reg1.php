@@ -103,7 +103,6 @@
         <div class="weui-cell__hd"><label class="weui-label">性别</label></div>
         <div class="weui-cell__bd">
             <?php echo $form->dropDownList($model, 'sex', [0 => '男', 1 => '女'], ['class' => 'weui-select']); ?>
-            <?php echo $form->error($model, 'sex'); ?>
         </div>
     </div>
 
