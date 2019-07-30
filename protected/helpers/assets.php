@@ -228,7 +228,7 @@ class assets {
         }
         if($type!='mip'){
             $cs->registerCoreScript('jquery');
-            $cs->registerScriptFile($staticUrl . $jsFileTargetName, CClientScript::POS_END);
+            $cs->registerScriptFile($staticUrl . $jsFileTargetName, CClientScript::POS_HEAD);
         }
     }
 
