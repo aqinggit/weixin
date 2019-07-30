@@ -28,9 +28,9 @@
 </style>
 
 <div class="weui-search-bar clearfix  col-fff">
-    <span class="nav-menu"><&nbsp;返回</span>
-    <span class="nav-menu">登录</span>
-    <span class="nav-menu">注册</span>
+    <span class="nav-menu"><a>返回</a></span>
+    <span class="nav-menu"><a>登录</a></span>
+    <span class="nav-menu"><a>注册</a></span>
 </div>
 <div class="weui-cells weui-cells_form reg-tab">
     <div class="weui-cell col-bac">
@@ -500,7 +500,7 @@
             <label for="" class="weui-label">从业状况</label>
         </div>
         <div class="weui-cell__bd">
-            <select class="weui_select weui-select" name="vol_job_title">
+            <select class="weui_select weui-select" name="vol_job_title" >
                 <option value="">请选择</option>
                 <option value="23264">国家公务员（含参照、依照公务员管理）</option>
                 <option value="23265">专业技术人员</option>
@@ -523,26 +523,22 @@
         <div class="weui-cell__hd "><label class="weui-label" style="width: 200px">服务类别（最多选择4个）</label></div>
     </div>
     <div class="weui-cell">
-        <div class="weui-cell__hd">
-            <label for="" class="weui-label">服务类别</label>
-        </div>
+        <div class="weui-cell__hd"><label class="weui-label">服务类别</label></div>
         <div class="weui-cell__bd weui-cell_primary">
-            <select class="weui_select weui-select" name="vol_job_title" id="in">
-
-            </select>
+            <input class="weui-input" type="text" id="stag_vol" value="" placeholder="请选择服务类别">
         </div>
     </div>
-    <div class="weui-cell weui-cell_select weui-cell_select-after">
-        <div class="weui-cell__hd">
-            <label for="" class="weui-label">受邀加入项目</label>
-        </div>
-        <div class="weui-cell__bd">
-            <select class="weui-select" name="select1">
-                <option selected="" value="1">是</option>
-                <option value="2">否</option>
+    <script>
+        $("#stag_vol").select({
+            title: "服务类别",multi: true,min: 1,max: 4,
+            items: [{"title":"社区服务","value":"社区服务"},{"title":"生态环保","value":"生态环保"},{"title":"医疗卫生","value":"医疗卫生"},{"title":"应急平安","value":"应急平安"},{"title":"助老助残","value":"助老助残"},{"title":"关爱儿童","value":"关爱儿童"},{"title":"赛会服务","value":"赛会服务"},{"title":"法律咨询","value":"法律咨询"},{"title":"教育培训","value":"教育培训"},{"title":"文化艺术","value":"文化艺术"},{"title":"心理咨询","value":"心理咨询"},{"title":"信息宣传","value":"信息宣传"},{"title":"网络维护","value":"网络维护"},{"title":"行政支持","value":"行政支持"},{"title":"活动策划","value":"活动策划"},{"title":"礼仪接待","value":"礼仪接待"},{"title":"外语翻译","value":"外语翻译"},{"title":"摄影摄像","value":"摄影摄像"}]            });
 
-            </select>
-        </div>
+    </script>
+
+    <div class="weui-cell weui-cell_select weui-cell_select-after">
+        <div class="weui-cell__hd"><label class="weui-label">受邀加入项目</label></div>
+        <div class="weui-cell__bd">
+            <select class="weui_select weui-select" name="vol_public_flag" id="vol_public_flag"><option value="1" selected>是</option><option value="0">否</option></select>            </div>
     </div>
 
     <label for="weuiAgree" class="weui-agree">

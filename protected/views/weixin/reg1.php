@@ -52,8 +52,6 @@
     </div>
 
 
-
-
     <div class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">用户名</label></div>
         <div class="weui-cell__bd">
@@ -64,39 +62,40 @@
     <div class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">密码</label></div>
         <div class="weui-cell__bd">
-            <?php echo $form->passwordField($model, 'password', ['class' => 'weui-input']); ?>
+            <?php echo $form->passwordField($model, 'password', ['class' => 'weui-input', 'placeholder' => '8-20位密码']); ?>
+        </div>
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">确认密码</label></div>
+        <div class="weui-cell__bd">
+            <?php echo $form->passwordField($model, 'password', ['class' => 'weui-input', 'placeholder' => '请再次输入密码']); ?>
         </div>
     </div>
 
-
-    <div class="row">
-        <?php echo $form->labelEx($model, 'cTime'); ?>
-        <?php echo $form->dateField($model, 'cTime'); ?>
-        <?php echo $form->error($model, 'cTime'); ?>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">邮箱</label></div>
+        <div class="weui-cell__bd">
+            <?php echo $form->emailField($model, 'email', ['class' => 'weui-input', 'placeholder' => '请输入邮箱']); ?>
+        </div>
     </div>
-
-    <div class="row">
-        <?php echo $form->labelEx($model, 'status'); ?>
-        <?php echo $form->textField($model, 'status'); ?>
-        <?php echo $form->error($model, 'status'); ?>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">真实姓名</label></div>
+        <div class="weui-cell__bd">
+            <?php echo $form->textField($model, 'actualName', ['class' => 'weui-input', 'placeholder' => '请输入真实姓名']); ?>
+        </div>
     </div>
-
-    <div class="row">
-        <?php echo $form->labelEx($model, 'platform'); ?>
-        <?php echo $form->textField($model, 'platform'); ?>
-        <?php echo $form->error($model, 'platform'); ?>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">证件类型</label></div>
+        <div class="weui-cell__bd">
+            <?php echo $form->dropDownList($model, 'sex', [0 => '请选择', 1 => '内地居民身份证', 2 => '香港居民身份证', 3 => '澳门居民身份证', 4 => '台湾居民身份证', 5 => '护照'], ['class' => 'weui-select']); ?>
+        </div>
     </div>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">证件号码</label></div>
+        <div class="weui-cell__bd">
+            <?php echo $form->textField($model, 'certNumber', ['class' => 'weui-input', 'placeholder' => '请输入证件号码']); ?>
 
-    <div class="row">
-        <?php echo $form->labelEx($model, 'ip'); ?>
-        <?php echo $form->textField($model, 'ip'); ?>
-        <?php echo $form->error($model, 'ip'); ?>
-    </div>
-
-    <div class="row">
-        <?php echo $form->labelEx($model, 'hits'); ?>
-        <?php echo $form->textField($model, 'hits'); ?>
-        <?php echo $form->error($model, 'hits'); ?>
+        </div>
     </div>
 
     <div class="weui-cell">
@@ -105,124 +104,56 @@
             <?php echo $form->dropDownList($model, 'sex', [0 => '男', 1 => '女'], ['class' => 'weui-select']); ?>
         </div>
     </div>
-
-
-    <div class="row">
-        <?php echo $form->labelEx($model, 'isAdmin'); ?>
-        <?php echo $form->textField($model, 'isAdmin'); ?>
-        <?php echo $form->error($model, 'isAdmin'); ?>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">手机</label></div>
+        <div class="weui-cell__bd">
+            <?php echo $form->telField($model, 'phone', ['class' => 'weui-input', 'placeholder' => '请输入手机号码']); ?>
+        </div>
+    </div>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">政治面貌</label></div>
+        <div class="weui-cell__bd">
+            <?php echo $form->dropDownList($model, 'politicalStatus', [0 => '请选择', 1 => '中国共产党党员', 2 => '中国共产党预备党员', 3 => '中国共产党党员（保留团籍）', 4 => '中国共产主义青年团团员', 5 => '中国国民党革命委员会会员', 6 => '中国民主同盟盟员', 7 => '中国民主建国会会员', 8 => '中国民主促进会会员', 9 => '中国农工民主党党员', 10 => '中国致公党党员', 11 => '九三学社社员', 12 => '台湾民主自治同盟盟员', 13 => '无党派民主人士', 14 => '中国少年先锋队队员', 15 => '群众',], ['class' => 'weui-select']); ?>
+        </div>
     </div>
 
-    <div class="row">
-        <?php echo $form->labelEx($model, 'phoneChecked'); ?>
-        <?php echo $form->textField($model, 'phoneChecked'); ?>
-        <?php echo $form->error($model, 'phoneChecked'); ?>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">详细地址</label></div>
+        <div class="weui-cell__bd">
+            <?php echo $form->textField($model, 'address', ['class' => 'weui-input', 'placeholder' => '请输入详细地址']); ?>
+        </div>
     </div>
 
-    <div class="row">
-        <?php echo $form->labelEx($model, 'gold'); ?>
-        <?php echo $form->textField($model, 'gold'); ?>
-        <?php echo $form->error($model, 'gold'); ?>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">出生日期</label></div>
+        <div class="weui-cell__bd">
+            <?php echo $form->dateField($model, 'birthday', ['class' => 'weui-input']); ?>
+        </div>
     </div>
-
-    <div class="row">
-        <?php echo $form->labelEx($model, 'levelTitle'); ?>
-        <?php echo $form->textField($model, 'levelTitle'); ?>
-        <?php echo $form->error($model, 'levelTitle'); ?>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">最高学历</label></div>
+        <div class="weui-cell__bd">
+            <?php echo $form->dropDownList($model, 'highestEdu', [0 => '请选择', 1 => '博士研究生', 2 => '硕士研究生', 3 => '大学本科', 4 => '大学专科', 5 => '中等专科', 6 => '职业高中', 7 => '技工学校', 8 => '高中', 9 => '初中', 10 => '小学', 11 => '其他'], ['class' => 'weui-select']); ?>
+        </div>
     </div>
-
-    <div class="row">
-        <?php echo $form->labelEx($model, 'authorId'); ?>
-        <?php echo $form->textField($model, 'authorId'); ?>
-        <?php echo $form->error($model, 'authorId'); ?>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">从业状况</label></div>
+        <div class="weui-cell__bd">
+            <?php echo $form->dropDownList($model, 'employmentStatus', [0 => '请选择', 1 => '国家公务员（含参照、依照公务员管理）', 2 => '专业技术人员', 3 => '职员', 4 => '企业管理人员', 5 => '工人', 6 => '农民', 7 => '学生', 8 => '教师', 9 => '现役军人', 10 => '自由职业者', 11 => '个体经营者',12=>'无业人员',13=>'退（离）休人员',14=>'其他'], ['class' => 'weui-select']); ?>
+        </div>
     </div>
-
-    <div class="row">
-        <?php echo $form->labelEx($model, 'favors'); ?>
-        <?php echo $form->textField($model, 'favors'); ?>
-        <?php echo $form->error($model, 'favors'); ?>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">服务类别</label></div>
+        <div class="weui-cell__bd">
+            <?php echo $form->dropDownList($model, 'serviceType', [0 => '请选择服务类别', 1 => '社区服务', 2 => '生态环保', 3 => '医疗卫生', 4 => '应急平安', 5 => '助老助残', 6 => '关爱儿童', 7 => '赛会服务', 8 => '法律咨询', 9 => '教育培训', 10 => '文化艺术', 11 => '心理咨询',12=>'信息宣传',13=>'网络维护',14=>'行政支持',15=>'活动策划',16=>'礼仪接待',17=>'外语翻译',18=>'摄影摄像'], ['class' => 'weui-select'],['class' => 'weui-select','placeholder' => '请选择服务类别','multiple'=>"multiple"]); ?>
+        </div>
     </div>
-
-    <div class="row">
-        <?php echo $form->labelEx($model, 'favord'); ?>
-        <?php echo $form->textField($model, 'favord'); ?>
-        <?php echo $form->error($model, 'favord'); ?>
+    <div class="weui-cell">
+        <div class="weui-cell__hd"><label class="weui-label">受邀加入项目</label></div>
+        <div class="weui-cell__bd">
+            <?php echo $form->dropDownList($model, 'joinProject', [0 => '是', 1 => '否'], ['class' => 'weui-select']); ?>
+        </div>
     </div>
-
-    <div class="row">
-        <?php echo $form->labelEx($model, 'favorAuthors'); ?>
-        <?php echo $form->textField($model, 'favorAuthors'); ?>
-        <?php echo $form->error($model, 'favorAuthors'); ?>
-    </div>
-
-    <div class="row">
-        <?php echo $form->labelEx($model, 'exp'); ?>
-        <?php echo $form->textField($model, 'exp'); ?>
-        <?php echo $form->error($model, 'exp'); ?>
-    </div>
-
-    <div class="row">
-        <?php echo $form->labelEx($model, 'level'); ?>
-        <?php echo $form->textField($model, 'level'); ?>
-        <?php echo $form->error($model, 'level'); ?>
-    </div>
-
-    <div class="row">
-        <?php echo $form->labelEx($model, 'groupid'); ?>
-        <?php echo $form->textField($model, 'groupid'); ?>
-        <?php echo $form->error($model, 'groupid'); ?>
-    </div>
-
-    <div class="row">
-        <?php echo $form->labelEx($model, 'powerGroupId'); ?>
-        <?php echo $form->textField($model, 'powerGroupId'); ?>
-        <?php echo $form->error($model, 'powerGroupId'); ?>
-    </div>
-
-    <div class="row">
-        <?php echo $form->labelEx($model, 'score'); ?>
-        <?php echo $form->textField($model, 'score'); ?>
-        <?php echo $form->error($model, 'score'); ?>
-    </div>
-
-    <div class="row">
-        <?php echo $form->labelEx($model, 'phone'); ?>
-        <?php echo $form->textField($model, 'phone'); ?>
-        <?php echo $form->error($model, 'phone'); ?>
-    </div>
-
-    <div class="row">
-        <?php echo $form->labelEx($model, 'contact'); ?>
-        <?php echo $form->textField($model, 'contact'); ?>
-        <?php echo $form->error($model, 'contact'); ?>
-    </div>
-
-    <div class="row">
-        <?php echo $form->labelEx($model, 'avatar'); ?>
-        <?php echo $form->textField($model, 'avatar'); ?>
-        <?php echo $form->error($model, 'avatar'); ?>
-    </div>
-
-    <div class="row">
-        <?php echo $form->labelEx($model, 'email'); ?>
-        <?php echo $form->textField($model, 'email'); ?>
-        <?php echo $form->error($model, 'email'); ?>
-    </div>
-
-    <div class="row">
-        <?php echo $form->labelEx($model, 'levelIcon'); ?>
-        <?php echo $form->textField($model, 'levelIcon'); ?>
-        <?php echo $form->error($model, 'levelIcon'); ?>
-    </div>
-
-    <div class="row">
-        <?php echo $form->labelEx($model, 'content'); ?>
-        <?php echo $form->textField($model, 'content'); ?>
-        <?php echo $form->error($model, 'content'); ?>
-    </div>
-
-
-
     <div class="weui-btn-area col-red">
         <?php echo $form->errorSummary($model); ?>
     </div>
