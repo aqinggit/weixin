@@ -142,12 +142,20 @@
             <?php echo $form->dropDownList($model, 'employmentStatus', [0 => '请选择', 1 => '国家公务员（含参照、依照公务员管理）', 2 => '专业技术人员', 3 => '职员', 4 => '企业管理人员', 5 => '工人', 6 => '农民', 7 => '学生', 8 => '教师', 9 => '现役军人', 10 => '自由职业者', 11 => '个体经营者',12=>'无业人员',13=>'退（离）休人员',14=>'其他'], ['class' => 'weui-select']); ?>
         </div>
     </div>
+
     <div class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">服务类别</label></div>
-        <div class="weui-cell__bd">
-            <?php echo $form->dropDownList($model, 'serviceType', [0 => '请选择服务类别', 1 => '社区服务', 2 => '生态环保', 3 => '医疗卫生', 4 => '应急平安', 5 => '助老助残', 6 => '关爱儿童', 7 => '赛会服务', 8 => '法律咨询', 9 => '教育培训', 10 => '文化艺术', 11 => '心理咨询',12=>'信息宣传',13=>'网络维护',14=>'行政支持',15=>'活动策划',16=>'礼仪接待',17=>'外语翻译',18=>'摄影摄像'], ['class' => 'weui-select'],['class' => 'weui-select','placeholder' => '请选择服务类别','multiple'=>"multiple"]); ?>
+        <div class="weui-cell__bd weui-cell_primary">
+            <input class="weui-input" type="text" id="Users_serviceType" name="Users[serviceType]" value="" placeholder="请选择服务类别">
         </div>
     </div>
+    <script>
+        $("#Users_serviceType").select({
+            title: "服务类别",multi: true,min: 1,max: 4,
+            items: [{"title":"社区服务","value":"社区服务"},{"title":"生态环保","value":"生态环保"},{"title":"医疗卫生","value":"医疗卫生"},{"title":"应急平安","value":"应急平安"},{"title":"助老助残","value":"助老助残"},{"title":"关爱儿童","value":"关爱儿童"},{"title":"赛会服务","value":"赛会服务"},{"title":"法律咨询","value":"法律咨询"},{"title":"教育培训","value":"教育培训"},{"title":"文化艺术","value":"文化艺术"},{"title":"心理咨询","value":"心理咨询"},{"title":"信息宣传","value":"信息宣传"},{"title":"网络维护","value":"网络维护"},{"title":"行政支持","value":"行政支持"},{"title":"活动策划","value":"活动策划"},{"title":"礼仪接待","value":"礼仪接待"},{"title":"外语翻译","value":"外语翻译"},{"title":"摄影摄像","value":"摄影摄像"}]            });
+
+    </script>
+
     <div class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">受邀加入项目</label></div>
         <div class="weui-cell__bd">
@@ -162,6 +170,8 @@
     <div class="weui-btn-area">
         <?php echo CHtml::submitButton('确定', array('class' => 'weui-btn weui-btn_primary btn-color')); ?>
     </div>
+
+
 
 
     <?php $this->endWidget(); ?>

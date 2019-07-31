@@ -58,10 +58,10 @@ class WeixinController extends Q {
             $model->attributes=$_POST['Users'];
             if($model->validate())
             {
-                return;
+                return '注册完成';
             }
         }
-        $this->render('reg',array('model'=>$model));
+        $this->render('reg1',array('model'=>$model));
 
     }
 
