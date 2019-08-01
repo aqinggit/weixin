@@ -56,7 +56,7 @@ class Users extends CActiveRecord
             array('contact,avatar,email,levelIcon', 'length', 'max' => 255),
             array('content', 'safe'),
             array('password2', 'compare', 'compareAttribute' => 'password', 'message' => '两次输入的密码不一致'),
-            array('country,actualName,certType,certNumber,birthday,politicalStatus,nation,address,highestEdu,employmentStatus,serviceType,joinProject', 'required')
+            array('country,actualName,certType,certNumber,birthday,politicalStatus,nation,address,highestEdu,employmentStatus,joinProject', 'required')
         );
     }
 
@@ -120,6 +120,7 @@ class Users extends CActiveRecord
             'employmentStatus' => '从业状况',
             'serviceType' => '服务类型',
             'joinProject' => '加入项目',
+            'volunteerType' => '志愿者类型',
 
         );
     }
@@ -510,6 +511,22 @@ class Users extends CActiveRecord
             '56' => '基诺族',
             '57' => '其他',
             '58' => '外国血统中国籍人士',
+        );
+        if ($key) {
+            return $item[$key];
+        } else {
+            return $item;
+        }
+    }
+
+
+    public static function VolunteerType($key = 0)
+    {
+        $item = array(
+            0 => '请选择',
+            1 => '平安建设志愿者',
+            2 => '社会治理',
+            3 => '法制宣传',
         );
         if ($key) {
             return $item[$key];

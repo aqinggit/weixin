@@ -58,10 +58,9 @@ class WeixinController extends Q
         $model = new Users;
         if (isset($_POST['Users'])) {
             $model->attributes = $_POST['Users'];
-            zmf::test($_POST['Users']);
             if ($model->validate()) {
                 if ($model->save()) {
-                    echo '注册完成';
+                    $this->render('success', array('actualName' => $model->actualName));
                 } else {
                     $this->message(503, '系统原因,注册失败!', $this->referer);
                 }
