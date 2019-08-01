@@ -82,10 +82,13 @@ function _dstrpos($string, &$arr, $returnvalue = false) {
     return false;
 }
 //判断是否缓存
+
 if($configArr['siteHtmlCache']=='1'){
     $isAjax=isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH']==='XMLHttpRequest';
     $isPost=isset($_SERVER['REQUEST_METHOD']) && !strcasecmp($_SERVER['REQUEST_METHOD'],'POST');
     $isAjax=$isAjax && $isPost;
+
+
     if(!$isAjax && _checkUrlCache($configArr)){
         $url='http://'.$url;
         $hashCode=md5($url);

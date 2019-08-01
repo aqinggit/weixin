@@ -40,6 +40,7 @@ class WeixinController extends Q
         $callback .= '?action=' . $this->currentAction . '&from=' . $from . '&referer=' . $this->referer;
         $this->wx = new weixinSdk($wxId, $wxSecret, $callback);
         $this->pageTitle = '微信 - ' . zmf::config('sitename');
+        $this->isMobile = true;
     }
 
     public function actionReg()
