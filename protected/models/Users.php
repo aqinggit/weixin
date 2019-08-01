@@ -525,8 +525,8 @@ class Users extends CActiveRecord
         $item = array(
             0 => '请选择',
             1 => '平安建设志愿者',
-            2 => '社会治理',
-            3 => '法制宣传',
+            2 => '社会治理志愿者',
+            3 => '法制宣传志愿者',
         );
         if ($key) {
             return $item[$key];
