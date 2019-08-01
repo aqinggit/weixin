@@ -474,6 +474,7 @@
             <input class="weui-input" type="text" placeholder="请输入详细地址">
         </div>
     </div>
+
     <div class="weui-cell weui-cell_select weui-cell_select-after">
         <div class="weui-cell__hd">
             <label for="" class="weui-label">最高学历</label>
