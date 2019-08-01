@@ -28,7 +28,7 @@ class XhrController extends Q {
         if (!$data) {
             $this->jsonOutPut(0, '缺少参数~');
         }
-        $arr = Posts::decode($data);
+        $arr = Users::decode($data);
         switch ($arr['type']) {
             default:
                 $this->jsonOutPut(0, '不被允许的操作~');
@@ -71,7 +71,7 @@ class XhrController extends Q {
         $data['fileDesc'] = '';
         $data['classify'] = $type;
         $data['cTime'] = zmf::now();
-        $data['status'] = Posts::STATUS_PASSED;
+        $data['status'] = Users::STATUS_PASSED;
         $data['width'] = $width;
         $data['height'] = $height;
         $data['size'] = $fileSize;
@@ -156,7 +156,7 @@ class XhrController extends Q {
         if ($info) {
             $data['desc'] = $info['desc'] . $desc;
             $data['contact'] = $info['contact'] . $contact;
-            $data['status'] = Posts::STATUS_STAYCHECK;
+            $data['status'] = Users::STATUS_STAYCHECK;
             $data['times'] = $info['times'] + 1;
             $data['cTime'] = zmf::now();
             if (Reports::model()->updateByPk($info['id'], $data)) {
@@ -167,7 +167,7 @@ class XhrController extends Q {
             $data['url'] = $url;
             $data['desc'] = $desc;
             $data['contact'] = $contact;
-            $data['status'] = Posts::STATUS_STAYCHECK;
+            $data['status'] = Users::STATUS_STAYCHECK;
             $data['times'] = 1;
             $fm = new Reports();
             $fm->attributes = $data;
@@ -358,7 +358,7 @@ class XhrController extends Q {
 //            }
 //        }
         $uinfo = Users::findByPhone($phone);
-        if (!$uinfo || $uinfo['status'] != Posts::STATUS_PASSED) {
+        if (!$uinfo || $uinfo['status'] != Users::STATUS_PASSED) {
             $this->jsonOutPut(0, '该号码暂未注册，请先注册');
         }
         if ($type == 'sms') {
@@ -474,7 +474,7 @@ class XhrController extends Q {
 //            $this->jsonOutPut(-9, '校验码错误');
 //        }
         $uinfo = Users::findByPhone($phone);
-        if ($uinfo && $uinfo['status'] == Posts::STATUS_PASSED) {
+        if ($uinfo && $uinfo['status'] == Users::STATUS_PASSED) {
             $this->jsonOutPut(0, '此号码已被占用');
         }
         $sendInfo = Msg::findOne('reg', $phone);
@@ -490,7 +490,7 @@ class XhrController extends Q {
             'password' => md5($passwd),
             'phone' => $phone,
             'platform' => $this->isMobile ? 2 : 1,
-            'from' => $this->isMobile ? Posts::PLATFORM_MOBILE : Posts::PLATFORM_WEB
+            'from' => $this->isMobile ? Users::PLATFORM_MOBILE : Users::PLATFORM_WEB
         );
         if ($bind == 'weixin' && $this->fromWeixin) {
             $wx_data = zmf::getCookie('userWeixinData');
@@ -627,7 +627,7 @@ class XhrController extends Q {
      */
     private function favorite() {
         $data = zmf::val('data', 1);
-        $ckinfo = Posts::favorite($data, 'web', $this->userInfo);
+        $ckinfo = Users::favorite($data, 'web', $this->userInfo);
         $this->jsonOutPut($ckinfo['state'], $ckinfo['msg']);
     }
     private function exPhone(){

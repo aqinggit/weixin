@@ -105,7 +105,7 @@ $work=zmf::val("work",1);if($work){$criteria->addSearchCondition("work",$work);}
     public function actionDelete($id)
     {
     //$this->checkPower('delVolunteers');
-            $this->loadModel($id)->updateByPk($id,array('status'=>Posts::STATUS_DELED));
+            $this->loadModel($id)->updateByPk($id,array('status'=>Users::STATUS_DELED));
 
             // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
             if($this->isAjax){

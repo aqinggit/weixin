@@ -42,7 +42,7 @@
 <?php }?>
 <?php if(!empty($posts['articles'])){?>
 <div class="search-page weui-panel weui-panel_access weui-panel_hack">        
-    <div class="weui-panel__hd"><?php echo $this->searchKeyword;?>文章</div>
+    <div class="weui-panel__hd"><?php echo $this->searchKeyword;?>志愿者</div>
     <div class="weui-panel__bd">
         <?php foreach ($posts['articles'] as $post){$this->renderPartial('/article/_item',array('data'=>$post));}?>
     </div> 
@@ -50,7 +50,7 @@
 <?php }?>
 <?php if(!empty($posts['questions'])){?>
 <div class="weui-panel weui-panel_access weui-panel_hack">
-    <div class="weui-panel__hd"><?php echo $this->searchKeyword;?>问答</div>
+    <div class="weui-panel__hd"><?php echo $this->searchKeyword;?>活动</div>
     <div class="weui-panel__bd">
         <?php foreach($posts['questions'] as $post){$this->renderPartial('/questions/_item',array('data'=>$post));}?>
     </div>

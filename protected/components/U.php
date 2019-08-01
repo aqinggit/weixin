@@ -32,7 +32,7 @@ class U extends CUserIdentity
         }
         if ($user === null)
             $this->errorCode = self::ERROR_USERNAME_INVALID;
-        else if ($user['status'] != Posts::STATUS_PASSED)
+        else if ($user['status'] != Users::STATUS_PASSED)
             $this->errorCode = self::ERROR_USERNAME_INVALID;
         else if (!$this->validatePassword($user->password))
             $this->errorCode = self::ERROR_PASSWORD_INVALID;

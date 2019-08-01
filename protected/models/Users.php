@@ -21,6 +21,22 @@ class Users extends CActiveRecord {
     public $groupName;
     public $authorName;
 
+    const STATUS_NOTPASSED = 0;
+    const STATUS_PASSED = 1;
+    const STATUS_STAYCHECK = 2;
+    const STATUS_DELED = 3;
+    //关于来源
+    const PLATFORM_UNKOWN = 0;
+    const PLATFORM_WEB = 1;
+    const PLATFORM_MOBILE = 2;
+    const PLATFORM_ANDROID = 3;
+    const PLATFORM_IOS = 4;
+    const PLATFORM_WEAPP = 5; //微信小程序
+
+    //案例分类
+    const CLASSIFY_CASE = 1;//案例
+    const CLASSIFY_GALLERY = 2;//图库
+
     const DEFAULT_AVATAR = 'https://img2.chuxincw.com/siteinfo/2017/02/18/32DD3F5E-18B2-DA78-549C-9E7F89731A1B.png';
 
     /**
@@ -39,8 +55,8 @@ class Users extends CActiveRecord {
         return array(
             array('truename,password', 'required'),
             array('cTime', 'default', 'setOnEmpty' => true, 'value' => zmf::now()),
-            array('status', 'default', 'setOnEmpty' => true, 'value' => Posts::STATUS_PASSED),
-            array('platform', 'default', 'setOnEmpty' => true, 'value' => Posts::PLATFORM_WEB),
+            array('status', 'default', 'setOnEmpty' => true, 'value' => Users::STATUS_PASSED),
+            array('platform', 'default', 'setOnEmpty' => true, 'value' => Users::PLATFORM_WEB),
             array('ip', 'default', 'setOnEmpty' => true, 'value' => ip2long(Yii::app()->request->userHostAddress)),
             array('hits, sex, isAdmin, status,phoneChecked', 'numerical', 'integerOnly' => true),
             array('truename,ip,gold,levelTitle', 'length', 'max' => 16),
@@ -115,9 +131,6 @@ class Users extends CActiveRecord {
         $res = Yii::app()->db->createCommand($sql);
         $res->bindValue(':id', $id);
         $info = $res->queryRow();
-        if ($info['groupid'] > 0) {
-            $info['groupName'] = Group::getTitle($info['groupid']);
-        }
         $info = static::updateUserStat($info);
         return $info;
     }
@@ -160,10 +173,10 @@ class Users extends CActiveRecord {
 
     public static function userStatus($return) {
         $arr = array(
-            Posts::STATUS_NOTPASSED => '未激活',
-            Posts::STATUS_PASSED => '正常',
-            Posts::STATUS_STAYCHECK => '锁定',
-            Posts::STATUS_DELED => '删除',
+            Users::STATUS_NOTPASSED => '未激活',
+            Users::STATUS_PASSED => '正常',
+            Users::STATUS_STAYCHECK => '锁定',
+            Users::STATUS_DELED => '删除',
         );
         if ($return == 'admin') {
             return $arr;
@@ -172,28 +185,28 @@ class Users extends CActiveRecord {
     }
 
     public static function findByName($truename) {
-        $info = Users::model()->find('truename=:truename AND status=' . Posts::STATUS_PASSED, array(
+        $info = Users::model()->find('truename=:truename AND status=' . Users::STATUS_PASSED, array(
             ':truename' => $truename
         ));
         return $info;
     }
 
     public static function findByPhone($phone) {
-        $info = Users::model()->find('phone=:phone AND status=' . Posts::STATUS_PASSED, array(
+        $info = Users::model()->find('phone=:phone AND status=' . Users::STATUS_PASSED, array(
             ':phone' => $phone
         ));
         return $info;
     }
 
     public static function findByEmail($email) {
-        $info = Users::model()->find('email=:email AND status=' . Posts::STATUS_PASSED, array(
+        $info = Users::model()->find('email=:email AND status=' . Users::STATUS_PASSED, array(
             ':email' => $email
         ));
         return $info;
     }
 
     public static function findOne($account) {
-        $info = Users::model()->find('(email=:email OR phone=:email) AND status=' . Posts::STATUS_PASSED, array(
+        $info = Users::model()->find('(email=:email OR phone=:email) AND status=' . Users::STATUS_PASSED, array(
             ':email' => $account
         ));
         return $info;
@@ -225,26 +238,6 @@ class Users extends CActiveRecord {
         return false;
     }
 
-    public static function costWealth($uid, $actionType, $totalCost, $goodsInfo) {
-        if (!static::checkWealth($uid, $actionType, $totalCost)) {
-            return false;
-        }
-        if ($actionType == 'score') {
-            $_attr = array(
-                'uid' => $uid,
-                'classify' => 'goods',
-                'logid' => $goodsInfo['id'],
-                'score' => (-1) * $totalCost
-            );
-            $_scoreLogModel = new ScoreLogs;
-            $_scoreLogModel->attributes = $_attr;
-            return $_scoreLogModel->save();
-        } elseif ($actionType == 'gold') {
-            //todo
-            $totalWealth = 0;
-        }
-        return false;
-    }
 
     /**
      * 更新用户的统计数据
@@ -255,24 +248,6 @@ class Users extends CActiveRecord {
         return $info;
     }
 
-    public static function updateUserExp($userInfo) {
-        if (!$userInfo['groupid']) {
-            return false;
-        }
-        $info = GroupLevels::model()->find('gid=:gid AND (minExp<=:exp AND maxExp>=:exp)', array(
-            ':gid' => $userInfo['groupid'],
-            ':exp' => $userInfo['exp'],
-        ));
-        if (!$info) {
-            return false;
-        }
-        //如果找到了，则认为该用户是这个等级的
-        return Users::model()->updateByPk($userInfo['id'], array(
-                    'level' => $info['id'],
-                    'levelTitle' => $info['title'],
-                    'levelIcon' => $info['icon'],
-        ));
-    }
 
     public static function getRandomId(){
         $min= zmf::config('randMinUser');

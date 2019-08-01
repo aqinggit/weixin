@@ -70,7 +70,6 @@ class SiteController extends Admin {
         for ($i = 1; $i <= 10; $i++) {
             $_today = $today - 86400 * ($i - 1);
             $_yesterday = $_today - 86400;
-            SiteStat::addOne($_today, $_yesterday);
         }
         echo 'well done!!';
     }

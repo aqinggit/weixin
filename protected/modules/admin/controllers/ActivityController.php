@@ -97,7 +97,7 @@ $faceImg=zmf::val("faceImg",1);if($faceImg){$criteria->addSearchCondition("faceI
     public function actionDelete($id)
     {
     //$this->checkPower('delActivity');
-            $this->loadModel($id)->updateByPk($id,array('status'=>Posts::STATUS_DELED));
+            $this->loadModel($id)->updateByPk($id,array('status'=>Users::STATUS_DELED));
 
             // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
             if($this->isAjax){

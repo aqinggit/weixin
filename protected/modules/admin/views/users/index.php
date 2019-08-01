@@ -51,7 +51,7 @@ $form = $this->beginWidget('CActiveForm', array(
 	<td><?php echo CHtml::encode($data->phone);?></td>
 	<td><?php echo CHtml::encode($data->email);?></td>
         <td><?php echo zmf::formatTime($data->cTime);?></td>
-        <td><?php echo Posts::exPlatform($data->platform);?></td>        
+        <td><?php echo Users::exPlatform($data->platform);?></td>
 	<td>
             <?php echo CHtml::link('发消息',array('notice','id'=>$data->id));?>
             <?php echo CHtml::link('编辑',array('update','id'=>$data->id));?>

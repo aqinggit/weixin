@@ -17,14 +17,7 @@ class IndexController extends Admin {
     }
 
     public function actionStat() {
-        $arr['articles'] = Articles::model()->count();
-        $arr['questions'] = Questions::model()->count();
-        
-        $arr['comments'] = Comments::model()->count();
-        $arr['favorites'] = Favorites::model()->count();
-        $arr['feedbacks'] = Feedback::model()->count();
         $arr['users'] = Users::model()->count();
-        $arr['attachments'] = Attachments::model()->count();
         $this->render('stat', $arr);
     }
     

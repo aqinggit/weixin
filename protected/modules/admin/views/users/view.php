@@ -48,7 +48,7 @@ $this->widget('zii.widgets.CDetailView', array(
         'isAdmin',
         array(
             'label' => $model->getAttributeLabel('status'),
-            'value' => Posts::exStatus($model->status)
+            'value' => Users::exStatus($model->status)
         )
     )
 ));

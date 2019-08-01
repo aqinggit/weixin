@@ -47,10 +47,10 @@ $color2= zmf::config('houtaiColor2');
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">                    
-                    <li><?php echo CHtml::link('文章',array('articles/index'),array('class'=>'noRight','title'=>'文章列表'));?></li>
-                    <li><?php echo CHtml::link('<i class="fa fa-plus"></i>',array('articles/create'),array('class'=>'noLeft','title'=>'新增文章'));?></li>
-                    <li><?php echo CHtml::link('问答',array('questions/index'),array('class'=>'noRight','title'=>'问答列表'));?></li>
-                    <li><?php echo CHtml::link('<i class="fa fa-plus"></i>',array('questions/create'),array('class'=>'noLeft','title'=>'新增问答'));?></li>
+                    <li><?php echo CHtml::link('志愿者',array('volunteers/index'),array('class'=>'noRight','title'=>'志愿者列表'));?></li>
+                    <li><?php echo CHtml::link('<i class="fa fa-plus"></i>',array('volunteers/create'),array('class'=>'noLeft','title'=>'新增志愿者'));?></li>
+                    <li><?php echo CHtml::link('活动',array('activity/index'),array('class'=>'noRight','title'=>'活动列表'));?></li>
+                    <li><?php echo CHtml::link('<i class="fa fa-plus"></i>',array('activity/create'),array('class'=>'noLeft','title'=>'新增活动'));?></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
