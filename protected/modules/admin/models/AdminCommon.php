@@ -22,6 +22,11 @@ class AdminCommon extends CActiveRecord
                     'url' => Yii::app()->createUrl('admin/activity/index'),
                     'active' => in_array($c, array('Actives'))
                 ),
+                'ActiveBindVolunteer' => array(
+                    'title' => '添加志愿者',
+                    'url' => Yii::app()->createUrl('admin/activity/index'),
+                    'active' => in_array($c, array('Actives'))
+                ),
             )
         );
         $attr['navVolunteer'] = array(

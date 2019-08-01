@@ -33,10 +33,6 @@
             <option value="0" <?php if($c['regAndLogin']=='0'){?>selected="selected"<?php }?>>关闭</option>            
         </select>
     </p>
-    <p>
-        <label>默认用户组：</label>
-        <?php echo CHtml::dropDownList('defaultUserGroup', $c['defaultUserGroup'], Group::listAll(), array('class'=>'form-control','empty'=>'--请选择--'));?>
-    </p>
     <p><label>静态文件加速地址：</label><input class="form-control" type="text" name="cssJsStaticUrl" id="cssJsStaticUrl" value="<?php echo $c['cssJsStaticUrl'];?>"/></p>
     <p><label>图片默认占位图：</label><input class="form-control" type="text" name="lazyImgUrl" id="lazyImgUrl" value="<?php echo $c['lazyImgUrl'];?>"/></p>    
     <p><label>随机最小用户：</label><input class="form-control" type="text" name="randMinUser" id="randMinUser" value="<?php echo $c['randMinUser'];?>"/></p>

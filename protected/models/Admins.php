@@ -110,6 +110,7 @@ class Admins extends CActiveRecord
             'ActiveDelete' => '删除志活动',
             'ActiveAdd' => '添加活动',
             'ActiveScore' => '活动评分',
+            'ActiveBindVolunteer' => '活动添加志愿者',
         );
 
         $lang['tools']['desc'] = '小工具';

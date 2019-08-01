@@ -20,28 +20,18 @@
         <?php echo $form->textField($model,'title',array('class'=>'form-control')); ?>
         <?php echo $form->error($model,'title'); ?>
     </div>
-    <div class="form-group">
-        <?php echo $form->labelEx($model,'content'); ?>
-        
-        <?php echo $form->textField($model,'content',array('class'=>'form-control')); ?>
-        <?php echo $form->error($model,'content'); ?>
-    </div>
-    <div class="form-group">
-        <?php echo $form->labelEx($model,'cTime'); ?>
-        
-        <?php echo $form->textField($model,'cTime',array('class'=>'form-control')); ?>
-        <?php echo $form->error($model,'cTime'); ?>
-    </div>
-    <div class="form-group">
-        <?php echo $form->labelEx($model,'status'); ?>
-        
-        <?php echo $form->textField($model,'status',array('class'=>'form-control')); ?>
-        <?php echo $form->error($model,'status'); ?>
-    </div>
+        <div class="form-group">
+            <?php echo $form->labelEx($model,'content'); ?>
+            <?php $this->renderPartial('//common/editor_um', array('model' => $model,'content' => $model->content,'editorWidth'=>688,'uptype'=>'articles','imgsize'=>'c640')); ?>
+            <p><a class="btn btn-default" href="javascript:;" onclick="selectAttaches(false,'article',{})"><i class="fa fa-image"></i> 从素材库添加</a></p>
+            <p class="help-block">请勿手动缩进</p>
+            <?php echo $form->error($model,'content'); ?>
+        </div>
+
     <div class="form-group">
         <?php echo $form->labelEx($model,'activityTime'); ?>
         
-        <?php echo $form->textField($model,'activityTime',array('class'=>'form-control')); ?>
+        <?php echo $form->dateField($model,'activityTime',array('class'=>'form-control')); ?>
         <?php echo $form->error($model,'activityTime'); ?>
     </div>
     <div class="form-group">
@@ -49,12 +39,6 @@
         
         <?php echo $form->textField($model,'place',array('class'=>'form-control')); ?>
         <?php echo $form->error($model,'place'); ?>
-    </div>
-    <div class="form-group">
-        <?php echo $form->labelEx($model,'uid'); ?>
-        
-        <?php echo $form->textField($model,'uid',array('class'=>'form-control')); ?>
-        <?php echo $form->error($model,'uid'); ?>
     </div>
     <div class="form-group">
         <?php echo $form->labelEx($model,'score'); ?>
