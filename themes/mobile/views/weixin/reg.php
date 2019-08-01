@@ -157,7 +157,7 @@
     <div class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">出生日期</label></div>
         <div class="weui-cell__bd">
-            <?php echo $form->dateField($model, 'birthday', ['class' => 'weui-input pd-l-0']); ?>
+            <?php echo $form->dateTimeField($model, 'birthday', ['class' => 'weui-input pd-l-0']); ?>
         </div>
     </div>
     <div class="weui-cell pd-t-b-0">

@@ -5,7 +5,7 @@
  * @author 阿年飞少 <ph7pal@qq.com> 
  * @link http://www.newsoul.cn 
  * @copyright Copyright©2019 阿年飞少 
- * @datetime 2019-08-01 21:47:13 */
+ * @datetime 2019-08-01 22:51:23 */
 $c = Yii::app()->getController()->id;
 $a = Yii::app()->getController()->getAction()->id;
 $this->menu = array(

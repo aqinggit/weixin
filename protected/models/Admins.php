@@ -104,7 +104,7 @@ class Admins extends CActiveRecord
             'VolunteerScore' => '志愿者评分',
         );
 
-        $lang['Active']['desc'] = '活动管理';
+        $lang['Active']['desc'] = '活动';
         $lang['Active']['detail'] = array(
             'Actives' => '活动列表',
             'ActiveDelete' => '删除志活动',

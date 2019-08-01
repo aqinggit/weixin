@@ -5,7 +5,7 @@
  * @author 阿年飞少 <ph7pal@qq.com>
  * @link http://www.newsoul.cn
  * @copyright Copyright©2019 阿年飞少
- * @datetime 2019-08-01 21:47:13 */
+ * @datetime 2019-08-01 22:51:23 */
 
 class VolunteersController extends Admin{
 
@@ -105,7 +105,7 @@ $work=zmf::val("work",1);if($work){$criteria->addSearchCondition("work",$work);}
     public function actionDelete($id)
     {
     //$this->checkPower('delVolunteers');
-            $this->loadModel($id)->updateByPk($id,array('status'=>Users::STATUS_DELED));
+            $this->loadModel($id)->updateByPk($id,array('status'=>Posts::STATUS_DELED));
 
             // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
             if($this->isAjax){

@@ -5,7 +5,7 @@
  * @author 阿年飞少 <ph7pal@qq.com> 
  * @link http://www.newsoul.cn 
  * @copyright Copyright©2019 阿年飞少 
- * @datetime 2019-08-01 21:47:13 */
+ * @datetime 2019-08-01 22:51:23 */
  ?>
 
 <div class="form">
@@ -14,12 +14,6 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 <?php echo $form->errorSummary($model); ?>
-    <div class="form-group">
-        <?php echo $form->labelEx($model,'id'); ?>
-        
-        <?php echo $form->textField($model,'id',array('class'=>'form-control')); ?>
-        <?php echo $form->error($model,'id'); ?>
-    </div>
     <div class="form-group">
         <?php echo $form->labelEx($model,'username'); ?>
         

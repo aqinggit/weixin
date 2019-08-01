@@ -13,7 +13,7 @@ class AdminCommon extends CActiveRecord
             'active' => in_array($c, array('index'))
         );
         $attr['navActivity'] = array(
-            'title' => '<i class="fa fa-align-justify"></i> 活动管理',
+            'title' => '<i class="fa fa-align-justify"></i> 活动',
             'url' => '#',
             'active' => in_array($c, array('Actives')),
             'seconds' => array(
