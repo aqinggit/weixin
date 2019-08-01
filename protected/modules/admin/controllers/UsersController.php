@@ -1,21 +1,24 @@
 <?php
 
 /**
- * @filename TagsController.php 
+ * @filename TagsController.php
  * @Description
- * @author 阿年飞少 <ph7pal@qq.com> 
- * @link http://www.newsoul.cn 
- * @copyright Copyright©2015 阿年飞少 
- * @datetime 2016-1-4  12:54:36 
+ * @author 阿年飞少 <ph7pal@qq.com>
+ * @link http://www.newsoul.cn
+ * @copyright Copyright©2015 阿年飞少
+ * @datetime 2016-1-4  12:54:36
  */
-class UsersController extends Admin {
+class UsersController extends Admin
+{
 
-    public function init() {
+    public function init()
+    {
         parent::init();
         $this->checkPower('users');
     }
 
-    public function actionIndex() {
+    public function actionIndex()
+    {
         $criteria = new CDbCriteria();
         $truename = zmf::val('truename', 1);
         if ($truename) {
@@ -44,7 +47,8 @@ class UsersController extends Admin {
         ));
     }
 
-    public function actionCreate($id = '') {
+    public function actionCreate($id = '')
+    {
         if ($id) {
             $model = Users::model()->findByPk($id);
             if (!$model) {
@@ -62,7 +66,7 @@ class UsersController extends Admin {
                 $_POST['Users']['password'] = md5($_POST['Users']['password']);
             }
             //判断能否设置用户组
-            if(!$this->checkPower('admins', $this->uid, true)){
+            if (!$this->checkPower('admins', $this->uid, true)) {
                 unset($_POST['Users']['isAdmin']);
                 unset($_POST['Users']['powerGroupId']);
             }
@@ -76,24 +80,28 @@ class UsersController extends Admin {
         ));
     }
 
-    public function actionView($id) {
+    public function actionView($id)
+    {
         $this->render('view', array(
             'model' => $this->loadModel($id),
         ));
     }
 
-    public function actionUpdate($id) {
+    public function actionUpdate($id)
+    {
         $this->actionCreate($id);
     }
 
-    public function loadModel($id) {
+    public function loadModel($id)
+    {
         $model = Users::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;
     }
 
-    public function actionAdmins() {
+    public function actionAdmins()
+    {
         $this->checkPower('admins');
         $criteria = new CDbCriteria();
         $criteria->select = 'id,truename,powerGroupId';
@@ -110,7 +118,8 @@ class UsersController extends Admin {
         ));
     }
 
-    public function actionSetadmin($id = '') {
+    public function actionSetadmin($id = '')
+    {
         $this->checkPower('setAdmin');
         $mine = array();
         $model = new Admins();
@@ -129,7 +138,7 @@ class UsersController extends Admin {
             } else {
                 $powers = array_unique(array_filter($_POST['powers']));
                 Admins::model()->deleteAll('uid=:uid', array(':uid' => $uid));
-                zmf::delFCache('adminPowers'.$uid);
+                zmf::delFCache('adminPowers' . $uid);
                 if (empty($powers)) {
                     $this->message(1, '操作成功', $url);
                 } else {
@@ -153,19 +162,21 @@ class UsersController extends Admin {
         $this->render('setadmin', $data);
     }
 
-    public function actionDeladmin($id) {
+    public function actionDeladmin($id)
+    {
         $this->checkPower('delAdmin');
         Admins::model()->deleteAll('uid=:uid', array(':uid' => $id));
-        Users::model()->updateByPk($id, array('isAdmin' => 0,'powerGroupId'=>0));
+        Users::model()->updateByPk($id, array('isAdmin' => 0, 'powerGroupId' => 0));
         $this->redirect(array('users/admins'));
     }
 
-    public function actionNotice($id) {
+    public function actionNotice($id)
+    {
         $model = new Notification;
-        $model->uid=$id;
-        $model->type='system';
-        $model->new=1;
-        $model->cTime= zmf::now();
+        $model->uid = $id;
+        $model->type = 'system';
+        $model->new = 1;
+        $model->cTime = zmf::now();
         if (isset($_POST['Notification'])) {
             $model->attributes = $_POST['Notification'];
             if ($model->save()) {
@@ -181,8 +192,9 @@ class UsersController extends Admin {
             'model' => $model,
         ));
     }
-    
-    public function actionSearch() {
+
+    public function actionSearch()
+    {
         $from = zmf::val('from', 1);
         if (Yii::app()->request->isAjaxRequest && isset($_GET['q'])) {
             $name = trim(zmf::val('q', 1));
@@ -191,7 +203,7 @@ class UsersController extends Admin {
             $items = Yii::app()->db->createCommand($sql)->queryAll();
             $returnVal = '';
             foreach ($items as $val) {
-                $returnVal .= $val['truename'] . '|' . $val['id'] .  "\n";
+                $returnVal .= $val['truename'] . '|' . $val['id'] . "\n";
             }
             echo $returnVal;
         }

@@ -12,7 +12,7 @@ class DbController extends Admin {
         $this->_bakupPath = Yii::app()->basePath . '/../data/dbbak/';
         zmf::createUploadDir($this->_bakupPath);
         $this->_gets = Yii::app()->request;
-        $this->checkPower('db');
+//        $this->checkPower('db');
     }
 
     /**

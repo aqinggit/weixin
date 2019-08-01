@@ -8,12 +8,6 @@ class IndexController extends Admin {
     }
 
     public function actionIndex() {
-        $statStrs = 'articles,questions,answers,date';
-        $stats = SiteStat::model()->findAll(array(
-            'select' => $statStrs,
-            'limit' => 10,
-            'order' => 'date DESC'
-        ));
         $stats = CJSON::decode(CJSON::encode($stats));
         $stats = zmf::multi_array_sort($stats, 'date', SORT_ASC);
         $statStrArr = explode(',', $statStrs);

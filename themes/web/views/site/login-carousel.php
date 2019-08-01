@@ -8,7 +8,6 @@
  * @copyright Copyright©2015 阿年飞少 
  * @datetime 2016-5-26  14:57:36 
  */
-$posts=  Ads::getAllByPo('reg','img',false,5,'c900505.jpg');
 ?>
 <?php if(!empty($posts)){?>
 <div id="login-reg-generic" class="carousel slide" data-ride="carousel">

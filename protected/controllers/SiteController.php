@@ -115,34 +115,6 @@ class SiteController extends Q {
         $this->render('forgot', $data);
     }
 
-    public function actionInfo() {
-        $id = zmf::val('id',2);        
-        if (!$id) {
-            $this->page404();
-        }
-        $info = SiteInfo::getOne($id);
-        if (!$info) {
-            $this->page404();
-        }
-        $allInfos = SiteInfo::model()->findAll(array(
-            'select' => 'id,title',
-            'condition' => 'id!=:code AND status=' . Posts::STATUS_PASSED,
-            'params' => array(
-                ':code' => $id
-            )
-        ));
-        $info['content']= Posts::text($info['content'], true);
-        //更新访问统计
-        Posts::updateCount($info['id'], 'SiteInfo');
-        $data = array(
-            'info' => $info,
-            'allInfos' => $allInfos,
-        );
-        $this->currentModule='siteInfo';
-        $this->pageTitle = $info['title'] . '-' . zmf::config('sitename');
-        $this->render('about', $data);
-    }
-
     /**
      * 跳转统计
      */
@@ -175,57 +147,6 @@ class SiteController extends Q {
         header("Content-type:text/plain;charset=utf-8");
         echo $info;
     }
-    
-    public function actionKeywords(){    
-        //分类
-        $columns= Column::getAllClassifyColumns();
-        $areas= Area::getHasPoiAreas();
 
-        //标签
-        $tags= Tags::getAllTags();
-        //搜索记录
-        $tdk = Tdk::findByPosition();
-        if ($tdk) {
-            $this->pageTitle = $tdk['title'] .  '-' . zmf::config('sitename');
-            $this->pageDescription = $tdk['desc'];
-            $this->keywords = $tdk['keywords'];
-            $this->navContent = $tdk['navContent'];
-            $this->pageContent = $tdk['content'];
-        }else{
-            $this->pageTitle='关键词列表-'.zmf::config('sitename');
-        }
-        //友链
-        $this->links=Links::getLinks($this->isMobile);
-        $this->currentModule='keywords';
-        $data=array(
-            'columns'=>$columns,
-            'tags'=>$tags,
-            //'searchLogs'=>$searchLogs,
-            'areas'=>$areas,
-        );
-        $this->render('keywords',$data);
-    }
-    
-    public function actionArea(){
-        $areas=Area::navbarAreas();
-        $topAreas= Area::getTops(10);        
-        $tdk = Tdk::findByPosition();
-        if ($tdk) {
-            $this->pageTitle = $tdk['title'] . '-' . zmf::config('sitename');
-            $this->pageDescription = $tdk['desc'];
-            $this->keywords = $tdk['keywords'];
-            $this->navContent = $tdk['navContent'];
-            $this->pageContent = $tdk['content'];
-        }else{
-            $this->pageTitle='切换地区-'.zmf::config('sitename');
-        }
-        //友链
-        $this->links=Links::getLinks($this->isMobile);
-        $this->currentModule='area';
-        $this->render('area',array(
-            'areas'=>$areas,
-            'topAreas'=>$topAreas,
-        ));
-    }
 
 }

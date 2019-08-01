@@ -88,7 +88,7 @@ class Q extends Controller {
         if ($uid) {
             $this->uid = $uid;
             $this->userInfo = Users::getOne($uid);
-            if ($this->userInfo['status'] != Posts::STATUS_PASSED) {
+            if ($this->userInfo['status'] != 1) {
                 Yii::app()->user->logout();
                 unset($this->uid);
                 unset($this->userInfo);
