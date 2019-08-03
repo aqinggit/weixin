@@ -133,4 +133,9 @@ class Activity extends CActiveRecord
         }
     }
 
+    public static function getNew(){
+
+
+    }
+
 }

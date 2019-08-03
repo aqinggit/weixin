@@ -9,9 +9,9 @@
  */
 //$cols=  Column::allCols();
 ?>
-<div class="weui-tabbar">     
-    <a href="<?php echo zmf::config('baseurl');?>" class="weui-tabbar__item<?php echo $this->selectNav=='index' ? ' weui-bar__item_on' : '';?>">
-        <i class="fa fa-home"></i>
-        <p class="weui-tabbar__label">首页</p>
-    </a>
-</div>
+<!--<div class="weui-tabbar">     -->
+<!--    <a href="--><?php //echo zmf::config('baseurl');?><!--" class="weui-tabbar__item--><?php //echo $this->selectNav=='index' ? ' weui-bar__item_on' : '';?><!--">-->
+<!--        <i class="fa fa-home"></i>-->
+<!--        <p class="weui-tabbar__label">首页</p>-->
+<!--    </a>-->
+<!--</div>-->
