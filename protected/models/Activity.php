@@ -13,7 +13,7 @@
  * @property string $content
  * @property integer $cTime
  * @property integer $status
- * @property integer $activityTime
+ * @property integer $startTime
  * @property string $place
  * @property integer $uid
  * @property integer $score
@@ -37,8 +37,8 @@ class Activity extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('title, content, activityTime, place', 'required'),
-            array('id, cTime, status, activityTime, uid, score', 'numerical', 'integerOnly' => true),
+            array('title, content, count, place,startTime,endTime,phone,responsible,volunteerType', 'required'),
+            array('id, cTime, status, count, uid, score', 'numerical', 'integerOnly' => true),
             array('title, content, place, faceImg', 'length', 'max' => 255),
             // The following rule is used by search().
             array('id, title', 'safe', 'on' => 'search'),
@@ -71,11 +71,16 @@ class Activity extends CActiveRecord
             'content' => '正文',
             'cTime' => '创建时间',
             'status' => '状态',
-            'activityTime' => '活动时间',
+            'count' => '招募人数',
+            'startTime' => '开始时间',
+            'endTime' => '结束时间',
+            'responsible' => '负责人姓名',
+            'phone' => '负责人手机号码',
             'place' => '活动地点',
             'uid' => '创建人',
             'score' => '评分',
             'faceImg' => '封面图',
+            'volunteerType' => '志愿者类型',
         );
     }
 

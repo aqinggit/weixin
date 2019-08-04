@@ -48,8 +48,8 @@ class Volunteers extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('username, password,password2, truename, cardIdType, cardId, phone, politics, nation, education, work,sex,birthday,address,email', 'required'),
-            array('id, cTime, status, cardIdType, cardId, sex, birthday, phone, politics, nation, education, work', 'numerical', 'integerOnly' => true),
+            array('username, password,password2, truename, cardIdType, cardId, phone, politics, nation, education, work,sex,birthday,address,email,volunteerType', 'required'),
+            array('id, cTime, status, cardIdType, cardId, sex, birthday, phone, politics, nation, education, work,volunteerType', 'numerical', 'integerOnly' => true),
             array('score', 'numerical'),
             array('username, truename', 'length', 'max' => 16),
             array('password', 'length', 'max' => 32),
@@ -100,7 +100,8 @@ class Volunteers extends CActiveRecord
             'education' => '学历',
             'work' => '工作情况',
             'ip' => '注册ip',
-            'password2' => '确认密码'
+            'password2' => '确认密码',
+            'volunteerType' => '志愿者类型',
         );
     }
 
@@ -338,15 +339,15 @@ class Volunteers extends CActiveRecord
     }
 
 
-    public static function VolunteerType($key = 0)
+    public static function VolunteerType($key = -1)
     {
         $item = array(
             0 => '请选择',
             1 => '平安建设志愿者',
-            2 => '社会治理',
-            3 => '法制宣传',
+            2 => '社会治理志愿者',
+            3 => '法制宣传志愿者',
         );
-        if ($key) {
+        if ($key>=0) {
             return $item[$key];
         } else {
             return $item;

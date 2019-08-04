@@ -17,49 +17,18 @@ class ActivityController extends Admin
     public function actionIndex()
     {
         //$this->checkPower('activity');
-        $select = "id,title,content,cTime,status,activityTime,place,uid,score,faceImg";
+        $select = "id,title,content,cTime,status,startTime,place,uid,score,faceImg";
         $model = new Activity;
         $criteria = new CDbCriteria();
-        $id = zmf::val("id", 1);
-        if ($id) {
-            $criteria->addSearchCondition("id", $id);
-        }
         $title = zmf::val("title", 1);
         if ($title) {
             $criteria->addSearchCondition("title", $title);
-        }
-        $content = zmf::val("content", 1);
-        if ($content) {
-            $criteria->addSearchCondition("content", $content);
-        }
-        $cTime = zmf::val("cTime", 1);
-        if ($cTime) {
-            $criteria->addSearchCondition("cTime", $cTime);
-        }
-        $status = zmf::val("status", 1);
-        if ($status) {
-            $criteria->addSearchCondition("status", $status);
-        }
-        $activityTime = zmf::val("activityTime", 1);
-        if ($activityTime) {
-            $criteria->addSearchCondition("activityTime", $activityTime);
-        }
-        $place = zmf::val("place", 1);
-        if ($place) {
-            $criteria->addSearchCondition("place", $place);
         }
         $uid = zmf::val("uid", 1);
         if ($uid) {
             $criteria->addSearchCondition("uid", $uid);
         }
-        $score = zmf::val("score", 1);
-        if ($score) {
-            $criteria->addSearchCondition("score", $score);
-        }
-        $faceImg = zmf::val("faceImg", 1);
-        if ($faceImg) {
-            $criteria->addSearchCondition("faceImg", $faceImg);
-        }
+
         $criteria->select = $select;
         $count = $model->count($criteria);
         $pager = new CPagination($count);
@@ -101,10 +70,15 @@ class ActivityController extends Admin
         // $this->performAjaxValidation($model);
         if (isset($_POST['Activity'])) {
             $data = $_POST['Activity'];
-            if ($data['activityTime']) {
-                $data['activityTime'] = strtotime($data['activityTime']);
+            if ($data['startTime']) {
+                $data['startTime'] = strtotime($data['startTime']);
             }else{
-                $data['activityTime'] = $model->activityTime;
+                $data['startTime'] = $model->startTime;
+            }
+            if ($data['endTime']) {
+                $data['endTime'] = strtotime($data['endTime']);
+            }else{
+                $data['endTime'] = $model->endTime;
             }
 
             $model->attributes = $data;

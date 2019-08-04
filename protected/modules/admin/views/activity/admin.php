@@ -17,7 +17,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 		'content',
 		'cTime',
 		'status',
-		'activityTime',
+		'startTime',
 		'place',
 		'uid',
 		'score',

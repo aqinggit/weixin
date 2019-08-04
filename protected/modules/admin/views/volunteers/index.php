@@ -48,6 +48,7 @@ $form = $this->beginWidget('CActiveForm', array(
         <th><?php echo $model->getAttributeLabel("address"); ?></th>
         <th><?php echo $model->getAttributeLabel("education"); ?></th>
         <th><?php echo $model->getAttributeLabel("work"); ?></th>
+        <th><?php echo $model->getAttributeLabel("volunteerType"); ?></th>
         <th style="width: 160px">操作</th>
     </tr>
 
@@ -68,6 +69,7 @@ $form = $this->beginWidget('CActiveForm', array(
             <td><?php echo $data->address; ?></td>
             <td><?php echo Volunteers::EdeGree($data->education); ?></td>
             <td><?php echo Volunteers::Employment($data->work); ?></td>
+            <td><?php echo Volunteers::volunteerType($data->volunteerType); ?></td>
             <td>
                 <?php echo CHtml::link('编辑', array('update', 'id' => $data->id)); ?>
                 <?php echo CHtml::link('删除', array('delete', 'id' => $data->id)); ?>

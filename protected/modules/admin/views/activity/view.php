@@ -15,7 +15,6 @@ $this->widget('zii.widgets.CDetailView', array(
 		'content',
 		'cTime',
 		'status',
-		'activityTime',
 		'place',
 		'uid',
 		'score',
