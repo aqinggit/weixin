@@ -698,166 +698,35 @@
 </style>
 
 <div class="weui-tab">
-    <div class="weui-cells__title">项目信息<a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary r">招募中</a>
+    <div class="weui-cells__title">项目信息
+        <?php if ($item['status'] == 1) { ?>
+            <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary r">招募中</a>
+        <?php } ?>
     </div>
     <div class="weui-panel weui-panel_access page__bd">
         <article class="weui-article">
-            <h1>首届“周末文艺荟”优秀节目集中展演及第二届周未文艺荟</h1>
+            <h1><?php echo $item['title']; ?></h1>
             <section>
-                <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary">摄影摄像</a>&nbsp;&nbsp;<a
-                        href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary">文化艺术</a>&nbsp;&nbsp;
-            </section>
-            <section>
-                <h3>服务对象：儿童,青少年,孤寡老人,残障人士,优抚对象,特困群体</h3>
-                <h3>招募日期：<a href="javascript:;">2019-05-10</a> 至 <a href="javascript:;">2019-10-15</a></h3>
-                <h3>项目日期：<a href="javascript:;">2019-05-10</a> 至 <a href="javascript:;">2019-10-28</a></h3>
-                <h3>项目地址：荣昌区昌元街道 <a href="javascript:;"
-                                    onclick="openmap(29.839974,40.206249,'首届“周末文艺荟”优秀节目集中展演及第二届周未文艺荟','荣昌区昌元街道');"
-                                    class="weui-btn weui-btn_mini weui-btn_primary r">项目地图</a></h3>
-                <h3>服务时间：从5月10日至10月28日期间，每个周五16：00——21：00。</h3>
-                <h3>志愿团体：<a href="view.php?m=org_info&id=124446982">荣昌区新时代文明实践文化体育志愿服务分队</a></h3>
-                <h3>项目联系人：邓正碧&nbsp;&nbsp;</h3>
+                <h3>志愿者类型：<?php echo Volunteers::VolunteerType($item['volunteerType']); ?></h3>
+                <h3>项目日期：<a href="javascript:;"><?php echo zmf::time($item['startTime'],'Y-m-d'); ?></a> 至 <a href="javascript:;"><?php echo zmf::time($item['endTime'],'Y-m-d'); ?></a></h3>
+                <h3>项目地址：<?php echo $item['place']; ?>
+                <h3>项目联系人：<?php echo $item['responsible']; ?></h3>
 
-                <h3>手机：<a href="tel:18623582133">18623582133</a></h3>
-                <h3>电话：<a href="tel:023-46786909">023-46786909</a></h3>
-                <h3>邮箱：<a href="emailto:563435228@qq.com">563435228@qq.com</a></h3>
+                <h3>手机：<a href="tel:<?php echo $item['phone']; ?>"><?php echo $item['phone']; ?></a></h3>
             </section>
-        </article>
-    </div>
-
-    <div class="weui-cells__title">全部岗位</div>
-    <div class="weui-panel weui-panel_access page__bd">
-        <article class="weui-article">
-            <div class="swiper-container">
-                <!-- Additional required wrapper -->
-                <div class="swiper-wrapper" style="padding-bottom:30px;">
-                    <div class="swiper-slide">
-                        <p>
-                            岗位名称：文化服务<br>
-                            计划招募：20<br>
-                            岗位描述：演出开始前的服务工作，包括场地布置、接待、活动开始后的秩序维护。<br>
-                            岗位条件：服务时间16：00至21：00，热爱文艺，积极健康的实名注册志愿者。<br>
-                        </p>
-                    </div>
-                </div>
-                <!-- If we need pagination -->
-                <div class="swiper-pagination"></div>
-            </div>
-            <script>
-                $(".swiper-container").swiper({
-                    loop: true,
-                    autoplay: 3000
-                });
-            </script>
         </article>
     </div>
 
     <div class="weui-cells__title">项目简介</div>
     <div class="weui-panel weui-panel_access page__bd">
         <article class="weui-article">
-            <p>
-                <span style="font-size:22.0000pt"><span style="color:#000000"><span style="font-weight:normal"><span
-                                    style="font-family:&#039;方正小标宋_GBK&#039;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; “我为梦想·奋进新时代”</span></span></span></span><br><span
-                        style="font-size:14.0000pt"><span style="color:#000000"><span style="font-weight:normal"><span
-                                    style="font-family:&#039;方正小标宋_GBK&#039;">--荣昌区新时代文明实践</span></span></span></span><span
-                        style="font-size:14.0000pt"><span style="color:#000000"><span style="font-weight:normal"><span
-                                    style="font-family:&#039;方正小标宋_GBK&#039;">“周末文艺荟”优秀节目集中展演活动方案</span></span></span></span>
-            <p class="p0" style="margin-top:0pt; margin-bottom:0pt"><span style="text-autospace:ideograph-other"><span
-                            style="line-height:28.5000pt"><span style="font-size:16.0000pt"><span
-                                    style="font-family:&#039;方正黑体_GBK&#039;">一、活动主题</span></span></span></span></p>
-            <p class="p0" style="margin-top:0pt; margin-bottom:0pt"><span style="text-autospace:ideograph-other"><span
-                            style="line-height:28.5000pt"><span style="font-size:16.0000pt"><span
-                                    style="font-family:&#039;方正仿宋_GBK&#039;">“</span></span><span
-                                style="font-size:16.0000pt"><span
-                                    style="font-family:&#039;方正仿宋_GBK&#039;">我为梦想</span></span><span
-                                style="font-size:16.0000pt"><span
-                                    style="font-family:&#039;方正仿宋_GBK&#039;">•</span></span><span
-                                style="font-size:16.0000pt"><span style="font-family:&#039;方正仿宋_GBK&#039;">奋进新时代</span></span><span
-                                style="font-size:16.0000pt"><span
-                                    style="font-family:&#039;方正仿宋_GBK&#039;">”</span></span></span></span></p>
-            <p class="p0" style="margin-top:0pt; margin-bottom:0pt"><span style="text-autospace:ideograph-other"><span
-                            style="line-height:28.5000pt"><span style="font-size:16.0000pt"><span
-                                    style="font-family:&#039;方正黑体_GBK&#039;">二</span></span><span
-                                style="font-size:16.0000pt"><span style="font-family:&#039;方正黑体_GBK&#039;">、活动时间</span></span></span></span>
-            </p>
-            <p class="p0" style="margin-top:0pt; margin-bottom:0pt"><span style="text-autospace:ideograph-other"><span
-                            style="line-height:28.5000pt"><span style="font-size:16.0000pt"><span
-                                    style="font-family:&#039;方正仿宋_GBK&#039;">201</span></span><span
-                                style="font-size:16.0000pt"><span
-                                    style="font-family:&#039;方正仿宋_GBK&#039;">9</span></span><span
-                                style="font-size:16.0000pt"><span
-                                    style="font-family:&#039;方正仿宋_GBK&#039;">年</span></span><span
-                                style="font-size:16.0000pt"><span
-                                    style="font-family:&#039;方正仿宋_GBK&#039;">4</span></span><span
-                                style="font-size:16.0000pt"><span
-                                    style="font-family:&#039;方正仿宋_GBK&#039;">月</span></span><span
-                                style="font-size:16.0000pt"><span
-                                    style="font-family:&#039;方正仿宋_GBK&#039;">26</span></span><span
-                                style="font-size:16.0000pt"><span
-                                    style="font-family:&#039;方正仿宋_GBK&#039;">日-</span></span><span
-                                style="font-size:16.0000pt"><span
-                                    style="font-family:&#039;方正仿宋_GBK&#039;">5</span></span><span
-                                style="font-size:16.0000pt"><span
-                                    style="font-family:&#039;方正仿宋_GBK&#039;">月</span></span><span
-                                style="font-size:16.0000pt"><span
-                                    style="font-family:&#039;方正仿宋_GBK&#039;">18</span></span><span
-                                style="font-size:16.0000pt"><span
-                                    style="font-family:&#039;方正仿宋_GBK&#039;">日（</span></span><span
-                                style="font-size:16.0000pt"><span
-                                    style="font-family:&#039;方正仿宋_GBK&#039;">每周五晚</span></span><span
-                                style="font-size:16.0000pt"><span
-                                    style="font-family:&#039;方正仿宋_GBK&#039;">7</span></span><span
-                                style="font-size:16.0000pt"><span
-                                    style="font-family:&#039;方正仿宋_GBK&#039;">:30-</span></span><span
-                                style="font-size:16.0000pt"><span
-                                    style="font-family:&#039;方正仿宋_GBK&#039;">9</span></span><span
-                                style="font-size:16.0000pt"><span style="font-family:&#039;方正仿宋_GBK&#039;">:00）。</span></span></span></span>
-            </p>
-            <ul>
-                <li class="p0" style="margin-top:0pt; margin-bottom:0pt"><span
-                            style="text-autospace:ideograph-other"><span style="line-height:28.5000pt"><span
-                                    style="font-size:16.0000pt"><span
-                                        style="font-family:&#039;方正黑体_GBK&#039;">活动宗旨</span></span></span></span></li>
-            </ul>
-            <p class="p0" style="margin-top:0pt; margin-bottom:0pt"><span style="text-autospace:ideograph-other"><span
-                            style="line-height:28.5000pt"><span style="font-size:16.0000pt"><span
-                                    style="font-family:&#039;方正仿宋_GBK&#039;">为深入贯彻落实习近平新时代中国特色社会主义思想和党的十九大精神，全面贯彻落实全国、全市宣传思想工作会议精神，进一步加强改进基层宣传思想文化工作和精神文明建设，</span></span><span
-                                style="font-size:16.0000pt"><span
-                                    style="font-family:&#039;方正仿宋_GBK&#039;">特举办“</span></span><span
-                                style="font-size:16.0000pt"><span
-                                    style="font-family:&#039;方正仿宋_GBK&#039;">我为梦想</span></span><span
-                                style="font-size:16.0000pt"><span
-                                    style="font-family:&#039;方正仿宋_GBK&#039;">•</span></span><span
-                                style="font-size:16.0000pt"><span style="font-family:&#039;方正仿宋_GBK&#039;">奋进新时代</span></span><span
-                                style="font-size:16.0000pt"><span style="font-family:&#039;方正仿宋_GBK&#039;">”－－荣昌区</span></span><span
-                                style="font-size:16.0000pt"><span style="color:#000000"><span
-                                        style="font-weight:normal"><span style="font-family:&#039;方正仿宋_GBK&#039;">新时代文明实践</span></span></span></span><span
-                                style="font-size:16.0000pt"><span style="color:#000000"><span
-                                        style="font-weight:normal"><span style="font-family:&#039;方正仿宋_GBK&#039;">“周末文艺荟”优秀节目集中展演活动</span></span></span></span><span
-                                style="font-size:16.0000pt"><span
-                                    style="font-family:&#039;方正仿宋_GBK&#039;">。</span></span></span></span></p>
-            <p class="p0" style="margin-top:0pt; margin-bottom:0pt"><span style="text-autospace:ideograph-other"><span
-                            style="line-height:28.5000pt"><span style="font-size:16.0000pt"><span
-                                    style="font-family:&#039;方正黑体_GBK&#039;">四、</span></span><span
-                                style="font-size:16.0000pt"><span
-                                    style="font-family:&#039;方正黑体_GBK&#039;">活动内容</span></span></span></span></p>
-            <p class="p18"
-               style="margin-top:0.0000pt; margin-bottom:0.0000pt; padding:0pt 0pt 0pt 0pt ; text-align:left"><span
-                        style="text-autospace:ideograph-other"><span style="line-height:28.5000pt"><span
-                                style="font-size:16.0000pt"><span style="color:#000000"><span
-                                        style="font-family:&#039;方正仿宋_GBK&#039;">2018年度荣昌区首届“周末文艺荟”公益文艺演出活动每周六晚演出一场。各演出团队充分挖掘本地文化资源，积极组织文艺作品创作，着力打造“周末文艺荟”精彩节目，各团队演出后，推荐本团队2个节目参加年度优秀节目集中汇演。</span></span></span></span></span>
-            </p>                </p>
-            </section>
+            <?php echo $item['content']; ?>
         </article>
     </div>
 
 
     <div class="clearfix" style="height:65px;"></div>
     <div class="weui-tabbar">
-        <a href="javascript:;" onclick="share_opp();" class="weui-tabbar__item">
-            <p class="weui-tabbar__label">分享</p>
-        </a>
-
         <a href="javascript:;" onclick="join_opp2(2762710);" class="weui-tabbar__item weui-btn weui-btn_primary"
            style="border-radius:0">
             <p class="weui-tabbar__label" style="color:#fff;">我要报名</p>
@@ -865,102 +734,4 @@
 
     </div>
 
-
 </div>
-
-</body>
-</html>
-<script type="text/javascript" src="https://css.zhiyuanyun.com/default/wx/fastclick.js"></script>
-<script type="text/javascript">
-    $(function () {
-        FastClick.attach(document.body);
-    });
-</script>
-
-<script>
-
-    function join_opp2(opp_id) {
-        $.get('/app/api/weixin.php?m=join_opp&opp_id=' + opp_id, {}, function (data) {
-//                  alert(data);
-            try {
-                var ret = $.evalJSON(data);
-                if (ret.msg == '请选择岗位') {
-                    var title = '岗位选择';
-
-                    var html = '';
-                    html += '<div id="job_form">';
-
-                    html += '<div class="weui-cells">';
-
-                    html += '  <div class="weui-cell weui-cell_select">';
-                    html += '    <div class="weui-cell__bd">';
-                    html += '      <select class="weui-select" id="job_id">';
-                    html += '<option value="0">请选择岗位</option>';
-                    for (var i = 0; i < ret.d.list.length; i++) {
-                        var job = ret.d.list[i];
-                        html += '<option value="' + job.job_id + '">' + job.job_name + '</option>';
-                    }
-                    html += '      </select>';
-                    html += '    </div>';
-                    html += '  </div>';
-
-//              html+='  <div class="weui-cell">';
-//              html+='      <div class="weui-cell__hd"><label class="weui-label">服务岗位</label></div>';
-//              html+='      <div class="weui-cell__bd weui-cell_primary">';
-//              html+='          <input class="weui-input" type="text" id="job_id" value="" placeholder="请选择岗位">';
-//              html+='      </div>';
-//              html+='  </div>';
-//              
-//              html+='</div>';
-
-
-                    html += '<div class="weui-btn-area">';
-                    html += '    <a class="weui-btn weui-btn_primary" href="javascript:;" onclick="join_opp_scan(\'' + opp_id + '\',\'' + ret.d.opp_pwd + '\');">我要报名</a>';
-                    html += '</div>';
-                    $('#job_div').find('.modal-content').html(html);
-                    $('#job_div').find('.title').html(title);
-                    $('#job_div').popup();
-
-//              tmp_items=[];
-//              for(var i=0;i<ret.d.list.length;i++){
-//                  var job=ret.d.list[i];
-//                  tmp_items.push({"title":job.job_name,"value":job.job_id});
-//              }
-//              $("#job_id").select({
-//                  title: "服务岗位",multi: false,min: 1,max: 1,
-//                  items: tmp_items
-//              });
-                } else {
-                    $.toptip(ret.msg, ret.code == 0 ? 'success' : 'error');
-                    if (ret.msg.indexOf('会话已失效') > 0) window.location.href = 'login.php';
-                }
-            } catch (e) {
-                alert(data + '\r\n' + e.message);
-            }
-        });
-    }
-
-    function join_opp_scan(opp_id, pwd) {
-        var job_id = $('#job_id').val();//.attr('data-values');//alert(job_id);
-        $.get('/app/api/weixin.php?m=join_opp&opp_id=' + opp_id + '&job_id=' + job_id + '&opp_pwd=' + pwd, {}, function (data) {//项目
-            try {
-                var ret = $.evalJSON(data);
-                $.toptip(ret.msg, ret.code == 0 ? 'success' : 'error');
-            } catch (e) {
-                alert(e.message + '\r\n' + data);
-            }
-        });
-    }
-
-    function openmap(lat, lng, name, address) {
-//  alert(name);
-        wx.openLocation({
-            latitude: lat, // 纬度，浮点数，范围为90 ~ -90
-            longitude: lng, // 经度，浮点数，范围为180 ~ -180。
-            name: name, // 位置名
-            address: address, // 地址详情说明
-            scale: 15, // 地图缩放级别,整形值,范围从1~28。默认为最大
-            infoUrl: '' // 在查看位置界面底部显示的超链接,可点击跳转
-        });
-    }
-</script>

@@ -8,18 +8,21 @@ class ActivityController extends Q
         $data = [
             'items' => $items
         ];
-        $this->render('index',$data);
+        $this->render('index', $data);
     }
 
-    public function actionDetail(){
+    public function actionDetail()
+    {
         $id = zmf::val('id');
         $item = Activity::getOne($id);
-        if (!$item || $item['status'] != 1){
+        if (!$item || $item['status'] != 1) {
             throw new CHttpException(404, '这场活动不存在,或者已经结束');
         }
+        $data = [
+            'item' => $item
+        ];
 
-
-        $this->render('detail',$item);
+        $this->render('detail', $data);
 
 
     }
