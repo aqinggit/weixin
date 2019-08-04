@@ -72,12 +72,12 @@ class ActivityController extends Admin
             $data = $_POST['Activity'];
             if ($data['startTime']) {
                 $data['startTime'] = strtotime($data['startTime']);
-            }else{
+            } else {
                 $data['startTime'] = $model->startTime;
             }
             if ($data['endTime']) {
                 $data['endTime'] = strtotime($data['endTime']);
-            }else{
+            } else {
                 $data['endTime'] = $model->endTime;
             }
 
@@ -115,7 +115,7 @@ class ActivityController extends Admin
     public function actionDelete($id)
     {
         //$this->checkPower('delActivity');
-        $this->loadModel($id)->updateByPk($id, array('status' => Posts::STATUS_DELED));
+        $this->loadModel($id)->updateByPk($id, array('status' => Activity::DEL));
 
         // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
         if ($this->isAjax) {
@@ -124,6 +124,33 @@ class ActivityController extends Admin
             header('location: ' . $_SERVER['HTTP_REFERER']);
         }
     }
+
+    public function actionPass($id)
+    {
+        //$this->checkPower('delActivity');
+        $this->loadModel($id)->updateByPk($id, array('status' => Activity::PASS));
+
+        // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+        if ($this->isAjax) {
+            $this->jsonOutPut(1, '已通过');
+        } else {
+            header('location: ' . $_SERVER['HTTP_REFERER']);
+        }
+    }
+
+    public function actionRecruit($id)
+    {
+        //$this->checkPower('delActivity');
+        $this->loadModel($id)->updateByPk($id, array('status' => Activity::Recruit));
+
+        // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+        if ($this->isAjax) {
+            $this->jsonOutPut(1, '已开始招募');
+        } else {
+            header('location: ' . $_SERVER['HTTP_REFERER']);
+        }
+    }
+
 
     /**
      * Manages all models.
