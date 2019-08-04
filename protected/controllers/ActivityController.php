@@ -11,6 +11,19 @@ class ActivityController extends Q
         $this->render('index',$data);
     }
 
+    public function actionDetail(){
+        $id = zmf::val('id');
+        $item = Activity::getOne($id);
+        if (!$item || $item['status'] != 1){
+            throw new CHttpException(404, '这场活动不存在,或者已经结束');
+        }
+
+
+        $this->render('detail',$item);
+
+
+    }
+
     // Uncomment the following methods and override them if needed
     /*
     public function filters()
