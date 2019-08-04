@@ -92,6 +92,12 @@ class VolunteersController extends Admin
         if ($work) {
             $criteria->addSearchCondition("work", $work);
         }
+
+        if (zmf::val('type')!='all'){
+            $criteria->addCondition('status =0');
+        }
+
+        $criteria->addCondition('status !=3');
         $criteria->select = $select;
         $count = $model->count($criteria);
         $pager = new CPagination($count);
