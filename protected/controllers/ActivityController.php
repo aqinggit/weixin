@@ -8,7 +8,7 @@ class ActivityController extends Q
         $data = [
             'items' => $items
         ];
-        $this->render('index', $data);
+        $this->render('list', $data);
     }
 
     public function actionDetail()
@@ -23,7 +23,6 @@ class ActivityController extends Q
         ];
 
         $this->render('detail', $data);
-
 
     }
 
