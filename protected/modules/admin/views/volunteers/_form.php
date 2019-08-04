@@ -62,7 +62,7 @@
     <div class="form-group">
         <?php echo $form->labelEx($model, 'sex'); ?>
 
-        <?php echo $form->dropDownList($model, 'sex',Volunteers::Sex(), array('class' => 'form-control')); ?>
+        <?php echo $form->dropDownList($model, 'sex', Volunteers::Sex(), array('class' => 'form-control')); ?>
         <?php echo $form->error($model, 'sex'); ?>
     </div>
     <div class="form-group">
@@ -86,7 +86,7 @@
     <div class="form-group">
         <?php echo $form->labelEx($model, 'nation'); ?>
 
-        <?php echo $form->dropDownList($model, 'nation',Volunteers::Ethnicity(), array('class' => 'form-control')); ?>
+        <?php echo $form->dropDownList($model, 'nation', Volunteers::Ethnicity(), array('class' => 'form-control')); ?>
         <?php echo $form->error($model, 'nation'); ?>
     </div>
     <div class="form-group">
@@ -98,15 +98,22 @@
     <div class="form-group">
         <?php echo $form->labelEx($model, 'education'); ?>
 
-        <?php echo $form->dropDownList($model, 'education',Volunteers::EdeGree(), array('class' => 'form-control')); ?>
+        <?php echo $form->dropDownList($model, 'education', Volunteers::EdeGree(), array('class' => 'form-control')); ?>
         <?php echo $form->error($model, 'education'); ?>
     </div>
 
-        <div class="form-group">
-        <?php echo $form->labelEx($model, 'score'); ?>
+    <div class="form-group">
+        <?php echo $form->labelEx($model, 'volunteerType'); ?>
 
-        <?php echo $form->textField($model, 'score', array('class' => 'form-control')); ?>
-        <?php echo $form->error($model, 'score'); ?>
+        <?php echo $form->dropDownList($model, 'volunteerType', Volunteers::volunteerType(), array('class' => 'form-control')); ?>
+        <?php echo $form->error($model, 'volunteerType'); ?>
+    </div>
+
+    <div class="form-group">
+        <?php echo $form->labelEx($model, 'work'); ?>
+
+        <?php echo $form->dropDownList($model, 'work', Volunteers::Employment(), array('class' => 'form-control')); ?>
+        <?php echo $form->error($model, 'work'); ?>
     </div>
 
     <div class="form-group">

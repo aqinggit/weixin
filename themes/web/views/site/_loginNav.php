@@ -1,4 +1,3 @@
-<li><a href="javascript:;" rel="nofollow"><i class="fa fa-phone"></i> <?php echo zmf::config('sitePhone');?></a></li>
 <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $this->userInfo['truename']; ?> <span class="caret"></span></a>
     <ul class="dropdown-menu">

@@ -1,14 +1,14 @@
 <?php
 /**
- * @filename ActivityController.php
+ * @filename QuestionsController.php
  * @Description
  * @author 阿年飞少 <ph7pal@qq.com>
  * @link http://www.newsoul.cn
  * @copyright Copyright©2019 阿年飞少
- * @datetime 2019-08-01 22:50:41
+ * @datetime 2019-08-04 09:58:00
  */
 
-class ActivityController extends Admin
+class QuestionsController extends Admin
 {
 
     /**
@@ -16,19 +16,15 @@ class ActivityController extends Admin
      */
     public function actionIndex()
     {
-        //$this->checkPower('activity');
-        $select = "id,title,content,cTime,status,startTime,place,uid,score,faceImg";
-        $model = new Activity;
+        //$this->checkPower('questions');
+        $select = "id,title,content,status,cTime,uid,answers,score,type";
+        $model = new Questions;
         $criteria = new CDbCriteria();
+
         $title = zmf::val("title", 1);
         if ($title) {
             $criteria->addSearchCondition("title", $title);
         }
-        $uid = zmf::val("uid", 1);
-        if ($uid) {
-            $criteria->addSearchCondition("uid", $uid);
-        }
-
         $criteria->select = $select;
         $count = $model->count($criteria);
         $pager = new CPagination($count);
@@ -60,32 +56,19 @@ class ActivityController extends Admin
     public function actionCreate($id = '')
     {
         if ($id) {
-            //$this->checkPower('updateActivity');
+            //$this->checkPower('updateQuestions');
             $model = $this->loadModel($id);
         } else {
-            //$this->checkPower('addActivity');
-            $model = new Activity;
+            //$this->checkPower('addQuestions');
+            $model = new Questions;
         }
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
-        if (isset($_POST['Activity'])) {
-            $data = $_POST['Activity'];
-            if ($data['startTime']) {
-                $data['startTime'] = strtotime($data['startTime']);
-            }else{
-                $data['startTime'] = $model->startTime;
-            }
-            if ($data['endTime']) {
-                $data['endTime'] = strtotime($data['endTime']);
-            }else{
-                $data['endTime'] = $model->endTime;
-            }
-
-            $model->attributes = $data;
-
+        if (isset($_POST['Questions'])) {
+            $model->attributes = $_POST['Questions'];
             if ($model->save()) {
                 if (!$id) {
-                    Yii::app()->user->setFlash('addActivitySuccess', "保存成功！您可以继续添加。");
+                    Yii::app()->user->setFlash('addQuestionsSuccess', "保存成功！您可以继续添加。");
                     $this->redirect(array('create'));
                 } else {
                     $this->redirect(array('index'));
@@ -114,7 +97,7 @@ class ActivityController extends Admin
      */
     public function actionDelete($id)
     {
-        //$this->checkPower('delActivity');
+        //$this->checkPower('delQuestions');
         $this->loadModel($id)->updateByPk($id, array('status' => Posts::STATUS_DELED));
 
         // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
@@ -130,10 +113,10 @@ class ActivityController extends Admin
      */
     public function actionAdmin()
     {
-        $model = new Activity('search');
+        $model = new Questions('search');
         $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['Activity']))
-            $model->attributes = $_GET['Activity'];
+        if (isset($_GET['Questions']))
+            $model->attributes = $_GET['Questions'];
 
         $this->render('admin', array(
             'model' => $model,
@@ -145,12 +128,12 @@ class ActivityController extends Admin
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.
      * @param integer $id the ID of the model to be loaded
-     * @return Activity the loaded model
+     * @return Questions the loaded model
      * @throws CHttpException
      */
     public function loadModel($id)
     {
-        $model = Activity::model()->findByPk($id);
+        $model = Questions::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;
@@ -158,11 +141,11 @@ class ActivityController extends Admin
 
     /**
      * Performs the AJAX validation.
-     * @param Activity $model the model to be validated
+     * @param Questions $model the model to be validated
      */
     protected function performAjaxValidation($model)
     {
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'activity-form') {
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'questions-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }

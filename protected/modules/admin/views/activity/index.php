@@ -31,7 +31,7 @@ $form = $this->beginWidget('CActiveForm', array(
     <tr>
         <th><?php echo $model->getAttributeLabel("title"); ?></th>
         <th><?php echo $model->getAttributeLabel("status"); ?></th>
-        <th><?php echo $model->getAttributeLabel("activityTime"); ?></th>
+        <th><?php echo $model->getAttributeLabel("startTime"); ?></th>
         <th><?php echo $model->getAttributeLabel("place"); ?></th>
         <th><?php echo $model->getAttributeLabel("uid"); ?></th>
         <th><?php echo $model->getAttributeLabel("score"); ?></th>
@@ -42,7 +42,7 @@ $form = $this->beginWidget('CActiveForm', array(
         <tr>
             <td><?php echo $data->title; ?></td>
             <td><?php echo Activity::Status($data->status); ?></td>
-            <td><?php echo zmf::time($data->activityTime, 'Y-m-d'); ?></td>
+            <td><?php echo zmf::time($data->startTime, 'Y-m-d'); ?></td>
             <td><?php echo $data->place; ?></td>
             <td><?php echo $data->UserInfo->truename; ?></td>
             <td><?php echo $data->score; ?></td>

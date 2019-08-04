@@ -1,32 +1,31 @@
 <?php
 
 /**
- * This is the model class for table "{{activity}}".
+ * This is the model class for table "{{questions}}".
  * @Description
  * @author 阿年飞少 <ph7pal@qq.com>
  * @link http://www.newsoul.cn
  * @copyright Copyright©2019 阿年飞少
- * @datetime 2019-08-01 21:50:46
- * The followings are the available columns in table '{{activity}}':
+ * @datetime 2019-08-04 09:57:24
+ * The followings are the available columns in table '{{questions}}':
  * @property integer $id
  * @property string $title
  * @property string $content
- * @property integer $cTime
  * @property integer $status
- * @property integer $startTime
- * @property string $place
+ * @property integer $cTime
  * @property integer $uid
+ * @property string $answers
  * @property integer $score
- * @property string $faceImg
+ * @property integer $type
  */
-class Activity extends CActiveRecord
+class Questions extends CActiveRecord
 {
     /**
      * @return string the associated database table name
      */
     public function tableName()
     {
-        return '{{activity}}';
+        return '{{questions}}';
     }
 
     /**
@@ -37,11 +36,13 @@ class Activity extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('title, content, count, place,startTime,endTime,phone,responsible,volunteerType', 'required'),
-            array('id, cTime, status, count, uid, score', 'numerical', 'integerOnly' => true),
-            array('title, content, place, faceImg', 'length', 'max' => 255),
+            array('title, content, answers, score, type', 'required'),
+            array('id, status, cTime, uid, score, type', 'numerical', 'integerOnly' => true),
+            array('title', 'length', 'max' => 255),
+            array('content, answers', 'length', 'max' => 2550),
             // The following rule is used by search().
-            array('id, title', 'safe', 'on' => 'search'),
+            // @todo Please remove those attributes that should not be searched.
+            array('id, title, content, status, cTime, uid, answers, score, type', 'safe', 'on' => 'search'),
             array('status', 'default', 'setOnEmpty' => true, 'value' => Users::STATUS_NOTPASSED),
             array('cTime', 'default', 'setOnEmpty' => true, 'value' => zmf::now()),
             array('uid', 'default', 'setOnEmpty' => true, 'value' => zmf::uid()),
@@ -55,9 +56,7 @@ class Activity extends CActiveRecord
     {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
-        return array(
-            'UserInfo' => array(self::BELONGS_TO, 'Users', 'uid'),
-        );
+        return array();
     }
 
     /**
@@ -68,19 +67,13 @@ class Activity extends CActiveRecord
         return array(
             'id' => 'ID',
             'title' => '标题',
-            'content' => '正文',
-            'cTime' => '创建时间',
+            'content' => '内容',
             'status' => '状态',
-            'count' => '招募人数',
-            'startTime' => '开始时间',
-            'endTime' => '结束时间',
-            'responsible' => '负责人姓名',
-            'phone' => '负责人手机号码',
-            'place' => '活动地点',
+            'cTime' => '创建时间',
             'uid' => '创建人',
-            'score' => '评分',
-            'faceImg' => '封面图',
-            'volunteerType' => '志愿者类型',
+            'answers' => '答案',
+            'score' => '分值',
+            'type' => '类型',
         );
     }
 
@@ -98,11 +91,19 @@ class Activity extends CActiveRecord
      */
     public function search()
     {
+        // @todo Please modify the following code to remove attributes that should not be searched.
 
         $criteria = new CDbCriteria;
 
         $criteria->compare('id', $this->id);
         $criteria->compare('title', $this->title, true);
+        $criteria->compare('content', $this->content, true);
+        $criteria->compare('status', $this->status);
+        $criteria->compare('cTime', $this->cTime);
+        $criteria->compare('uid', $this->uid);
+        $criteria->compare('answers', $this->answers, true);
+        $criteria->compare('score', $this->score);
+        $criteria->compare('type', $this->type);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
@@ -113,7 +114,7 @@ class Activity extends CActiveRecord
      * Returns the static model of the specified AR class.
      * Please note that you should have this exact method in all your CActiveRecord descendants!
      * @param string $className active record class name.
-     * @return Activity the static model class
+     * @return Questions the static model class
      */
     public static function model($className = __CLASS__)
     {
@@ -125,7 +126,24 @@ class Activity extends CActiveRecord
         return self::model()->findByPk($id);
     }
 
-    public static function Status($key = -1)    {
+    public static function Type($key = -1)
+    {
+        $item = array(
+            1 => '单选',
+            2 => '多选',
+            3 => '判断',
+            4 => '问答',
+        );
+        if ($key > -1) {
+            return $item[$key];
+        } else {
+            return $item;
+        }
+    }
+
+
+    public static function Status($key = -1)
+    {
         $item = array(
             0 => '未审核',
             1 => '通过',
@@ -137,10 +155,4 @@ class Activity extends CActiveRecord
             return $item;
         }
     }
-
-    public static function getNew(){
-
-
-    }
-
 }
