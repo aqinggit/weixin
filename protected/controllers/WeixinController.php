@@ -56,12 +56,13 @@ class WeixinController extends Q
         $this->mobileTitle = '注册';
         $this->currentModule = 'login';
 
-        $model = new Users;
-        if (isset($_POST['Users'])) {
-            $model->attributes = $_POST['Users'];
+        $model = new Volunteers();
+        if (isset($_POST['Volunteers'])) {
+            $model->attributes = $_POST['Volunteers'];
+            $model->birthday = strtotime($model->birthday);
             if ($model->validate()) {
                 if ($model->save()) {
-                    $this->render('success', array('actualName' => $model->actualName));
+                    $this->render('success', array('truename' => $model->truename));
                 } else {
                     $this->message(503, '系统原因,注册失败!', $this->referer);
                 }
