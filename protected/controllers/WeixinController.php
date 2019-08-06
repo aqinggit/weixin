@@ -72,25 +72,53 @@ class WeixinController extends Q
 
     }
 
+    public function actionLogin()
+    {
+        if (!Yii::app()->user->isGuest) {
+            $this->message(0, '你已登录，请勿重复操作');
+        }
+        if ($this->isMobile) {
+            $this->layout = 'common';
+        }
+        $canLogin = true;
+        $ip = Yii::app()->request->getUserHostAddress();
+        $cacheKey = 'loginErrors-' . $ip;
+        $errorTimes = zmf::getFCache($cacheKey);
+        if ($errorTimes >= 5) {
+            $canLogin = false;
+        }
+        $this->pageTitle = '欢迎回来-' . zmf::config('sitename');
+        $this->mobileTitle = '登录';
+        $this->currentModule = 'login';
+        $this->render('login', array(
+            'canLogin' => $canLogin,
+        ));
+
+    }
+
     public function actionIndex()
     {
-        $action = zmf::val('action', 1); //操作类型，是登录、注册、绑定、投票
-        //array('login', 'reg', 'bind', 'vote'))
-        if (!in_array($action, array('getInfo', 'login', 'reg', 'bind'))) {
-            throw new CHttpException(404, '缺少参数');
+//        $action = zmf::val('action', 1); //操作类型，是登录、注册、绑定、投票
+//        //array('login', 'reg', 'bind', 'vote'))
+//        if (!in_array($action, array('getInfo', 'login', 'reg', 'bind'))) {
+//            throw new CHttpException(404, '缺少参数');
+//        }
+//        $from = zmf::val('from', 1); //来源，官网和合作商
+//        if (!in_array($from, array('web', 'mcenter'))) {
+//            $from = 'web';
+//        }
+//        if (in_array($action, array('login', 'reg')) && $this->uid && $from == 'web') {
+//            $this->message(0, '您已登录，请勿该操作', $this->referer);
+//        } elseif ($action == 'bind' && !$this->uid && $from == 'web') {
+//            $this->redirect(array('site/login'));
+//        }
+//        zmf::setCookie('lastWeixinAction', $action, $this->cookieTime);
+//        $loginurl = $this->wx->login();
+//        $this->redirect($loginurl);
+        if (Yii::app()->user->isGuest) {
+            $this->redirect(zmf::createUrl('weixin/login'));
         }
-        $from = zmf::val('from', 1); //来源，官网和合作商
-        if (!in_array($from, array('web', 'mcenter'))) {
-            $from = 'web';
-        }
-        if (in_array($action, array('login', 'reg')) && $this->uid && $from == 'web') {
-            $this->message(0, '您已登录，请勿该操作', $this->referer);
-        } elseif ($action == 'bind' && !$this->uid && $from == 'web') {
-            $this->redirect(array('site/login'));
-        }
-        zmf::setCookie('lastWeixinAction', $action, $this->cookieTime);
-        $loginurl = $this->wx->login();
-        $this->redirect($loginurl);
+
     }
 
     public function actionCallback()
@@ -229,21 +257,5 @@ class WeixinController extends Q
         }
     }
 
-    /**
-     * 删除当前用户的绑定
-     * @throws CHttpException
-     */
-    public function actionDel()
-    {
-        $uid = $this->uid;
-        if (!$uid) {
-            $this->redirect(array('site/login'));
-        }
-        if (Weixin::model()->updateAll(array('uid' => 0), 'uid=:uid', array(':uid' => $uid))) {
-            $this->redirect(array('users/setting'));
-        } else {
-            throw new CHttpException(404, '解绑失败，请重试');
-        }
-    }
 
 }

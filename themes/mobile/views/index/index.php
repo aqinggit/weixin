@@ -52,5 +52,4 @@
              class="weui-tabbar__icon">
         <p class="weui-tabbar__label">我的</p>
     </a>
-
 </div>
