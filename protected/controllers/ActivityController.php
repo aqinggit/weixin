@@ -21,35 +21,25 @@ class ActivityController extends Q
         $data = [
             'item' => $item
         ];
-
         $this->render('detail', $data);
-
     }
 
-    // Uncomment the following methods and override them if needed
-    /*
-    public function filters()
+    public function actionApply()
     {
-        // return the filter configuration for this controller, e.g.:
-        return array(
-            'inlineFilterName',
-            array(
-                'class'=>'path.to.FilterClass',
-                'propertyName'=>'propertyValue',
-            ),
-        );
+        if (Yii::app()->user->isGuest) {
+            $this->redirect(zmf::createUrl('weixin/login'));
+        }
+        $aid = zmf::val('aid',);
+        $active = Activity::getOne($aid);
+        if (!$active || $active['status'] != 1){
+            throw new CHttpException(404, '这场活动不存在,或者已经结束');
+        }
+
+        $sql = ""
+
+
+        $uid = zmf::uid();
+
     }
 
-    public function actions()
-    {
-        // return external action classes, e.g.:
-        return array(
-            'action1'=>'path.to.ActionClass',
-            'action2'=>array(
-                'class'=>'path.to.AnotherActionClass',
-                'propertyName'=>'propertyValue',
-            ),
-        );
-    }
-    */
 }

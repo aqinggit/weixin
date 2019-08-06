@@ -121,6 +121,16 @@ class WeixinController extends Q
         if (Yii::app()->user->isGuest) {
             $this->redirect(zmf::createUrl('weixin/login'));
         }
+        $uid = zmf::uid();
+        $model = new Activity;
+        $criteria = new CDbCriteria();
+        $criteria->join = 'JOIN pre_volunteer_active as va ON va.vid=t.id';
+        $criteria->addCondition("va.vid = {$uid}");
+        $actives = $model->findAll($criteria);
+        zmf::test($actives);
+
+
+
         $this->render('main', array());
 
 

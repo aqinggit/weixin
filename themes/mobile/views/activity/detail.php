@@ -715,7 +715,7 @@
         <article class="weui-article">
             <h1><?php echo $item['title']; ?></h1>
             <section>
-                <h3>志愿者类型：<?php echo Volunteers::VolunteerType($item['volunteerType']); ?></h3>
+                <h3>志愿者类型：<?php echo Users::VolunteerType($item['volunteerType']); ?></h3>
                 <h3>志愿日期：<a href="javascript:;"><?php echo zmf::time($item['startTime'], 'Y-m-d'); ?></a> 至 <a
                             href="javascript:;"><?php echo zmf::time($item['endTime'], 'Y-m-d'); ?></a></h3>
                 <h3>志愿地址：<?php echo $item['place']; ?>
