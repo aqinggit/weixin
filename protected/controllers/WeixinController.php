@@ -101,6 +101,11 @@ class WeixinController extends Q
         Yii::app()->user->logout();
         $this->redirect(zmf::createUrl('weixin/main'));
     }
+     public function actionForget()
+    {
+        Yii::app()->user->logout();
+        $this->redirect(zmf::createUrl('weixin/forget'));
+    }
 
 
     public function actionIndex()

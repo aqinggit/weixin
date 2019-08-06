@@ -71,6 +71,13 @@
         left: 35%;
         border-radius: 25%;
     }
+     .apply {
+        position: absolute;
+        width: 100%;
+        bottom: 12%;
+        padding: 0 15px;
+        margin: 0 auto;
+    }
 </style>
 <div class="personal">
     <img class="head_photo"
@@ -127,7 +134,10 @@
         </div>
     </div>
 </div>
-<div class="quit">
-    <a href="<?php echo zmf::createUrl('/weixin/logout') ?>" class="weui-btn weui-btn_plain-primary" style="border-radius: 30px">退出</a>
-</div>
+ <div class="weui-tabbar apply">
+        <a href="javascript:;" onclick="join_opp2(2762710);" class="weui-tabbar__item weui-btn weui-btn_primary"
+           style="height: 40px">
+            <p class="weui-tabbar__label" style="color:#fff;font-size: 16px">我要报名</p>
+        </a>
+    </div>
 

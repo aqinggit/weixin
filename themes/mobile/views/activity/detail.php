@@ -695,6 +695,14 @@
         border-radius: 3px;
     }
 
+    .apply {
+        position: absolute;
+        width: 100%;
+        bottom: 12%;
+        padding: 0 15px;
+        margin: 0 auto;
+    }
+
 </style>
 
 <div class="weui-tab">
@@ -708,10 +716,11 @@
             <h1><?php echo $item['title']; ?></h1>
             <section>
                 <h3>志愿者类型：<?php echo Volunteers::VolunteerType($item['volunteerType']); ?></h3>
-                <h3>志愿日期：<a href="javascript:;"><?php echo zmf::time($item['startTime'],'Y-m-d'); ?></a> 至 <a href="javascript:;"><?php echo zmf::time($item['endTime'],'Y-m-d'); ?></a></h3>
+                <h3>志愿日期：<a href="javascript:;"><?php echo zmf::time($item['startTime'], 'Y-m-d'); ?></a> 至 <a
+                            href="javascript:;"><?php echo zmf::time($item['endTime'], 'Y-m-d'); ?></a></h3>
                 <h3>志愿地址：<?php echo $item['place']; ?>
-                <h3>志愿联系人：<?php echo $item['responsible']; ?></h3>
-                <h3>联系人手机：<a href="tel:<?php echo $item['phone']; ?>"><?php echo $item['phone']; ?></a></h3>
+                    <h3>志愿联系人：<?php echo $item['responsible']; ?></h3>
+                    <h3>联系人手机：<a href="tel:<?php echo $item['phone']; ?>"><?php echo $item['phone']; ?></a></h3>
             </section>
         </article>
     </div>
@@ -724,13 +733,12 @@
     </div>
 
 
-    <div class="clearfix" style="height:65px;"></div>
-    <div class="weui-tabbar">
+    <div class="clearfix" style="height:70px;margin-bottom: 25px"></div>
+    <div class="weui-tabbar apply">
         <a href="javascript:;" onclick="join_opp2(2762710);" class="weui-tabbar__item weui-btn weui-btn_primary"
-           style="border-radius:0">
-            <p class="weui-tabbar__label" style="color:#fff;">我要报名</p>
+           style="height: 40px">
+            <p class="weui-tabbar__label" style="color:#fff;font-size: 16px">我要报名</p>
         </a>
-
     </div>
 
 </div>

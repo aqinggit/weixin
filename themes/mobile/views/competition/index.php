@@ -20,6 +20,8 @@
         text-align: center;
         font-weight: bold;
         line-height: 1.5em;
+        font-family: 'Microsoft Yahei', 'Helvetica Neue', Helvetica, STHeiTi, Arial, sans-serif;
+        margin-top: 20px;
     }
 
     .box {
@@ -60,6 +62,7 @@
     .color-9b {
         color: #9b9b9b;
 
+
     }
 
     .button01 {
@@ -94,15 +97,17 @@
         left: 0;
         width: 100%;
     }
+    .fs16{
+        font-size: 16px;
+    }
 
 </style>
 
 <div class="homepage">
     <img src="http://cqfb.people.com.cn/h5/20190403zs/img/title.png" class="img1">
-    <div class="organizer">主办单位：</span><br>
-        <span>中共重庆市委组织部</span><br>
-        <span>中共重庆市委直属机关工作委员会</span><br>
-        <span>中共重庆市委当代党员杂志社</span>
+    <div class="organizer fs16">主办单位：</span>
+        <span>綦江政法</span><br>
+
     </div>
     <div class="box">
         <div class="icon_box">
