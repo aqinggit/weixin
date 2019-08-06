@@ -49,6 +49,8 @@ $form = $this->beginWidget('CActiveForm', array(
             <td>
                 <?php echo CHtml::link('编辑', array('update', 'id' => $data->id)); ?>
                 <?php echo CHtml::link('删除', array('delete', 'id' => $data->id)); ?>
+                <?php echo CHtml::link('通过', array('pass', 'id' => $data->id)); ?>
+                <?php echo CHtml::link('招募', array('recruit', 'id' => $data->id)); ?>
             </td>
         </tr>
     <?php endforeach; ?>

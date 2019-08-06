@@ -21,6 +21,10 @@
  */
 class Activity extends CActiveRecord
 {
+    const PASS = 1;
+    const NOPASS = 0;
+    const DEL = 3;
+    const Recruit = 4;
     /**
      * @return string the associated database table name
      */
@@ -136,11 +140,6 @@ class Activity extends CActiveRecord
         } else {
             return $item;
         }
-    }
-
-    public static function getNew(){
-
-
     }
 
 }
