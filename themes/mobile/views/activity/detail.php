@@ -698,8 +698,7 @@
     .apply {
         position: absolute;
         width: 100%;
-        bottom: 12%;
-        padding: 0 15px;
+        bottom: 10%;
         margin: 0 auto;
     }
 
@@ -732,13 +731,9 @@
         </article>
     </div>
 
-
-    <div class="clearfix" style="height:70px;margin-bottom: 25px"></div>
-    <div class="weui-tabbar apply">
-        <a href="javascript:;" onclick="join_opp2(2762710);" class="weui-tabbar__item weui-btn weui-btn_primary"
-           style="height: 40px">
-            <p class="weui-tabbar__label" style="color:#fff;font-size: 16px">我要报名</p>
-        </a>
+</div>
+<div class="apply">
+    <div class="weui-btn-area">
+        <a href="<?php echo zmf::createUrl('/activity/Apply', ['aid' => $item['id']]) ?>" class="weui-btn weui-btn_primary">我要报名</a>
     </div>
-
 </div>

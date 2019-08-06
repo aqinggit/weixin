@@ -103,8 +103,19 @@ class WeixinController extends Q
     }
      public function actionForget()
     {
-        Yii::app()->user->logout();
-        $this->redirect(zmf::createUrl('weixin/forget'));
+        if ($this->isMobile) {
+            $this->layout = 'common';
+        }
+        $canLogin = true;
+        $ip = Yii::app()->request->getUserHostAddress();
+        $cacheKey = 'loginErrors-' . $ip;
+        $errorTimes = zmf::getFCache($cacheKey);
+        if ($errorTimes >= 5) {
+            $canLogin = false;
+        }
+        $this->mobileTitle = '找回密码';
+        $this->currentModule = 'login';
+        $this->render('forget');
     }
 
 
@@ -124,14 +135,11 @@ class WeixinController extends Q
         $uid = zmf::uid();
         $model = new Activity;
         $criteria = new CDbCriteria();
-        $criteria->join = 'JOIN pre_volunteer_active as va ON va.vid=t.id';
+        $criteria->join = 'JOIN pre_volunteer_active as va ON va.aid=t.id';
         $criteria->addCondition("va.vid = {$uid}");
-        $actives = $model->findAll($criteria);
-        zmf::test($actives);
-
-
-
-        $this->render('main', array());
+        $criteria->select = 't.id,t.title,t.place,t.count,va.status';
+        $activity = $model->findAll($criteria);
+        $this->render('main', array('activity'=>$activity));
 
 
     }

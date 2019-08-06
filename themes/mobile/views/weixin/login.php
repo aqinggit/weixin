@@ -45,7 +45,7 @@
         </div>
 
         <div class="weui-btn-area fs16">
-            <a href="<?php echo zmf::createUrl('weixin/reset') ?>">忘记密码</a>&nbsp;&nbsp;
+            <a href="<?php echo zmf::createUrl('weixin/Forget') ?>">忘记密码</a>&nbsp;&nbsp;
             <a href="<?php echo zmf::createUrl('weixin/reg') ?>">成为志愿者</a>&nbsp;&nbsp;
         </div>
 

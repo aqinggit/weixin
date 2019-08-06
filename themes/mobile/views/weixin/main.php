@@ -71,18 +71,18 @@
         left: 35%;
         border-radius: 25%;
     }
-     .apply {
+
+    .apply {
         position: absolute;
         width: 100%;
-        bottom: 12%;
-        padding: 0 15px;
+        bottom: 10%;
         margin: 0 auto;
     }
 </style>
 <div class="personal">
     <img class="head_photo"
          src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1440019312,3309809430&fm=26&gp=0.jpg" alt="">
-    <div style="text-align: center;font-size: 15px"><?php echo $this->userInfo['truename'] ;?></div>
+    <div style="text-align: center;font-size: 15px"><?php echo $this->userInfo['truename']; ?></div>
 </div>
 
 <?php ?>
@@ -90,54 +90,35 @@
     <div class="weui-panel weui-panel_access">
         <div id="list_on">
             <div class="weui-panel_bd">
-                <a href="http://z.qiiing.com/weixin/activity/detail" class="weui-media-box weui-media-box_appmsg">
-                    <div class="weui-media-box__hd">
-                        <img class="weui-media-box__thumb" src="http://css.zhiyuanyun.com/default/images/noimg_opp.jpg"
-                             onerror="this.src='http://css.zhiyuanyun.com/default/images/noimg_opp.jpg'">
-                    </div>
-                    <div class="weui-media-box__bd">
-                        <h4 class="weui-media-box__title">
-                            <span class="status" style="color:green;">招募中</span>
-                            首届“周末文艺荟”优秀节目集中展演及第二届周未文艺荟
-                        </h4>
-                        <p class="weui-media-box__desc" style="margin-top:5px;height:16px;overflow:hidden;">
-                            志愿团体 :
-                            荣昌区新时代文明实践文化体育志愿服务分队
-                        </p>
-                        <p class="weui-media-box__desc" style="margin-top:5px;">
-                            <span>计划 : 20&nbsp;&nbsp;&nbsp;招募 : 19</span>
-                            <span class="r">5,394.23公里</span>
-                        </p>
-                    </div>
-                </a>
-                <a href="http://z.qiiing.com/weixin/activity/detail" class="weui-media-box weui-media-box_appmsg">
-                    <div class="weui-media-box__hd">
-                        <img class="weui-media-box__thumb" src="http://css.zhiyuanyun.com/default/images/noimg_opp.jpg"
-                             onerror="this.src='http://css.zhiyuanyun.com/default/images/noimg_opp.jpg'">
-                    </div>
-                    <div class="weui-media-box__bd">
-                        <h4 class="weui-media-box__title">
-                            <span class="status" style="color:green;">招募中</span>
-                            首届“周末文艺荟”优秀节目集中展演及第二届周未文艺荟
-                        </h4>
-                        <p class="weui-media-box__desc" style="margin-top:5px;height:16px;overflow:hidden;">
-                            志愿团体 :
-                            荣昌区新时代文明实践文化体育志愿服务分队
-                        </p>
-                        <p class="weui-media-box__desc" style="margin-top:5px;">
-                            <span>计划 : 20&nbsp;&nbsp;&nbsp;招募 : 19</span>
-                            <span class="r">5,394.23公里</span>
-                        </p>
-                    </div>
-                </a>
+                <?php foreach ($activity as $item) { ?>
+                    <a class="weui-media-box weui-media-box_appmsg" href="<?php echo zmf::createUrl('activity/detail',['id'=>$item['id']])?>" >
+                        <div class="weui-media-box__hd">
+                            <img class="weui-media-box__thumb"
+                                 src="http://css.zhiyuanyun.com/default/images/noimg_opp.jpg"
+                                 onerror="this.src='http://css.zhiyuanyun.com/default/images/noimg_opp.jpg'">
+                        </div>
+                        <div class="weui-media-box__bd">
+                            <h4 class="weui-media-box__title">
+                                <span class="status" style="color:green;"><?php echo $item['status'] !=1 ? '待审核' : '已通过' ?></span>
+                                <?php echo $item['title'];?>
+                            </h4>
+                            <p class="weui-media-box__desc" style="margin-top:5px;height:16px;overflow:hidden;">
+                                地址: <?php echo $item['place']; ?>
+                            </p>
+                            <p class="weui-media-box__desc" style="margin-top:5px;">
+                                <span>计划 : <?php echo $item['count']; ?>&nbsp;&nbsp;&nbsp;招募 : 19</span>
+                            </p>
+                        </div>
+                    </a>
+                <?php } ?>
             </div>
         </div>
     </div>
 </div>
- <div class="weui-tabbar apply">
-        <a href="javascript:;" onclick="join_opp2(2762710);" class="weui-tabbar__item weui-btn weui-btn_primary"
-           style="height: 40px">
-            <p class="weui-tabbar__label" style="color:#fff;font-size: 16px">我要报名</p>
-        </a>
+<div class="apply">
+    <div class="weui-btn-area">
+        <a href="<?php echo zmf::createUrl('/weixin/logout') ?>" class="weui-btn weui-btn_primary">退出</a>
     </div>
+</div>
+
 
