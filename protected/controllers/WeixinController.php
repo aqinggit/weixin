@@ -96,6 +96,13 @@ class WeixinController extends Q
 
     }
 
+    public function actionLogOut()
+    {
+        Yii::app()->user->logout();
+        $this->redirect(zmf::createUrl('weixin/main'));
+    }
+
+
     public function actionIndex()
     {
         if (Yii::app()->user->isGuest) {
@@ -109,7 +116,7 @@ class WeixinController extends Q
         if (Yii::app()->user->isGuest) {
             $this->redirect(zmf::createUrl('weixin/login'));
         }
-        $this->render('personal', array());
+        $this->render('main', array());
 
 
     }

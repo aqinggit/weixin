@@ -128,6 +128,6 @@
     </div>
 </div>
 <div class="quit">
-    <a href="javascript:;" class="weui-btn weui-btn_plain-primary" style="border-radius: 30px">退出</a>
+    <a href="<?php echo zmf::createUrl('/weixin/logout') ?>" class="weui-btn weui-btn_plain-primary" style="border-radius: 30px">退出</a>
 </div>
 
