@@ -6,7 +6,10 @@ class LoginController extends Q
 	{
 		$this->render('login');
 	}
-
+    public function actionPersonal()
+    {
+        $this->render('personal');
+    }
 	// Uncomment the following methods and override them if needed
 	/*
 	public function filters()
