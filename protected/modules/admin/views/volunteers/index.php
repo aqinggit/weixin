@@ -33,7 +33,7 @@ $form = $this->beginWidget('CActiveForm', array(
 
 <table class="table table-hover table-striped">
     <tr>
-        <th><?php echo $model->getAttributeLabel("username"); ?></th>
+        <th><?php echo $model->getAttributeLabel("name"); ?></th>
         <th><?php echo $model->getAttributeLabel("truename"); ?></th>
         <th><?php echo $model->getAttributeLabel("score"); ?></th>
         <th><?php echo $model->getAttributeLabel("status"); ?></th>
@@ -54,22 +54,22 @@ $form = $this->beginWidget('CActiveForm', array(
 
     <?php foreach ($posts as $data): ?>
         <tr>
-            <td><?php echo $data->username; ?></td>
+            <td><?php echo $data->name; ?></td>
             <td><?php echo $data->truename; ?></td>
             <td><?php echo $data->score; ?></td>
-            <td><?php echo Volunteers::Status($data->status); ?></td>
+            <td><?php echo Users::Status($data->status); ?></td>
             <td><?php echo $data->email; ?></td>
-            <td><?php echo Volunteers::CertType($data->cardIdType); ?></td>
+            <td><?php echo Users::CertType($data->cardIdType); ?></td>
             <td><?php echo $data->cardId; ?></td>
-            <td><?php echo Volunteers::Sex($data->sex); ?></td>
+            <td><?php echo Users::Sex($data->sex); ?></td>
             <td><?php echo zmf::time($data->birthday, 'Y-m-d'); ?></td>
             <td><?php echo $data->phone; ?></td>
-            <td><?php echo Volunteers::Political($data->politics); ?></td>
-            <td><?php echo Volunteers::Ethnicity($data->nation); ?></td>
+            <td><?php echo Users::Political($data->politics); ?></td>
+            <td><?php echo Users::Ethnicity($data->nation); ?></td>
             <td><?php echo $data->address; ?></td>
-            <td><?php echo Volunteers::EdeGree($data->education); ?></td>
-            <td><?php echo Volunteers::Employment($data->work); ?></td>
-            <td><?php echo Volunteers::volunteerType($data->volunteerType); ?></td>
+            <td><?php echo Users::EdeGree($data->education); ?></td>
+            <td><?php echo Users::Employment($data->work); ?></td>
+            <td><?php echo Users::volunteerType($data->volunteerType); ?></td>
             <td>
                 <?php echo CHtml::link('编辑', array('update', 'id' => $data->id)); ?>
                 <?php echo CHtml::link('删除', array('delete', 'id' => $data->id)); ?>

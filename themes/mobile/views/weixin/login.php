@@ -25,7 +25,7 @@
                 <div class="weui-cell">
                     <div class="weui-cell__hd"><label class="weui-label">帐号</label></div>
                     <div class="weui-cell__bd">
-                        <?php echo CHtml::textField('username', '', array('class' => 'weui-input', 'placeholder' => '手机/身份证/用户名')); ?>
+                        <?php echo CHtml::textField('login-username', '', array('class' => 'weui-input', 'placeholder' => '手机/身份证/用户名')); ?>
                     </div>
                 </div>
 
@@ -33,7 +33,7 @@
                     <div class="weui-cell__hd"><label class="weui-label">密码</label></div>
                     <div class="weui-cell__bd">
                         <div class="weui-cell__bd">
-                            <?php echo CHtml::passwordField('password', '', array('class' => 'weui-input', 'placeholder' => '请输入密码')); ?>
+                            <?php echo CHtml::passwordField('login-password', '', array('class' => 'weui-input', 'placeholder' => '请输入密码')); ?>
                         </div>
                     </div>
                 </div>

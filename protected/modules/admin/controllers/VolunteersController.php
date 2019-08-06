@@ -17,16 +17,16 @@ class VolunteersController extends Admin
     public function actionIndex()
     {
         //$this->checkPower('volunteers');
-        $select = "id,username,password,truename,cTime,score,status,email,cardIdType,cardId,sex,birthday,phone,politics,nation,address,education,work";
-        $model = new Volunteers;
+        $select = "id,name,password,truename,cTime,score,status,email,cardIdType,cardId,sex,birthday,phone,politics,nation,address,education,work";
+        $model = new Users();
         $criteria = new CDbCriteria();
         $id = zmf::val("id", 1);
         if ($id) {
             $criteria->addSearchCondition("id", $id);
         }
-        $username = zmf::val("username", 1);
+        $username = zmf::val("name", 1);
         if ($username) {
-            $criteria->addSearchCondition("username", $username);
+            $criteria->addSearchCondition("name", $username);
         }
         $password = zmf::val("password", 1);
         if ($password) {
@@ -133,12 +133,12 @@ class VolunteersController extends Admin
             $model = $this->loadModel($id);
         } else {
             //$this->checkPower('addVolunteers');
-            $model = new Volunteers;
+            $model = new Users();
         }
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
-        if (isset($_POST['Volunteers'])) {
-            $data = $_POST['Volunteers'];
+        if (isset($_POST['Users'])) {
+            $data = $_POST['Users'];
             if (!$data['password2']) {
                $data['password2'] = $data['password'];
             }else{
@@ -212,21 +212,6 @@ class VolunteersController extends Admin
     }
 
 
-    /**
-     * Manages all models.
-     */
-    public function actionAdmin()
-    {
-        $model = new Volunteers('search');
-        $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['Volunteers']))
-            $model->attributes = $_GET['Volunteers'];
-
-        $this->render('admin', array(
-            'model' => $model,
-        ));
-    }
-
 
     /**
      * Returns the data model based on the primary key given in the GET variable.
@@ -237,7 +222,7 @@ class VolunteersController extends Admin
      */
     public function loadModel($id)
     {
-        $model = Volunteers::model()->findByPk($id);
+        $model = Users::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;

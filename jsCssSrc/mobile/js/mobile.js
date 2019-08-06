@@ -164,51 +164,22 @@ function rebind() {
         }, 1000);
     }
     $('#login-btn').unbind('tap').tap(function () {
-        var type = $('#login-type').val();
-        if (!type || (type !== 'passwd' && type !== 'sms')) {
-            simpleDialog({msg: '参数错误'});
-            return false;
-        }
-        var phone = $('#login-phone').val();
-        if (!phone) {
+        var username = $('#login-username').val();
+        if (!username) {
             simpleDialog({msg: '请输入手机号'});
             return false;
         }
-        var validom = $('#validate-code');
-        var value = '';
-        if (type === 'passwd') {
-            value = $('#login-password').val();
-            if (!value) {
-                $('#login-password').focus();
-                simpleDialog({msg: '请输入密码'});
-                return false;
-            }
-        } else if (type === 'sms') {
-            var valicode = validom.val();
-            if (!valicode) {
-                //validom.focus();
-                //simpleDialog({msg: '请输入校验码'});
-                //return false;
-            }
-            value = $('#login-code').val();
-            if (!value) {
-                $('#login-code').focus();
-                simpleDialog({msg: '请输入验证码'});
-                return false;
-            }
-        }
-        if (!value) {
-            simpleDialog({msg: '缺少参数'});
+        var password = $('#login-password').val();
+        if (!password) {
+            $('#login-password').focus();
+            simpleDialog({msg: '请输入密码'});
             return false;
         }
-        var bind=$('#login-bind').val();
-        if(!bind || typeof bind==='undefined'){
-            bind='';
-        }
+
         if (!checkAjax()) {
             return false;
         }
-        $.post(zmf.ajaxUrl, {action: 'login', type: type, phone: phone, value: value,_valiCode:valicode,bind:bind, YII_CSRF_TOKEN: zmf.csrfToken}, function (result) {
+        $.post(zmf.ajaxUrl, {action: 'loginVolunteers', password: password, username: username, YII_CSRF_TOKEN: zmf.csrfToken}, function (result) {
             ajaxReturn=true;
             result = eval('(' + result + ')');
             if (result.status === 1) {

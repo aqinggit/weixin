@@ -38,6 +38,7 @@ class Q extends Controller {
     public $enableCSRF=false;//是否开启csrf验证
     public $webTheme='web';
     public $htmlCache=false;
+    public $Volunteers = [] ; //自愿者信息
 
     public function beforeAction($action) {
         $this->validateCsrfToken();

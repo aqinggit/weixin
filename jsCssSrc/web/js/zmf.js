@@ -125,7 +125,7 @@ function rebind() {
                     dom.removeAttr('disabled').text('重新发送');
                 }
             }, 1000);
-        })
+        });
     }
     $('#login-btn').unbind('click').click(function () {
         var type = $('#login-type').val();

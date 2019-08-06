@@ -56,10 +56,11 @@ class WeixinController extends Q
         $this->mobileTitle = '注册';
         $this->currentModule = 'login';
 
-        $model = new Volunteers();
-        if (isset($_POST['Volunteers'])) {
-            $model->attributes = $_POST['Volunteers'];
+        $model = new Users();
+        if (isset($_POST['Users'])) {
+            $model->attributes = $_POST['Users'];
             $model->birthday = strtotime($model->birthday);
+            $model->password = md5($model->password);
             if ($model->validate()) {
                 if ($model->save()) {
                     $this->render('success', array('truename' => $model->truename));
@@ -87,7 +88,6 @@ class WeixinController extends Q
         if ($errorTimes >= 5) {
             $canLogin = false;
         }
-        $this->pageTitle = '欢迎回来-' . zmf::config('sitename');
         $this->mobileTitle = '登录';
         $this->currentModule = 'login';
         $this->render('login', array(
@@ -98,28 +98,22 @@ class WeixinController extends Q
 
     public function actionIndex()
     {
-//        $action = zmf::val('action', 1); //操作类型，是登录、注册、绑定、投票
-//        //array('login', 'reg', 'bind', 'vote'))
-//        if (!in_array($action, array('getInfo', 'login', 'reg', 'bind'))) {
-//            throw new CHttpException(404, '缺少参数');
-//        }
-//        $from = zmf::val('from', 1); //来源，官网和合作商
-//        if (!in_array($from, array('web', 'mcenter'))) {
-//            $from = 'web';
-//        }
-//        if (in_array($action, array('login', 'reg')) && $this->uid && $from == 'web') {
-//            $this->message(0, '您已登录，请勿该操作', $this->referer);
-//        } elseif ($action == 'bind' && !$this->uid && $from == 'web') {
-//            $this->redirect(array('site/login'));
-//        }
-//        zmf::setCookie('lastWeixinAction', $action, $this->cookieTime);
-//        $loginurl = $this->wx->login();
-//        $this->redirect($loginurl);
         if (Yii::app()->user->isGuest) {
             $this->redirect(zmf::createUrl('weixin/login'));
         }
 
     }
+
+    public function actionMain()
+    {
+        if (Yii::app()->user->isGuest) {
+            $this->redirect(zmf::createUrl('weixin/login'));
+        }
+        $this->render('personal', array());
+
+
+    }
+
 
     public function actionCallback()
     {

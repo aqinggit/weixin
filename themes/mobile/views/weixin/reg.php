@@ -64,7 +64,7 @@
     <div class="weui-cell">
         <div class="weui-cell__hd"><label class="weui-label">用户名</label></div>
         <div class="weui-cell__bd">
-            <?php echo $form->textField($model, 'username', ['class' => 'weui-input', 'placeholder' => '只允许数字字母下划线']); ?>
+            <?php echo $form->textField($model, 'name', ['class' => 'weui-input', 'placeholder' => '只允许数字字母下划线']); ?>
 
         </div>
     </div>
@@ -91,7 +91,7 @@
     <div class="weui-cell pd-t-b-0">
         <div class="weui-cell__hd"><label class="weui-label">志愿者类型</label></div>
         <div class="weui-cell__bd">
-            <?php echo $form->dropDownList($model, 'volunteerType', Volunteers::volunteerType(), ['class' => 'weui-select pd-l-0']); ?>
+            <?php echo $form->dropDownList($model, 'volunteerType', Users::volunteerType(), ['class' => 'weui-select pd-l-0']); ?>
         </div>
     </div>
 
@@ -104,7 +104,7 @@
     <div class="weui-cell pd-t-b-0">
         <div class="weui-cell__hd"><label class="weui-label">证件类型</label></div>
         <div class="weui-cell__bd">
-            <?php echo $form->dropDownList($model, 'cardIdType', Volunteers::CertType(), ['class' => 'weui-select pd-l-0']); ?>
+            <?php echo $form->dropDownList($model, 'cardIdType', Users::CertType(), ['class' => 'weui-select pd-l-0']); ?>
         </div>
     </div>
     <div class="weui-cell">
@@ -117,7 +117,7 @@
     <div class="weui-cell pd-t-b-0">
         <div class="weui-cell__hd"><label class="weui-label">性别</label></div>
         <div class="weui-cell__bd">
-            <?php echo $form->dropDownList($model, 'sex', Volunteers::Sex(), ['class' => 'weui-select pd-l-0']); ?>
+            <?php echo $form->dropDownList($model, 'sex', Users::Sex(), ['class' => 'weui-select pd-l-0']); ?>
         </div>
     </div>
     <div class="weui-cell">
@@ -129,14 +129,14 @@
     <div class="weui-cell pd-t-b-0">
         <div class="weui-cell__hd"><label class="weui-label">政治面貌</label></div>
         <div class="weui-cell__bd">
-            <?php echo $form->dropDownList($model, 'politics', Volunteers::Political(), ['class' => 'weui-select pd-l-0']); ?>
+            <?php echo $form->dropDownList($model, 'politics', Users::Political(), ['class' => 'weui-select pd-l-0']); ?>
         </div>
     </div>
 
     <div class="weui-cell pd-t-b-0">
         <div class="weui-cell__hd"><label class="weui-label">民族</label></div>
         <div class="weui-cell__bd">
-            <?php echo $form->dropDownList($model, 'nation', Volunteers::Ethnicity(), ['class' => 'weui-select pd-l-0']); ?>
+            <?php echo $form->dropDownList($model, 'nation', Users::Ethnicity(), ['class' => 'weui-select pd-l-0']); ?>
         </div>
     </div>
 
@@ -156,13 +156,13 @@
     <div class="weui-cell pd-t-b-0">
         <div class="weui-cell__hd"><label class="weui-label">最高学历</label></div>
         <div class="weui-cell__bd">
-            <?php echo $form->dropDownList($model, 'education', Volunteers::EdeGree(), ['class' => 'weui-select pd-l-0']); ?>
+            <?php echo $form->dropDownList($model, 'education', Users::EdeGree(), ['class' => 'weui-select pd-l-0']); ?>
         </div>
     </div>
     <div class="weui-cell pd-t-b-0">
         <div class="weui-cell__hd"><label class="weui-label">从业状况</label></div>
         <div class="weui-cell__bd">
-            <?php echo $form->dropDownList($model, 'work', Volunteers::Employment(), ['class' => 'weui-select pd-l-0']); ?>
+            <?php echo $form->dropDownList($model, 'work', Users::Employment(), ['class' => 'weui-select pd-l-0']); ?>
         </div>
     </div>
     <div class="weui-btn-area col-red">

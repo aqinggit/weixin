@@ -48,22 +48,6 @@
         <?php echo $form->error($model,'isAdmin'); ?>
     </div>
     <div class="form-group">
-        <?php echo $form->labelEx($model,'powerGroupId'); ?>        
-        <?php echo $form->dropDownlist($model,'powerGroupId', AdminTemplate::listAll(),array('class'=>'form-control','empty'=>'请选择')); ?>
-        <p class="help-block">需同是否是管理员同时使用</p>
-        <?php echo $form->error($model,'powerGroupId'); ?>
-    </div>
-    <div class="form-group">
-        <?php echo $form->labelEx($model,'phoneChecked'); ?>
-        <?php echo $form->dropdownList($model,'phoneChecked',  Users::isAdmin('admin'),array('class'=>'form-control')); ?>
-        <?php echo $form->error($model,'phoneChecked'); ?>
-    </div>
-    <div class="form-group">
-        <?php echo $form->labelEx($model,'groupid'); ?>
-        <?php echo $form->dropdownList($model,'groupid', Group::listAll(),array('class'=>'form-control')); ?>
-        <?php echo $form->error($model,'groupid'); ?>
-    </div>
-    <div class="form-group">
         <?php echo $form->labelEx($model,'status'); ?>
         <?php echo $form->dropdownList($model,'status',  Users::userStatus('admin'),array('class'=>'form-control')); ?>
         <?php echo $form->error($model,'status'); ?>

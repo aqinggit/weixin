@@ -1,29 +1,34 @@
 <?php
 
-class XhrController extends Q {
+class XhrController extends Q
+{
 
-    public function init() {
+    public function init()
+    {
         parent::init();
         if (!Yii::app()->request->isAjaxRequest) {
             $this->jsonOutPut(0, Yii::t('default', 'forbiddenaction'));
         }
     }
 
-    private function checkLogin() {
+    private function checkLogin()
+    {
         if (Yii::app()->user->isGuest) {
             $this->jsonOutPut(0, Yii::t('default', 'loginfirst'));
         }
     }
 
-    public function actionDo() {
+    public function actionDo()
+    {
         $action = zmf::val('action', 1);
-        if (!in_array($action, array('saveUploadImg','favorite', 'report', 'sendSms', 'checkSms', 'login', 'reg', 'setStatus', 'getNotice', 'ajax','exPhone','exPasswd','search','checkLoginHtml'))) {
+        if (!in_array($action, array('saveUploadImg', 'favorite', 'report', 'sendSms', 'checkSms', 'login', 'reg', 'setStatus', 'getNotice', 'ajax', 'exPhone', 'exPasswd', 'search', 'checkLoginHtml', 'loginVolunteers'))) {
             $this->jsonOutPut(0, Yii::t('default', 'forbiddenaction'));
         }
         $this->$action();
     }
 
-    private function ajax() {
+    private function ajax()
+    {
         $data = zmf::val('data', 1);
         if (!$data) {
             $this->jsonOutPut(0, '缺少参数~');
@@ -39,7 +44,8 @@ class XhrController extends Q {
     /**
      * 保存已上传图片入库
      */
-    public function saveUploadImg() {
+    public function saveUploadImg()
+    {
         $this->checkLogin();
         $type = zmf::val('type', 1);
         if (!isset($type) || !in_array($type, array('posts', 'faceImg'))) {
@@ -107,7 +113,8 @@ class XhrController extends Q {
     /**
      * 保存图片描述
      */
-    public function actionSetImgAlt() {
+    public function actionSetImgAlt()
+    {
         $this->checkLogin();
         if (!$this->isAjax) {
             $this->jsonOutPut(0, '不被允许的操作');
@@ -127,7 +134,8 @@ class XhrController extends Q {
     /**
      * 举报
      */
-    private function report() {
+    private function report()
+    {
         $data = array();
         $logid = zmf::val('logid', 2);
         $type = zmf::val('type', 1);
@@ -182,21 +190,22 @@ class XhrController extends Q {
     /**
      * 发送短信
      */
-    private function sendSms() {
+    private function sendSms()
+    {
         $phone = zmf::val('phone', 2);
         $type = zmf::val('type', 1);
-        if (!in_array($type, array('reg', 'forget', 'login', 'order','exphone', 'expasswd'))) {
+        if (!in_array($type, array('reg', 'forget', 'login', 'order', 'exphone', 'expasswd'))) {
             $this->jsonOutPut(0, '不被允许的类型:' . $type);
         }
-        $ip=zmf::getUserIp();
+        $ip = zmf::getUserIp();
         zmf::fp($ip);
         $this->jsonOutPut(0, '短信发送太频繁，请稍后再试');
-        if(in_array($type,array('exphone','expasswd'))){
+        if (in_array($type, array('exphone', 'expasswd'))) {
             $this->checkLogin();
         }
-        if($type=='expasswd'){
-            $phone=$this->userInfo['phone'];
-        }else{
+        if ($type == 'expasswd') {
+            $phone = $this->userInfo['phone'];
+        } else {
             if (!$phone) {
                 $this->jsonOutPut(0, '请输入手机号');
             }
@@ -284,7 +293,8 @@ class XhrController extends Q {
         }
     }
 
-    private function checkValidate() {
+    private function checkValidate()
+    {
         $code = zmf::val('valicode', 1);
         if (!$code) {
             $this->jsonOutPut(0, '请输入校验码');
@@ -314,7 +324,8 @@ class XhrController extends Q {
         $this->jsonOutPut(1, '输入正确');
     }
 
-    private function login() {
+    private function login()
+    {
         if ($this->uid) {
             $this->jsonOutPut(1, '已登录');
         }
@@ -337,26 +348,7 @@ class XhrController extends Q {
         } elseif (!zmf::checkPhoneNumber($phone)) {
             $this->jsonOutPut(0, '请输入正确的手机号');
         }
-        //bug
-//        if ($type == 'sms' && false) {
-//            if (!$_valiCode) {
-//                $this->jsonOutPut(0, '请输入校验码');
-//            }
-//            $session = Yii::app()->session;
-//            $session->open();
-//            $_validateCode = '';
-//            foreach ($session as $_key => $_session) {
-//                if (strpos($_key, 'site.captcha') !== false && strpos($_key, 'site.captchacount') === false) {
-//                    $_validateCode = $_session;
-//                    break;
-//                }
-//            }
-//            if (!$_validateCode) {
-//                $this->jsonOutPut(0, '缺少校验码');
-//            } elseif ($_validateCode != $_valiCode) {
-//                $this->jsonOutPut(-9, '校验码错误');
-//            }
-//        }
+
         $uinfo = Users::findByPhone($phone);
         if (!$uinfo || $uinfo['status'] != Users::STATUS_PASSED) {
             $this->jsonOutPut(0, '该号码暂未注册，请先注册');
@@ -432,7 +424,8 @@ class XhrController extends Q {
         $this->jsonOutPut(1, $url);
     }
 
-    private function reg() {
+    private function reg()
+    {
         if ($this->uid) {
             $this->jsonOutPut(0, '您已登录，请勿此操作');
         }
@@ -549,10 +542,11 @@ class XhrController extends Q {
     /**
      * 获取提醒
      */
-    private function getNotice() {
+    private function getNotice()
+    {
         $this->checkLogin();
         //$noticeNum = Notification::getNum();
-        $cartNum=ShoppingCart::getNum();
+        $cartNum = ShoppingCart::getNum();
         $arr = array(
             'status' => 1,
             'notices' => $noticeNum ? $noticeNum : 0,
@@ -565,7 +559,8 @@ class XhrController extends Q {
     /**
      * 意见反馈
      */
-    public function actionFeedback() {
+    public function actionFeedback()
+    {
         $content = zmf::val('content', 1);
         if (!$content) {
             $this->jsonOutPut(0, '内容不能为空哦~');
@@ -595,8 +590,8 @@ class XhrController extends Q {
                 if ($this->uid) {
                     //记录用户操作
                     $jsonData = CJSON::encode(array(
-                                'contact' => $attr['contact'],
-                                'content' => $content,
+                        'contact' => $attr['contact'],
+                        'content' => $content,
                     ));
                     $attr = array(
                         'uid' => $this->uid,
@@ -625,84 +620,140 @@ class XhrController extends Q {
     /**
      * 收藏
      */
-    private function favorite() {
+    private function favorite()
+    {
         $data = zmf::val('data', 1);
         $ckinfo = Users::favorite($data, 'web', $this->userInfo);
         $this->jsonOutPut($ckinfo['state'], $ckinfo['msg']);
     }
-    private function exPhone(){
+
+    private function exPhone()
+    {
         $this->checkLogin();
-        $phone=zmf::val('phone',2);
-        $code=zmf::val('code',2);
-        if(!$phone || !$code){
-            $this->jsonOutPut(0,'缺少参数');
-        }elseif(!zmf::checkPhoneNumber($phone)){
-            $this->jsonOutPut(0,'请输入正确的手机号');
-        }elseif($this->userInfo['phone']==$phone){
-            $this->jsonOutPut(1,'未作改动');
+        $phone = zmf::val('phone', 2);
+        $code = zmf::val('code', 2);
+        if (!$phone || !$code) {
+            $this->jsonOutPut(0, '缺少参数');
+        } elseif (!zmf::checkPhoneNumber($phone)) {
+            $this->jsonOutPut(0, '请输入正确的手机号');
+        } elseif ($this->userInfo['phone'] == $phone) {
+            $this->jsonOutPut(1, '未作改动');
         }
-        $_uinfo=Users::findByPhone($phone);
-        if($_uinfo){
-            $this->jsonOutPut(0,'该手机号已被注册');
+        $_uinfo = Users::findByPhone($phone);
+        if ($_uinfo) {
+            $this->jsonOutPut(0, '该手机号已被注册');
         }
-        $now=zmf::now();
+        $now = zmf::now();
         $sendInfo = Msg::model()->find('uid=:uid AND phone=:p AND type=:t AND code=:code AND expiredTime>=:now', array(':uid' => $this->uid, ':p' => $this->userInfo['phone'], ':t' => 'exphone', ':code' => $code, ':now' => $now));
         if (!$sendInfo) {
             $this->jsonOutPut(0, '验证码错误，请重试');
         } elseif ($sendInfo['expiredTime'] < $now) {
             $this->jsonOutPut(0, '验证码已过期，请重新发送');
         }
-        if(Users::model()->updateByPk($this->uid,array('phone'=>$phone))){
-            $this->jsonOutPut(1,'修改成功');
-        }else{
-            $this->jsonOutPut(0,'未知错误，修改失败');
+        if (Users::model()->updateByPk($this->uid, array('phone' => $phone))) {
+            $this->jsonOutPut(1, '修改成功');
+        } else {
+            $this->jsonOutPut(0, '未知错误，修改失败');
         }
     }
-    private function exPasswd(){
+
+    private function exPasswd()
+    {
         $this->checkLogin();
-        $passwd=zmf::val('passwd',1);
-        $code=zmf::val('code',2);
-        if(!$passwd || !$code){
-            $this->jsonOutPut(0,'缺少参数');
-        }elseif(strlen($passwd)<6){
-            $this->jsonOutPut(0,'密码不能短于6位');
+        $passwd = zmf::val('passwd', 1);
+        $code = zmf::val('code', 2);
+        if (!$passwd || !$code) {
+            $this->jsonOutPut(0, '缺少参数');
+        } elseif (strlen($passwd) < 6) {
+            $this->jsonOutPut(0, '密码不能短于6位');
         }
-        $now=zmf::now();
+        $now = zmf::now();
         $sendInfo = Msg::model()->find('uid=:uid AND phone=:p AND type=:t AND code=:code AND expiredTime>=:now', array(':uid' => $this->uid, ':p' => $this->userInfo['phone'], ':t' => 'expasswd', ':code' => $code, ':now' => $now));
         if (!$sendInfo) {
             $this->jsonOutPut(0, '验证码错误，请重试');
         } elseif ($sendInfo['expiredTime'] < $now) {
             $this->jsonOutPut(0, '验证码已过期，请重新发送');
         }
-        if(Users::model()->updateByPk($this->uid,array('password'=>md5($passwd)))){
-            $this->jsonOutPut(1,'修改成功');
-        }else{
-            $this->jsonOutPut(0,'未知错误，修改失败');
+        if (Users::model()->updateByPk($this->uid, array('password' => md5($passwd)))) {
+            $this->jsonOutPut(1, '修改成功');
+        } else {
+            $this->jsonOutPut(0, '未知错误，修改失败');
         }
     }
-    private function search(){
-        $keyword=zmf::val('keyword',1);
-        if(!$keyword){
-            $this->jsonOutPut(0,'请输入关键词');
+
+    private function search()
+    {
+        $keyword = zmf::val('keyword', 1);
+        if (!$keyword) {
+            $this->jsonOutPut(0, '请输入关键词');
         }
         $name = '%' . strtr($keyword, array('%' => '\%', '_' => '\_', '\\' => '\\\\')) . '%';
         $sql = "SELECT id,title,`name` FROM " . Tags::tableName() . " WHERE title LIKE '$name' AND isDisplay=1 LIMIT 10";
-        $items=zmf::dbAll($sql);
-        if(empty($items)){
-            $this->jsonOutPut(0,'暂无相关结果');
+        $items = zmf::dbAll($sql);
+        if (empty($items)) {
+            $this->jsonOutPut(0, '暂无相关结果');
         }
-        $str='';
-        foreach($items as $item){
-            $str.=zmf::link($item['title'],array('index/index','colName'=>$item['name']),array('target'=>'_blank','class'=>'_search_item'));
+        $str = '';
+        foreach ($items as $item) {
+            $str .= zmf::link($item['title'], array('index/index', 'colName' => $item['name']), array('target' => '_blank', 'class' => '_search_item'));
         }
-        $this->jsonOutPut(1,$str);
+        $this->jsonOutPut(1, $str);
     }
 
-    public function checkLoginHtml(){
-        if($this->uid){
-            $html=$this->renderPartial('/site/_loginNav',array(),true);
-            $this->jsonOutPut(1,$html);
+    public function checkLoginHtml()
+    {
+        if ($this->uid) {
+            $html = $this->renderPartial('/site/_loginNav', array(), true);
+            $this->jsonOutPut(1, $html);
         }
-        $this->jsonOutPut(0,'');
+        $this->jsonOutPut(0, '');
+    }
+
+
+    private function loginVolunteers()
+    {
+        if ($this->uid) {
+            $this->jsonOutPut(1, '已登录');
+        }
+        $ip = ip2long(Yii::app()->request->userHostAddress);
+        if (zmf::actionLimit('login', $ip, 60, 86400, 1, 1)) {
+            $this->jsonOutPut(0, '错误操作太频繁，请稍后再试');
+        }
+
+        $username = zmf::val('username', 1);
+        $password = zmf::val('password', 1);
+        if (!$username || !$password) {
+            $this->jsonOutPut(0, '参数不完整');
+        }
+        $password = md5($password);
+        //自动登录
+        $data = Users::findByUsernameV($username, $password);
+        if (!$data) {
+            $data = Users::findByPhoneV($username, $password);
+        }
+
+        if (!$data) {
+            $this->jsonOutPut(0, '用户名或者密码错误');
+        }
+
+        $_identity = new U($data->phone, $password);
+        $_identity->simpleAuth();
+        if ($_identity->errorCode === U::ERROR_NONE) {
+            $duration = 2592000; //一个月
+            if (Yii::app()->user->login($_identity, $duration))
+            {
+                $uid = zmf::uid();
+            }else{
+                $this->jsonOutPut(0, '登录失败，请重试');
+
+            }
+        }
+        if ($this->referer) {
+            $url = $this->referer;
+        } else {
+            $url = zmf::config('baseurl');
+        }
+        $this->jsonOutPut(1, $url);
+
     }
 }

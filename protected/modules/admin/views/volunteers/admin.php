@@ -13,7 +13,7 @@ $this->widget('zii.widgets.grid.CGridView', array(
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
-		'username',
+		'name',
 		'password',
 		'truename',
 		'cTime',

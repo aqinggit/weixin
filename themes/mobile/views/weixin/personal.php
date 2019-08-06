@@ -62,8 +62,6 @@
         float: right;
     }
 
-
-
     .quit {
 
         position: absolute;
@@ -77,8 +75,10 @@
 <div class="personal">
     <img class="head_photo"
          src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1440019312,3309809430&fm=26&gp=0.jpg" alt="">
-    <div style="text-align: center;font-size: 15px">执着</div>
+    <div style="text-align: center;font-size: 15px"><?php echo $this->userInfo['truename'] ;?></div>
 </div>
+
+<?php ?>
 <div class="weui-tab">
     <div class="weui-panel weui-panel_access">
         <div id="list_on">
@@ -126,24 +126,6 @@
             </div>
         </div>
     </div>
-</div>
-<div class="weui-tabbar">
-    <a href="/app/weixin/index.php" class="weui-tabbar__item weui-bar__item_on">
-        <img src="https://css.zhiyuanyun.com/default/wx/images/tab.home.press.png" alt="" class="weui-tabbar__icon">
-        <p class="weui-tabbar__label">首页</p>
-    </a>
-    <a href="/app/weixin/qrscan.php" class="weui-tabbar__item ">
-        <img src="https://css.zhiyuanyun.com/default/wx/images/gird_xj.png" alt=""
-             class="weui-tabbar__icon">
-        <p class="weui-tabbar__label">志愿活动</p>
-    </a>
-
-    <a href="/app/weixin/my.php" class="weui-tabbar__item ">
-        <img src="https://css.zhiyuanyun.com/default/wx/images/tab.user.normal.png" alt=""
-             class="weui-tabbar__icon">
-        <p class="weui-tabbar__label">我的</p>
-    </a>
-
 </div>
 <div class="quit">
     <a href="javascript:;" class="weui-btn weui-btn_plain-primary" style="border-radius: 30px">退出</a>

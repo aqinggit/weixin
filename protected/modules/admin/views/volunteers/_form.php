@@ -16,10 +16,10 @@
     )); ?>
     <?php echo $form->errorSummary($model); ?>
     <div class="form-group">
-        <?php echo $form->labelEx($model, 'username'); ?>
+        <?php echo $form->labelEx($model, 'name'); ?>
 
-        <?php echo $form->textField($model, 'username', array('class' => 'form-control')); ?>
-        <?php echo $form->error($model, 'username'); ?>
+        <?php echo $form->textField($model, 'name', array('class' => 'form-control')); ?>
+        <?php echo $form->error($model, 'name'); ?>
     </div>
     <div class="form-group">
         <?php echo $form->labelEx($model, 'password'); ?>
@@ -50,7 +50,7 @@
     <div class="form-group">
         <?php echo $form->labelEx($model, 'cardIdType'); ?>
 
-        <?php echo $form->dropDownList($model, 'cardIdType', Volunteers::CertType(), array('class' => 'form-control')); ?>
+        <?php echo $form->dropDownList($model, 'cardIdType', Users::CertType(), array('class' => 'form-control')); ?>
         <?php echo $form->error($model, 'cardIdType'); ?>
     </div>
     <div class="form-group">
@@ -62,7 +62,7 @@
     <div class="form-group">
         <?php echo $form->labelEx($model, 'sex'); ?>
 
-        <?php echo $form->dropDownList($model, 'sex', Volunteers::Sex(), array('class' => 'form-control')); ?>
+        <?php echo $form->dropDownList($model, 'sex', Users::Sex(), array('class' => 'form-control')); ?>
         <?php echo $form->error($model, 'sex'); ?>
     </div>
     <div class="form-group">
@@ -80,13 +80,13 @@
     <div class="form-group">
         <?php echo $form->labelEx($model, 'politics'); ?>
 
-        <?php echo $form->dropDownList($model, 'politics', Volunteers::Political(), array('class' => 'form-control')); ?>
+        <?php echo $form->dropDownList($model, 'politics', Users::Political(), array('class' => 'form-control')); ?>
         <?php echo $form->error($model, 'politics'); ?>
     </div>
     <div class="form-group">
         <?php echo $form->labelEx($model, 'nation'); ?>
 
-        <?php echo $form->dropDownList($model, 'nation', Volunteers::Ethnicity(), array('class' => 'form-control')); ?>
+        <?php echo $form->dropDownList($model, 'nation', Users::Ethnicity(), array('class' => 'form-control')); ?>
         <?php echo $form->error($model, 'nation'); ?>
     </div>
     <div class="form-group">
@@ -98,21 +98,21 @@
     <div class="form-group">
         <?php echo $form->labelEx($model, 'education'); ?>
 
-        <?php echo $form->dropDownList($model, 'education', Volunteers::EdeGree(), array('class' => 'form-control')); ?>
+        <?php echo $form->dropDownList($model, 'education', Users::EdeGree(), array('class' => 'form-control')); ?>
         <?php echo $form->error($model, 'education'); ?>
     </div>
 
     <div class="form-group">
         <?php echo $form->labelEx($model, 'volunteerType'); ?>
 
-        <?php echo $form->dropDownList($model, 'volunteerType', Volunteers::volunteerType(), array('class' => 'form-control')); ?>
+        <?php echo $form->dropDownList($model, 'volunteerType', Users::volunteerType(), array('class' => 'form-control')); ?>
         <?php echo $form->error($model, 'volunteerType'); ?>
     </div>
 
     <div class="form-group">
         <?php echo $form->labelEx($model, 'work'); ?>
 
-        <?php echo $form->dropDownList($model, 'work', Volunteers::Employment(), array('class' => 'form-control')); ?>
+        <?php echo $form->dropDownList($model, 'work', Users::Employment(), array('class' => 'form-control')); ?>
         <?php echo $form->error($model, 'work'); ?>
     </div>
 
