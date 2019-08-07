@@ -145,6 +145,9 @@ class WeixinController extends Q
 
     public function actionMain()
     {
+
+        $this->pageTitle = '个人中心-' . zmf::config('sitename');
+
         if (Yii::app()->user->isGuest) {
             $this->redirect(zmf::createUrl('weixin/login'));
         }
