@@ -75,7 +75,7 @@
     <img class="head_photo"
          src="<?php echo zmf::config('baseurl') . 'jsCssSrc/images/user_photo.jpg'?>" alt="头像">
     <div style="text-align: center;font-size: 15px"><?php echo $this->userInfo['truename']; ?></div>
-    <div style="text-align: center;font-size: 15px;margin-top: 8px">平安建设志愿者</div>
+    <div style="text-align: center;font-size: 15px;margin-top: 8px"><?php echo Users::VolunteerType($this->userInfo['volunteerType']); ?></div>
 </div>
 
 <?php ?>
