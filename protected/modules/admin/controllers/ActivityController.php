@@ -28,7 +28,7 @@ class ActivityController extends Admin
         if ($uid) {
             $criteria->addSearchCondition("uid", $uid);
         }
-
+        $criteria->addCondition('status != 3');
         $criteria->select = $select;
         $count = $model->count($criteria);
         $pager = new CPagination($count);

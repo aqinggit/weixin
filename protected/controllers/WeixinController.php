@@ -61,6 +61,8 @@ class WeixinController extends Q
             $model->attributes = $_POST['Users'];
             $model->birthday = strtotime($model->birthday);
             $model->password = md5($model->password);
+            $model->password2 = md5($model->password2);
+            $model->status = 0;
             if ($model->validate()) {
                 if ($model->save()) {
                     $this->render('success', array('truename' => $model->truename));
@@ -135,8 +137,9 @@ class WeixinController extends Q
         $uid = zmf::uid();
         $model = new Activity;
         $criteria = new CDbCriteria();
-        $criteria->join = 'JOIN pre_volunteer_active as va ON va.aid=t.id';
+        $criteria->join = 'JOIN pre_volunteer_active as va ON va.aid=t.id ';
         $criteria->addCondition("va.vid = {$uid}");
+        $criteria->addCondition('t.status != 3');
         $criteria->select = 't.id,t.title,t.place,t.count,va.status';
         $activity = $model->findAll($criteria);
         $this->render('main', array('activity'=>$activity));

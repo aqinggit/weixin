@@ -24,7 +24,6 @@ class ActivityController extends Q
         $this->render('detail', $data);
     }
 
-
     public function actionApply()
     {
         if (Yii::app()->user->isGuest) {
@@ -38,13 +37,27 @@ class ActivityController extends Q
             throw new CHttpException(404, '这场活动不存在,或者已经结束');
         }
 
-        $sql = "INSERT INTO `lala`.`pre_volunteer_active`(`vid`, `aid`, `cTime`) VALUES ({$uid},{$aid},{$now});";
-        $_exc = Yii::app()->db->createCommand($sql)->execute();
-        if ($_exc) {
-            $this->render('ApplySuccess');
-        }else{
-            throw new CHttpException(403, '申请失败!');
+        $item = VolunteerActive::model()->find("vid ={$uid} AND aid ={$aid}");
+
+        if ($active['volunteerType'] != $this->userInfo['volunteerType'])
+        {
+            throw new CHttpException(403, '您申请的活动和您的自愿者类型不符合');
         }
+
+
+        if ($item) {
+            throw new CHttpException(403, '您已经申请过了，请耐心等待审核');
+        } else {
+            $item = new VolunteerActive();
+            $item->vid = $uid;
+            $item->aid = $aid;
+            if ($item->save()) {
+                $this->render('ApplySuccess');
+            } else {
+                throw new CHttpException(403, '申请失败!');
+            }
+        }
+
 
     }
 
