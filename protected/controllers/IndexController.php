@@ -10,6 +10,7 @@ class IndexController extends Q
 
     public function actionIndex()
     {
+        $this->pageTitle =zmf::config('sitename');
         $this->render("index");
     }
 }
