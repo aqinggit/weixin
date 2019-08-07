@@ -81,6 +81,9 @@ class Users extends CActiveRecord {
             array('contact,avatar,email', 'length', 'max' => 255),
             array('content', 'safe'),
             array('password2', 'compare', 'compareAttribute' => 'password', 'message' => '两次输入的密码不一致'),
+            array('phone','unique','message'=>'这个手机号已经注册过了'),
+            array('email','unique','message'=>'这个邮箱已经注册过了'),
+            array('cardId','unique','message'=>'这个身份证已经注册过了'),
         );
     }
 

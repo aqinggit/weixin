@@ -14,7 +14,7 @@
 </style>
 <?php
     $form = $this->beginWidget('CActiveForm', array(
-        'id' => 'login-form',
+        'id' => 'users-forget-form',
         'enableAjaxValidation' => false,
         'enableClientValidation' => false
     )); ?>
@@ -25,13 +25,13 @@
                 <div class="weui-cell">
                     <div class="weui-cell__hd"><label class="weui-label">身份证号</label></div>
                     <div class="weui-cell__bd">
-                        <?php echo CHtml::textField('login-username', '', array('class' => 'weui-input', 'placeholder' => '身份证')); ?>
+                        <?php echo CHtml::textField('cardId', '', array('class' => 'weui-input', 'placeholder' => '请输入身份证')); ?>
                     </div>
                 </div>
                 <div class="weui-cell">
                     <div class="weui-cell__hd"><label class="weui-label">手机号</label></div>
                     <div class="weui-cell__bd">
-                        <?php echo CHtml::textField('login-username', '', array('class' => 'weui-input', 'placeholder' => '手机')); ?>
+                        <?php echo CHtml::textField('phone', '', array('class' => 'weui-input', 'placeholder' => '请输入手机')); ?>
                     </div>
                 </div>
 
@@ -39,7 +39,7 @@
                     <div class="weui-cell__hd"><label class="weui-label">密码</label></div>
                     <div class="weui-cell__bd">
                         <div class="weui-cell__bd">
-                            <?php echo CHtml::passwordField('login-password', '', array('class' => 'weui-input', 'placeholder' => '请输入密码')); ?>
+                            <?php echo CHtml::passwordField('password', '', array('class' => 'weui-input', 'placeholder' => '请输入新密码')); ?>
                         </div>
                     </div>
                 </div>
@@ -47,7 +47,7 @@
         </div>
 
         <div class="weui-btn-area">
-            <a href="javascript:;" class="weui-btn weui-btn_primary" id="login-btn">找回密码</a>
+             <?php echo CHtml::submitButton('找回密码',['class'=>'weui-btn weui-btn_primary']); ?>
         </div>
 
         <div class="weui-btn-area fs16">
