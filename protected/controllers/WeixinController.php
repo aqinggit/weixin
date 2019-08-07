@@ -46,7 +46,7 @@ class WeixinController extends Q
     public function actionReg()
     {
         if (!Yii::app()->user->isGuest) {
-            $this->redirect($this->referer);
+            $this->redirect(zmf::createUrl('weixin/main'));
         }
         if ($this->isMobile) {
             $this->layout = 'common';
@@ -103,23 +103,37 @@ class WeixinController extends Q
         Yii::app()->user->logout();
         $this->redirect(zmf::createUrl('weixin/main'));
     }
-     public function actionForget()
+
+    public function actionForget()
     {
-        if ($this->isMobile) {
-            $this->layout = 'common';
+
+        $cardId = zmf::val('cardId');
+        $phone = zmf::val('phone');
+        $password = zmf::val('password');
+        if ($_POST) {
+            if (!$cardId || !$phone || !$password) {
+                $this->message(0, '请完善您的信息', zmf::createUrl('/weixin/forget'));
+            }
+            $user = Users::model()->find("phone = {$phone}");
+            if ($user) {
+                if ($user['cardId'] === $cardId) {
+                    if (Users::model()->updateByPk($user->id, ['password' => md5($password)])) {
+                        $this->message(1, '密码重置成功', zmf::createUrl('/weixin/main'));
+                    } else {
+                        $this->message(0, '重置失败!');
+                    }
+                }
+            } else {
+                $this->message(0, '您的输入的手机还没有注册');
+            }
+
         }
-        $canLogin = true;
-        $ip = Yii::app()->request->getUserHostAddress();
-        $cacheKey = 'loginErrors-' . $ip;
-        $errorTimes = zmf::getFCache($cacheKey);
-        if ($errorTimes >= 5) {
-            $canLogin = false;
-        }
+
+
         $this->mobileTitle = '找回密码';
         $this->currentModule = 'login';
         $this->render('forget');
     }
-
 
     public function actionIndex()
     {
@@ -142,7 +156,7 @@ class WeixinController extends Q
         $criteria->addCondition('t.status != 3');
         $criteria->select = 't.id,t.title,t.place,t.count,va.status';
         $activity = $model->findAll($criteria);
-        $this->render('main', array('activity'=>$activity));
+        $this->render('main', array('activity' => $activity));
 
 
     }
