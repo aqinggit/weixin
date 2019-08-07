@@ -31,6 +31,9 @@
 
     .col-red {
         color: red;
+        position: relative;
+        bottom: 70px;
+
     }
 
     .pd-t-b-0 {
@@ -41,14 +44,15 @@
     .pd-l-0{
         padding-left: 0;
     }
+    .apply {
+        position: relative;
+        width: 100%;
+        bottom: 70px;
+        margin: 0 auto;
+    }
 
 </style>
 
-<!--<div class="weui-search-bar clearfix  col-fff">-->
-<!--    <span class="nav-menu"><&nbsp;返回</span>-->
-<!--    <span class="nav-menu">登录</span>-->
-<!--    <span class="nav-menu">注册</span>-->
-<!--</div>-->
 
 <div class="form weui-cells weui-cells_form reg-tab">
 
@@ -159,7 +163,7 @@
             <?php echo $form->dropDownList($model, 'education', Users::EdeGree(), ['class' => 'weui-select pd-l-0']); ?>
         </div>
     </div>
-    <div class="weui-cell pd-t-b-0">
+    <div class="weui-cell pd-t-b-0" style="margin-bottom: 70px">
         <div class="weui-cell__hd"><label class="weui-label">从业状况</label></div>
         <div class="weui-cell__bd">
             <?php echo $form->dropDownList($model, 'work', Users::Employment(), ['class' => 'weui-select pd-l-0']); ?>
@@ -169,9 +173,10 @@
         <?php echo $form->errorSummary($model); ?>
     </div>
 
-
+    <div class="apply">
     <div class="weui-btn-area">
-        <?php echo CHtml::submitButton('确定', array('class' => 'weui-btn weui-btn_primary btn-color')); ?>
+        <?php echo CHtml::submitButton('确定', array('class' => 'weui-btn weui-btn_primary')); ?>
+    </div>
     </div>
 
 

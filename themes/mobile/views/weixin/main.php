@@ -62,15 +62,7 @@
         float: right;
     }
 
-    .quit {
 
-        position: absolute;
-        width: 30%;
-        /*margin: 50px auto;*/
-        bottom: 20%;
-        left: 35%;
-        border-radius: 25%;
-    }
 
     .apply {
         position: absolute;
