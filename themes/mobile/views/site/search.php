@@ -1,17 +1,17 @@
 <?php
 /**
- * @filename search.php 
+ * @filename search.php
  * @Description
- * @author 阿年飞少 <ph7pal@qq.com> 
- * @link http://www.newsoul.cn 
- * @copyright Copyright©2015 阿年飞少 
- * @datetime 2016-5-30  11:53:22 
+ * @author 阿年飞少 <ph7pal@qq.com>
+ * @link http://www.newsoul.cn
+ * @copyright Copyright©2015 阿年飞少
+ * @datetime 2016-5-30  11:53:22
  */
 ?>
 <div class="weui-search-bar" id="searchBar">
     <form class="weui-search-bar__form" role="form" action="<?php echo zmf::createUrl("search/do");?>"  method="GET">
-        <div class="weui-search-bar__box">            
-            <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索你感兴趣的内容" name="keyword" autocomplete="off" disableautocomplete>            
+        <div class="weui-search-bar__box">
+            <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索你感兴趣的内容" name="keyword" autocomplete="off" disableautocomplete>
         </div>
         <label class="weui-search-bar__label" id="searchText">
             <i class="fa fa-search"></i>
@@ -41,11 +41,11 @@
 </div>
 <?php }?>
 <?php if(!empty($posts['articles'])){?>
-<div class="search-page weui-panel weui-panel_access weui-panel_hack">        
+<div class="search-page weui-panel weui-panel_access weui-panel_hack">
     <div class="weui-panel__hd"><?php echo $this->searchKeyword;?>志愿者</div>
     <div class="weui-panel__bd">
         <?php foreach ($posts['articles'] as $post){$this->renderPartial('/article/_item',array('data'=>$post));}?>
-    </div> 
+    </div>
 </div>
 <?php }?>
 <?php if(!empty($posts['questions'])){?>
@@ -56,6 +56,7 @@
     </div>
 </div>
 <?php }?>
+
 <script type="text/javascript" class="searchbar js_show">
     $(function(){
         var $searchBar = $('#searchBar'),
