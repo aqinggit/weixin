@@ -99,7 +99,7 @@
                                 地址: <?php echo $item['place']; ?>
                             </p>
                             <p class="weui-media-box__desc" style="margin-top:5px;">
-                                <span>计划 : <?php echo $item['count']; ?>&nbsp;&nbsp;&nbsp;招募 : 19</span>
+                                <span>计划 : <?php echo $item['count']; ?>&nbsp;&nbsp;&nbsp;招募 : <?php echo VolunteerActive::getActiveCount($item['id'])?></span>
                             </p>
                         </div>
                     </a>

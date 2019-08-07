@@ -50,24 +50,6 @@
         </div>
 
         <div class="clearfix" style="height:65px;"></div>
-        <div class="weui-tabbar">
-            <a href="/app/weixin/index.php" class="weui-tabbar__item ">
-                <img src="https://css.zhiyuanyun.com/default/wx/images/tab.home.normal.png" alt=""
-                     class="weui-tabbar__icon">
-                <p class="weui-tabbar__label">首页</p>
-            </a>
-            <a href="/app/weixin/qrscan.php" class="weui-tabbar__item ">
-                <img src="https://css.zhiyuanyun.com/default/wx/images/gird_xj.png" alt=""
-                     class="weui-tabbar__icon">
-                <p class="weui-tabbar__label">志愿活动</p>
-            </a>
-
-            <a href="/app/weixin/my.php" class="weui-tabbar__item ">
-                <img src="https://css.zhiyuanyun.com/default/wx/images/tab.user.normal.png" alt=""
-                     class="weui-tabbar__icon">
-                <p class="weui-tabbar__label">我的</p>
-            </a>
-        </div>
     </div>
     <?php $this->endWidget();
 } else { ?>

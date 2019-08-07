@@ -1,0 +1,1 @@
+<img src="<?php echo zmf::config('baseurl') . 'jsCssSrc/images/face.png' ?>" alt="封面图">

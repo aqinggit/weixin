@@ -51,6 +51,8 @@ $color2= zmf::config('houtaiColor2');
                     <li><?php echo CHtml::link('<i class="fa fa-plus"></i>',array('volunteers/create'),array('class'=>'noLeft','title'=>'新增志愿者'));?></li>
                     <li><?php echo CHtml::link('活动',array('activity/index'),array('class'=>'noRight','title'=>'活动列表'));?></li>
                     <li><?php echo CHtml::link('<i class="fa fa-plus"></i>',array('activity/create'),array('class'=>'noLeft','title'=>'新增活动'));?></li>
+                    <li><?php echo CHtml::link('申请',array('volunteerActive/index'),array('class'=>'noRight','title'=>'申请列表'));?></li>
+                    <li><?php echo CHtml::link('<i class="fa fa-plus"></i>',array('volunteerActive/create'),array('class'=>'noLeft','title'=>'新增申请'));?></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
