@@ -3,7 +3,7 @@
         width: 100%;
         height: 100%;
         position: absolute;
-        background: url("http://cqfb.people.com.cn/h5/20190403zs/img/bg.jpg") no-repeat;
+        background: url("<?php echo zmf::config('baseurl') . 'jsCssSrc/images/competition_bac.jpg' ?>") no-repeat;
         background-size: 100% 100%;
 
 
@@ -27,7 +27,7 @@
     .box {
         width: 255px;
         height: 162px;
-        margin: 110px auto 70px auto;
+        margin: 60px auto 70px auto;
         text-align: center;
 
     }
@@ -93,8 +93,11 @@
     .bottom_img{
         position: absolute;
         height: 16%;
-        bottom: 0;
+        bottom: 8%;
         left: 0;
+        width: 100%;
+    }
+    .bottom_img img{
         width: 100%;
     }
     .fs16{
@@ -110,20 +113,20 @@
 
     </div>
     <div class="box">
-        <div class="icon_box">
-            <img src="http://cqfb.people.com.cn/h5/20190403zs/img/p01.png">
-            <img src="http://cqfb.people.com.cn/h5/20190403zs/img/p02.png">
-            <img src="http://cqfb.people.com.cn/h5/20190403zs/img/p03.png">
-            <img src="http://cqfb.people.com.cn/h5/20190403zs/img/p04.png">
+        <div class="icon_box" style="margin-bottom: 10px">
+            <img src="<?php echo zmf::config('baseurl') . 'jsCssSrc/images/competition1.png' ?>" alt="所在单位">
+            <img src="<?php echo zmf::config('baseurl') . 'jsCssSrc/images/competition2.png' ?>" alt="竞赛答题">
+            <img src="<?php echo zmf::config('baseurl') . 'jsCssSrc/images/competition3.png' ?>" alt="结果分享">
+            <img src="<?php echo zmf::config('baseurl') . 'jsCssSrc/images/competition4.png' ?>" alt="综合排名">
         </div>
-        <p class="color-9b">请输入您的手机号码</p>
+        <p class="color-9b" style="margin-bottom: 10px">请输入您的手机号码</p>
         <input type="number" maxlength="11" class="phone color-9b"><br>
     </div>
     <div style="margin: 0 auto;width: 280px">
         <button class="button01">我要参与</button>
         <button class="button02">个人中心</button>
     </div>
-    <div>
-        <img class="bottom_img" src="http://cqfb.people.com.cn/h5/20190403zs/img/bottom.png" alt="建國">
+    <div class="bottom_img">
+        <img src="<?php echo zmf::config('baseurl') . 'jsCssSrc/images/competition5.png' ?>" alt="底部图片">
     </div>
 </div>

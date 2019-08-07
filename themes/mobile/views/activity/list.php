@@ -55,8 +55,8 @@
                     <a class="weui-media-box weui-media-box_appmsg" href="detail.html?id=<?php echo $item['id']?>" >
                         <div class="weui-media-box__hd">
                             <img class="weui-media-box__thumb"
-                                 src="http://css.zhiyuanyun.com/default/images/noimg_opp.jpg"
-                                 onerror="this.src='http://css.zhiyuanyun.com/default/images/noimg_opp.jpg'">
+                                 src="<?php echo zmf::config('baseurl') . 'jsCssSrc/images/activity_img.jpg' ?>"
+                                 onerror="this.src='jsCssSrc/images/activity_img.jpg'" alt="志愿">
                         </div>
                         <div class="weui-media-box__bd">
                             <h4 class="weui-media-box__title">

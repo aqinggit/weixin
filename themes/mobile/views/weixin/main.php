@@ -1,6 +1,6 @@
 <style>
     .personal {
-        background: url("http://pics.sc.chinaz.com/files/pic/pic9/201905/zzpic18272.jpg") no-repeat;
+        background: url("<?php echo zmf::config('baseurl') . 'jsCssSrc/images/user_bac.jpg' ?>") no-repeat;
         width: 100%;
         padding: 20px 0;
 
@@ -73,8 +73,9 @@
 </style>
 <div class="personal">
     <img class="head_photo"
-         src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1440019312,3309809430&fm=26&gp=0.jpg" alt="">
+         src="<?php echo zmf::config('baseurl') . 'jsCssSrc/images/user_photo.jpg'?>" alt="头像">
     <div style="text-align: center;font-size: 15px"><?php echo $this->userInfo['truename']; ?></div>
+    <div style="text-align: center;font-size: 15px;margin-top: 8px">平安建设志愿者</div>
 </div>
 
 <?php ?>
