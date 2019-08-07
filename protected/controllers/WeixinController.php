@@ -67,7 +67,7 @@ class WeixinController extends Q
                 if ($model->save()) {
                     $this->render('success', array('truename' => $model->truename));
                 } else {
-                    $this->message(503, '系统原因,注册失败!', $this->referer);
+                    $this->message(0, '系统原因,注册失败!', $this->referer);
                 }
             }
         }
