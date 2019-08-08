@@ -71,6 +71,7 @@ class UsersController extends Admin
                 unset($_POST['Users']['powerGroupId']);
             }
             $model->attributes = $_POST['Users'];
+            $model->password2 = md5($model->password2);
             if ($model->save()) {
                 $this->redirect(array('users/index'));
             }
