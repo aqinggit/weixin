@@ -36,7 +36,7 @@ class ActivityController extends Q
             $this->message(0, '这场活动不存在,或者已经结束');
         }
 
-        if ($active['count'] >= VolunteerActive::getActiveCount($aid)) {
+        if ($active['count'] <= VolunteerActive::getActiveCount($aid)) {
             $this->message(0, '您申请的活动已经满员');
         }
 
