@@ -8,13 +8,13 @@ class ActivityController extends Q
         $data = [
             'items' => $items
         ];
+        $this->pageTitle='活动列表';
         $this->render('list', $data);
     }
 
     public function actionDetail()
     {
         $this->isMobile = true;
-
         $id = zmf::val('id');
         $item = Activity::getOne($id);
         if (!$item) {
@@ -23,11 +23,14 @@ class ActivityController extends Q
         $data = [
             'item' => $item
         ];
+        $this->pageTitle=$item['title'];
         $this->render('detail', $data);
     }
 
     public function actionApply()
     {
+
+        $this->pageTitle='申请活动';
         if (Yii::app()->user->isGuest) {
             $this->redirect(zmf::createUrl('weixin/login'));
         }
