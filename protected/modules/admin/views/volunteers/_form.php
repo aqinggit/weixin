@@ -42,10 +42,10 @@
     </div>
 
     <div class="form-group">
-        <?php echo $form->labelEx($model, 'email'); ?>
+        <?php echo $form->labelEx($model, 'company'); ?>
 
-        <?php echo $form->textField($model, 'email', array('class' => 'form-control')); ?>
-        <?php echo $form->error($model, 'email'); ?>
+        <?php echo $form->textField($model, 'company', array('class' => 'form-control')); ?>
+        <?php echo $form->error($model, 'company'); ?>
     </div>
     <div class="form-group">
         <?php echo $form->labelEx($model, 'cardIdType'); ?>
@@ -66,10 +66,10 @@
         <?php echo $form->error($model, 'sex'); ?>
     </div>
     <div class="form-group">
-        <?php echo $form->labelEx($model, 'birthday'); ?>
+        <?php echo $form->labelEx($model, 'age'); ?>
 
-        <?php echo $form->dateField($model, 'birthday', array('class' => 'form-control')); ?>
-        <?php echo $form->error($model, 'birthday'); ?>
+        <?php echo $form->textField($model, 'age', array('class' => 'form-control')); ?>
+        <?php echo $form->error($model, 'age'); ?>
     </div>
     <div class="form-group">
         <?php echo $form->labelEx($model, 'phone'); ?>

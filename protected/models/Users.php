@@ -35,6 +35,8 @@ class Users extends CActiveRecord {
     public $password2;
     public $groupName;
     public $authorName;
+    public $activityCount;
+    public $activityScore;
 
     const STATUS_NOTPASSED = 0;
     const STATUS_PASSED = 1;
@@ -69,7 +71,7 @@ class Users extends CActiveRecord {
         // will receive user inputs.
         return array(
             array('truename,password,name', 'required'),
-            array('name, password,password2, cardIdType, cardId, phone, politics, nation, education, work,sex,birthday,address,email,volunteerType', 'required'),
+            array('name, password,password2, cardIdType, cardId, phone, politics, nation, education, work,sex,age,address,volunteerType,company', 'required'),
             array('cTime', 'default', 'setOnEmpty' => true, 'value' => zmf::now()),
             array('status', 'default', 'setOnEmpty' => true, 'value' => Users::STATUS_PASSED),
             array('ip', 'default', 'setOnEmpty' => true, 'value' => ip2long(Yii::app()->request->userHostAddress)),
@@ -82,7 +84,6 @@ class Users extends CActiveRecord {
             array('content', 'safe'),
             array('password2', 'compare', 'compareAttribute' => 'password', 'message' => '两次输入的密码不一致'),
             array('phone','unique','message'=>'这个手机号已经注册过了'),
-            array('email','unique','message'=>'这个邮箱已经注册过了'),
             array('cardId','unique','message'=>'这个身份证已经注册过了'),
         );
     }
@@ -107,7 +108,8 @@ class Users extends CActiveRecord {
             'truename' => '真实姓名',
             'name' => '用户名',
             'phone' => '手机号码',
-            'email' => '邮箱地址',
+            'email' => '邮箱',
+            'company' => '单位',
             'password' => '账号密码',
             'newPassword' => '新密码',
             'contact' => '联系方式',
@@ -119,10 +121,11 @@ class Users extends CActiveRecord {
             'status' => '状态',
             'ip' => '注册IP',
             'cTime' => '注册时间',
-			'score' => '自愿评分',
+			'score' => '志愿评分',
 			'cardIdType' => '身份证类型',
 			'cardId' => '身份证号码',
 			'birthday' => '生日',
+			'age' => '年龄',
 			'politics' => '政治面貌',
 			'nation' => '民族',
 			'address' => '具体地址',
@@ -231,7 +234,7 @@ class Users extends CActiveRecord {
 
 
     public static function findByUsernameV($username,$password) {
-        $info = Users::model()->find('name=:name AND password=:password AND status=' . Users::STATUS_PASSED, array(
+        $info = Users::model()->find('name=:name AND password=:password', array(
             ':name' => $username,
             ':password' => $password,
         ));
@@ -239,7 +242,7 @@ class Users extends CActiveRecord {
     }
 
     public static function findByPhoneV($phone,$password) {
-        $info = Users::model()->find('phone=:phone AND password=:password AND status=' . Users::STATUS_PASSED, array(
+        $info = Users::model()->find('phone=:phone AND password=:password', array(
             ':phone' => $phone,
             ':password' => $password,
         ));
@@ -481,8 +484,8 @@ class Users extends CActiveRecord {
         $item = array(
             0 => '请选择',
             1 => '平安建设志愿者',
-            2 => '社会治理志愿者',
-            3 => '法制宣传志愿者',
+            2 => '人民调解志愿者',
+            3 => '法治宣传志愿者',
         );
         if ($key>=0) {
             return $item[$key];

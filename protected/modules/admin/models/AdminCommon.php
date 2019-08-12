@@ -36,11 +36,11 @@ class AdminCommon extends CActiveRecord
             'seconds' => array(
                 'VolunteerChecks' => array(
                     'title' => '待审核志愿者',
-                    'url' => Yii::app()->createUrl('admin/volunteers/index'),
+                    'url' => Yii::app()->createUrl('admin/volunteers/index',array('type' => 'nopass')),
                     'active' => in_array($c, array('VolunteerChecks'))
                 ), 'Volunteers' => array(
                     'title' => '全部志愿者',
-                    'url' => Yii::app()->createUrl('admin/volunteers/index', array('type' => 'all')),
+                    'url' => Yii::app()->createUrl('admin/volunteers/index'),
                     'active' => in_array($c, array('Volunteers'))
                 ),
 

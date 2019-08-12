@@ -17,85 +17,38 @@ class VolunteersController extends Admin
     public function actionIndex()
     {
         //$this->checkPower('volunteers');
-        $select = "id,name,password,truename,cTime,score,status,email,cardIdType,cardId,sex,birthday,phone,politics,nation,address,education,work";
+        $select = "id,name,password,truename,cTime,score,status,company,cardIdType,cardId,sex,age,phone,politics,nation,address,education,work,volunteerType";
         $model = new Users();
         $criteria = new CDbCriteria();
-        $id = zmf::val("id", 1);
-        if ($id) {
-            $criteria->addSearchCondition("id", $id);
-        }
-        $username = zmf::val("name", 1);
-        if ($username) {
-            $criteria->addSearchCondition("name", $username);
-        }
-        $password = zmf::val("password", 1);
-        if ($password) {
-            $criteria->addSearchCondition("password", $password);
-        }
+
         $truename = zmf::val("truename", 1);
         if ($truename) {
-            $criteria->addSearchCondition("truename", $truename);
-        }
-        $cTime = zmf::val("cTime", 1);
-        if ($cTime) {
-            $criteria->addSearchCondition("cTime", $cTime);
-        }
-        $score = zmf::val("score", 1);
-        if ($score) {
-            $criteria->addSearchCondition("score", $score);
-        }
-        $status = zmf::val("status", 1);
-        if ($status) {
-            $criteria->addSearchCondition("status", $status);
-        }
-        $email = zmf::val("email", 1);
-        if ($email) {
-            $criteria->addSearchCondition("email", $email);
-        }
-        $cardIdType = zmf::val("cardIdType", 1);
-        if ($cardIdType) {
-            $criteria->addSearchCondition("cardIdType", $cardIdType);
-        }
-        $cardId = zmf::val("cardId", 1);
-        if ($cardId) {
-            $criteria->addSearchCondition("cardId", $cardId);
-        }
-        $sex = zmf::val("sex", 1);
-        if ($sex) {
-            $criteria->addSearchCondition("sex", $sex);
-        }
-        $birthday = zmf::val("birthday", 1);
-        if ($birthday) {
-            $criteria->addSearchCondition("birthday", $birthday);
+            $criteria->addSearchCondition("truename", $username);
         }
         $phone = zmf::val("phone", 1);
         if ($phone) {
-            $criteria->addSearchCondition("phone", $phone);
-        }
-        $politics = zmf::val("politics", 1);
-        if ($politics) {
-            $criteria->addSearchCondition("politics", $politics);
-        }
-        $nation = zmf::val("nation", 1);
-        if ($nation) {
-            $criteria->addSearchCondition("nation", $nation);
-        }
-        $address = zmf::val("address", 1);
-        if ($address) {
-            $criteria->addSearchCondition("address", $address);
-        }
-        $education = zmf::val("education", 1);
-        if ($education) {
-            $criteria->addSearchCondition("education", $education);
-        }
-        $work = zmf::val("work", 1);
-        if ($work) {
-            $criteria->addSearchCondition("work", $work);
+            $criteria->addSearchCondition("phone", $username);
         }
 
-        if (zmf::val('type')!='all'){
+
+        if (zmf::val('type') == 'nopass') {
             $criteria->addCondition('status =0');
         }
+
+        $time = zmf::val('time', 2
+        );
+        if ($time) {
+            $startTime = $time . '-1-1';
+            $startTime = strtotime($startTime);
+            $endTime = ($time + 1) . '-1-1';
+            $endTime = strtotime($endTime);
+
+        }
+        $startCount = zmf::val('startCount', 2);
+        $endCount = zmf::val('endCount', 2);
+        $startScore = zmf::val('startScore', 2);
+        $endScore = zmf::val('endScore', 2);
+
 
         $criteria->addCondition('status !=3');
         $criteria->select = $select;
@@ -104,10 +57,43 @@ class VolunteersController extends Admin
         $pager->pageSize = 30;
         $pager->applyLimit($criteria);
         $posts = $model->findAll($criteria);
+        $ids = [];
+        foreach ($posts as $K => $post) {
+            $where = '';
+            if ($time) {
+                $where .= "cTime >= {$startTime} AND cTime <= {$endTime} AND ";
+            }
+
+            $sql = "select count(*) as t,SUM(score) as m From pre_volunteer_active WHERE {$where} vid = {$post->id} AND status = 1";
+            $items = Yii::app()->db->createCommand($sql)->queryRow();
+            $post->activityCount = $items['t'] ? $items['t'] : 0;
+            $post->activityScore = $items['m'] ? $items['m'] : 0;
+
+
+            if ($items['t'] < $startCount && $startCount) {
+                unset($posts[$K]);
+                continue;
+            }
+            if ($items['t'] > $endCount && $endCount) {
+                unset($posts[$K]);
+                continue;
+            }
+            if ($items['m'] < $startScore && $startScore) {
+                unset($posts[$K]);
+                continue;
+            }
+            if ($items['m'] > $endScore && $endScore) {
+                unset($posts[$K]);
+                continue;
+            }
+            $ids[] = $post->id;
+        }
+        $ids = join(',', $ids);
         $this->render('index', array(
             'pages' => $pager,
             'posts' => $posts,
-            'model' => $model
+            'model' => $model,
+            'ids' => $ids
         ));
     }
 
@@ -140,18 +126,18 @@ class VolunteersController extends Admin
         if (isset($_POST['Users'])) {
             $data = $_POST['Users'];
             if (!$data['password2']) {
-               $data['password2'] = $data['password'];
-            }else{
+                $data['password2'] = $data['password'];
+            } else {
                 $data['password'] = md5($data['password']);
                 $data['password2'] = md5($data['password2']);
                 zmf::test($data['password2']);
             }
-            if (!$data['birthday']){
-               unset($data['birthday']);
+            if (!$data['birthday']) {
+                unset($data['birthday']);
             }
 
             $model->attributes = $data;
-            if ($data['birthday']){
+            if ($data['birthday']) {
                 $model->birthday = strtotime($model->birthday);
             }
 
@@ -210,7 +196,6 @@ class VolunteersController extends Admin
             header('location: ' . $_SERVER['HTTP_REFERER']);
         }
     }
-
 
 
     /**

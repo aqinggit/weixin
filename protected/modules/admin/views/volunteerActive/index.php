@@ -33,6 +33,7 @@ $form = $this->beginWidget('CActiveForm', array(
         <th><?php echo $model->getAttributeLabel("aid"); ?></th>
         <th><?php echo $model->getAttributeLabel("cTime"); ?></th>
         <th><?php echo $model->getAttributeLabel("status"); ?></th>
+        <th><?php echo $model->getAttributeLabel("score"); ?></th>
         <th style="width: 160px">操作</th>
     </tr>
 
@@ -42,6 +43,7 @@ $form = $this->beginWidget('CActiveForm', array(
             <td><?php echo zmf::link($data->ActivityInfo->title, ['/Activity/detail', 'id' => $data->aid]) ?></td>
             <td><?php echo zmf::time($data->cTime); ?></td>
             <td><?php echo Users::Status($data->status); ?></td>
+            <td><?php echo $data->score; ?></td>
             <td>
                 <?php echo CHtml::link('编辑', array('update', 'id' => $data->id)); ?>
                 <?php echo CHtml::link('删除', array('delete', 'id' => $data->id)); ?>

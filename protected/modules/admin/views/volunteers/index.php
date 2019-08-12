@@ -1,3 +1,4 @@
+
 <?php
 /**
  * @filename VolunteersController.php
@@ -9,6 +10,7 @@
  */
 $this->renderPartial('_nav');
 echo CHtml::link('新增', array('create'), array('class' => 'btn btn-danger addBtn'));
+echo CHtml::link('批量删除', array('delList', array('ids' => $ids)), array('class' => 'btn btn-danger delBtn'));
 $form = $this->beginWidget('CActiveForm', array(
     'id' => 'search-form',
     'htmlOptions' => array(
@@ -21,27 +23,43 @@ $form = $this->beginWidget('CActiveForm', array(
 <div class="fixed-width-group">
     <div class="form-group">
         <?php echo CHtml::textField("truename", $_GET["truename"], array("class" => "form-control", "placeholder" => $model->getAttributeLabel("truename"))); ?></div>
-
     <div class="form-group">
         <?php echo CHtml::textField("phone", $_GET["phone"], array("class" => "form-control", "placeholder" => $model->getAttributeLabel("phone"))); ?></div>
-
     <div class="form-group">
         <button class="btn btn-default" type="submit">搜索</button>
     </div>
+    <div style="display: block">
+        <div class="form-group">
+            <?php echo CHtml::textField("startCount", $_GET["startCount"], array("class" => "form-control", "placeholder" => '最小场数')); ?>
+        </div>
+        <div class="form-group">
+            <?php echo CHtml::textField("endCount", $_GET["endCount"], array("class" => "form-control", "placeholder" => '最大场数')); ?>
+        </div>
+        <div class="form-group">
+            <?php echo CHtml::textField("startScore", $_GET["startScore"], array("class" => "form-control", "placeholder" => '最小分数')); ?>
+        </div>
+        <div class="form-group">
+            <?php echo CHtml::textField("endScore", $_GET["endScore"], array("class" => "form-control", "placeholder" => '最大分数')); ?>
+        </div>
+        <div class="form-group">
+            <?php echo CHtml::textField("time", $_GET["time"], array("class" => "form-control", "placeholder" => '年份')); ?>
+        </div>
+    </div>
+
 </div>
 <?php $this->endWidget(); ?>
 
 <table class="table table-hover table-striped">
     <tr>
-        <th><?php echo $model->getAttributeLabel("name"); ?></th>
         <th><?php echo $model->getAttributeLabel("truename"); ?></th>
         <th><?php echo $model->getAttributeLabel("score"); ?></th>
+        <th>参加场数</th>
         <th><?php echo $model->getAttributeLabel("status"); ?></th>
-        <th><?php echo $model->getAttributeLabel("email"); ?></th>
+        <th><?php echo $model->getAttributeLabel("company"); ?></th>
         <th><?php echo $model->getAttributeLabel("cardIdType"); ?></th>
         <th><?php echo $model->getAttributeLabel("cardId"); ?></th>
         <th><?php echo $model->getAttributeLabel("sex"); ?></th>
-        <th><?php echo $model->getAttributeLabel("birthday"); ?></th>
+        <th><?php echo $model->getAttributeLabel("age"); ?></th>
         <th><?php echo $model->getAttributeLabel("phone"); ?></th>
         <th><?php echo $model->getAttributeLabel("politics"); ?></th>
         <th><?php echo $model->getAttributeLabel("nation"); ?></th>
@@ -54,15 +72,15 @@ $form = $this->beginWidget('CActiveForm', array(
 
     <?php foreach ($posts as $data): ?>
         <tr>
-            <td><?php echo $data->name; ?></td>
             <td><?php echo $data->truename; ?></td>
-            <td><?php echo $data->score; ?></td>
+            <td><?php echo $data->activityScore; ?></td>
+            <td><?php echo $data->activityCount; ?></td>
             <td><?php echo Users::Status($data->status); ?></td>
-            <td><?php echo $data->email; ?></td>
+            <td><?php echo $data->company; ?></td>
             <td><?php echo Users::CertType($data->cardIdType); ?></td>
             <td><?php echo $data->cardId; ?></td>
             <td><?php echo Users::Sex($data->sex); ?></td>
-            <td><?php echo zmf::time($data->birthday, 'Y-m-d'); ?></td>
+            <td><?php echo $data->age; ?></td>
             <td><?php echo $data->phone; ?></td>
             <td><?php echo Users::Political($data->politics); ?></td>
             <td><?php echo Users::Ethnicity($data->nation); ?></td>

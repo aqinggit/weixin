@@ -736,6 +736,10 @@ class XhrController extends Q
             $this->jsonOutPut(0, '用户名或者密码错误');
         }
 
+        if (!$data['status'] == Users::STATUS_NOTPASSED){
+            $this->jsonOutPut(0, '您的账号还没有通过审核，请耐心等待');
+        }
+
         $_identity = new U($data->phone, $password);
         $_identity->simpleAuth();
         if ($_identity->errorCode === U::ERROR_NONE) {

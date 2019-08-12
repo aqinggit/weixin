@@ -1,18 +1,19 @@
 <style>
-    .homepage{
+    .homepage {
         width: 100%;
         height: 100%;
         position: absolute;
-        background: url("<?php echo zmf::config('baseurl') . 'jsCssSrc/images/competition_bac.jpg' ?>") no-repeat;
+        background: url("<?php echo zmf::config('baseurl') . 'jsCssSrc/images/answer (2).jpg' ?>") no-repeat;
         background-size: 100% 100%;
 
 
     }
+
     .img1 {
         width: 280px;
         height: 88px;
         display: block;
-        margin: 42px auto 6px auto;
+        margin: 15px auto 6px auto;
     }
 
     .organizer {
@@ -90,24 +91,37 @@
         border-radius: 10px;
         padding: 7px 0;
     }
-    .bottom_img{
+
+    .bottom_img {
         position: absolute;
         height: 16%;
         bottom: 8%;
         left: 0;
         width: 100%;
     }
-    .bottom_img img{
+
+    .bottom_img img {
         width: 100%;
     }
-    .fs16{
+
+    .fs16 {
         font-size: 16px;
+    }
+
+    .fs12 {
+        font-size: 13px;
     }
 
 </style>
 
 <div class="homepage">
-    <img src="http://cqfb.people.com.cn/h5/20190403zs/img/title.png" class="img1">
+    <div style="padding: 20px;text-align: center;font-weight:bold ">
+        <p class="fs12">中共重庆市綦江区委政法委政法委员会</p>
+        <p class="fs12">关于开展2019年《学习政法工作条例·献礼新中国成立70周年》</p>
+        <p class="fs12">法治竞赛活动</p>
+    </div>
+
+    <img src='/weixin/jsCssSrc/images/title.png' class="img1" alt="知识竞赛">
     <div class="organizer fs16">主办单位：</span>
         <span>綦江政法</span><br>
 
@@ -125,8 +139,5 @@
     <div style="margin: 0 auto;width: 280px">
         <button class="button01">我要参与</button>
         <button class="button02">个人中心</button>
-    </div>
-    <div class="bottom_img">
-        <img src="<?php echo zmf::config('baseurl') . 'jsCssSrc/images/competition5.png' ?>" alt="底部图片">
     </div>
 </div>

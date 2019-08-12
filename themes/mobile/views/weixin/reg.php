@@ -86,9 +86,9 @@
     </div>
 
     <div class="weui-cell">
-        <div class="weui-cell__hd"><label class="weui-label">邮箱</label></div>
+        <div class="weui-cell__hd"><label class="weui-label">单位</label></div>
         <div class="weui-cell__bd">
-            <?php echo $form->emailField($model, 'email', ['class' => 'weui-input', 'placeholder' => '请输入邮箱']); ?>
+            <?php echo $form->textField($model, 'company', ['class' => 'weui-input', 'placeholder' => '请输入单位']); ?>
         </div>
     </div>
 
@@ -152,9 +152,9 @@
     </div>
 
     <div class="weui-cell">
-        <div class="weui-cell__hd"><label class="weui-label">出生日期</label></div>
+        <div class="weui-cell__hd"><label class="weui-label">年龄</label></div>
         <div class="weui-cell__bd">
-            <?php echo $form->dateField($model, 'birthday', ['class' => 'weui-input pd-l-0']); ?>
+            <?php echo $form->numberField($model, 'age', ['class' => 'weui-input pd-l-0','placeholder' => '请输入年龄']); ?>
         </div>
     </div>
     <div class="weui-cell pd-t-b-0">
