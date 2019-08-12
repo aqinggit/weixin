@@ -8,11 +8,19 @@ class IndexController extends Admin {
     }
 
     public function actionIndex() {
-        $stats = CJSON::decode(CJSON::encode($stats));
-        $stats = zmf::multi_array_sort($stats, 'date', SORT_ASC);
-        $statStrArr = explode(',', $statStrs);
-        $data["statStrArr"] = $statStrArr;
-        $data['stats'] = $stats;
+
+        $activity = Activity::model()->count('status =1');
+        $volunteers = Users::model()->count();
+        $volunteersNoPass = Users::model()->count('status = 0');
+        $volunteerActive = VolunteerActive::model()->count('status = 0');
+        $data = [
+            'activity'=>$activity,
+            'volunteers'=>$volunteers,
+            'volunteersNoPass'=>$volunteersNoPass,
+            'volunteerActive'=>$volunteerActive,
+        ];
+
+
         $this->render('index', $data); 
     }
 

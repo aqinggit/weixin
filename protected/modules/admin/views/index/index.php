@@ -50,47 +50,25 @@ $colors=array(
     }
 </style>
 <div class="simple-stat">
-    <div class="stat-item" data-href='<?php echo Yii::app()->createUrl('zmf/articles/index');?>'>
-        <p><i class="fa fa-pencil" style="color:#<?php echo $colors[0];?>"></i></p>
-        <p><?php echo $articles;?></p>
-        <p class="help-block">文章</p>
+    <div class="stat-item" data-href='<?php echo Yii::app()->createUrl('admin/activity/index');?>'>
+        <p><i class="fa fa-star" style="color:#<?php echo $colors[0];?>"></i></p>
+        <p><?php echo $activity;?></p>
+        <p class="help-block">活动</p>
     </div>
-    <div class="stat-item" data-href='<?php echo Yii::app()->createUrl('zmf/posts/index');?>'>
-        <p><i class="fa fa-thumbs-up" style="color:#<?php echo $colors[1];?>"></i></p>
-        <p><?php echo $posts;?></p>
-        <p class="help-block">案例</p>
+    <div class="stat-item" data-href='<?php echo Yii::app()->createUrl('admin/volunteers/index');?>'>
+        <p><i class="fa fa-users" style="color:#<?php echo $colors[1];?>"></i></p>
+        <p><?php echo $volunteers;?></p>
+        <p class="help-block">志愿者</p>
     </div>
-    <div class="stat-item" data-href='<?php echo Yii::app()->createUrl('zmf/plans/index');?>'>
-        <p><i class="fa fa-rmb" style="color:#<?php echo $colors[2];?>"></i></p>
-        <p><?php echo $plans;?></p>
-        <p class="help-block">订单</p>
+    <div class="stat-item" data-href='<?php echo Yii::app()->createUrl('admin/volunteers/index',['type'=>'index']);?>'>
+        <p><i class="fa fa-users" style="color:#<?php echo $colors[2];?>"></i></p>
+        <p><?php echo $volunteersNoPass;?></p>
+        <p class="help-block">待审核志愿者</p>
     </div>
-    <div class="stat-item" data-href='<?php echo Yii::app()->createUrl('zmf/goods/index');?>'>
-        <p><i class="fa fa-credit-card" style="color:#<?php echo $colors[3];?>"></i></p>
-        <p><?php echo $goods;?></p>
-        <p class="help-block">套餐</p>
-    </div>
-</div>
-<div class="simple-stat">
-    <div class="stat-item" data-href='<?php echo Yii::app()->createUrl('zmf/users/index');?>'>
-        <p><i class="fa fa-users" style="color:#<?php echo $colors[4];?>"></i></p>
-        <p><?php echo $users;?></p>
-        <p class="help-block">用户</p>
-    </div>
-    <div class="stat-item" data-href='<?php echo Yii::app()->createUrl('zmf/tips/index');?>'>
-        <p><i class="fa fa-star" style="color:#<?php echo $colors[5];?>"></i></p>
-        <p><?php echo $tips;?></p>
-        <p class="help-block">评价</p>
-    </div>
-    <div class="stat-item" data-href='<?php echo Yii::app()->createUrl('zmf/feedback/index');?>'>
-        <p><i class="fa fa-comments" style="color:#<?php echo $colors[6];?>"></i></p>
-        <p><?php echo $feedbackNum;?></p>
-        <p class="help-block">反馈</p>
-    </div>
-    <div class="stat-item" data-href='<?php echo Yii::app()->createUrl('zmf/attachments/index');?>'>
-        <p><i class="fa fa-file" style="color:#<?php echo $colors[7];?>"></i></p>
-        <p><?php echo $attachsNum;?></p>
-        <p class="help-block">附件</p>
+    <div class="stat-item" data-href='<?php echo Yii::app()->createUrl('admin/volunteerActive/index');?>'>
+        <p><i class="fa fa-comments" style="color:#<?php echo $colors[3];?>"></i></p>
+        <p><?php echo $volunteerActive;?></p>
+        <p class="help-block">活动申请管理</p>
     </div>
 </div>
 <script>
