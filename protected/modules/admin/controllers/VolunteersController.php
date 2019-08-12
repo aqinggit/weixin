@@ -184,6 +184,22 @@ class VolunteersController extends Admin
         }
     }
 
+    public function actionDelList()
+    {
+        //$this->checkPower('delVolunteers');
+        $ids = zmf::val('ids');
+        $ids = explode(',', $ids);
+        foreach ($ids as $id) {
+            $this->loadModel($id)->updateByPk($id, array('status' => Users::STATUS_DELED));
+        }
+        // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+        if ($this->isAjax) {
+            $this->jsonOutPut(1, '已删除');
+        } else {
+            header('location: ' . $_SERVER['HTTP_REFERER']);
+        }
+    }
+
     public function actionPass($id)
     {
         //$this->checkPower('delVolunteers');

@@ -69,7 +69,18 @@ class ActivityController extends Admin
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
         if (isset($_POST['Activity'])) {
+
             $data = $_POST['Activity'];
+
+            if ($data['volunteerType'] == 1){
+                $this->checkPower('volunteerType1');
+            }elseif ($data['volunteerType'] == 2){
+                 $this->checkPower('volunteerType2');
+            }elseif ($data['volunteerType'] == 3){
+                 $this->checkPower('volunteerType3');
+            }
+
+
             if ($data['startTime']) {
                 $data['startTime'] = strtotime($data['startTime']);
             } else {
@@ -80,6 +91,10 @@ class ActivityController extends Admin
             } else {
                 $data['endTime'] = $model->endTime;
             }
+            if ($data['score']) {
+                VolunteerActive::model()->updateAll(['score' => $data['score']],"aid = {$id} AND status = 1");
+            }
+
 
             $model->attributes = $data;
 
@@ -138,10 +153,10 @@ class ActivityController extends Admin
         }
     }
 
-    public function actionRecruit($id)
+    public function actionEnd($id)
     {
         //$this->checkPower('delActivity');
-        $this->loadModel($id)->updateByPk($id, array('status' => Activity::Recruit));
+        $this->loadModel($id)->updateByPk($id, array('status' => Activity::END));
 
         // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
         if ($this->isAjax) {

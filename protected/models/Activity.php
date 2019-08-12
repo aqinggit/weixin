@@ -24,7 +24,7 @@ class Activity extends CActiveRecord
     const PASS = 1;
     const NOPASS = 0;
     const DEL = 3;
-    const Recruit = 4;
+    const END = 4;
     /**
      * @return string the associated database table name
      */
@@ -132,8 +132,9 @@ class Activity extends CActiveRecord
     public static function Status($key = -1)    {
         $item = array(
             0 => '未审核',
-            1 => '通过',
+            1 => '招募中',
             3 => '删除',
+            4 => '已结束'
         );
         if ($key > -1) {
             return $item[$key];

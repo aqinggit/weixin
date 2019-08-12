@@ -707,7 +707,7 @@
 <div class="weui-tab">
     <div class="weui-cells__title">项目信息
         <?php if ($item['status'] == 1) { ?>
-            <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary r">招募中</a>
+            <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary r"><?php echo Activity::Status($item['status'])?></a>
         <?php } ?>
     </div>
     <div class="weui-panel weui-panel_access page__bd">

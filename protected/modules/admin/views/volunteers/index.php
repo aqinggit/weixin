@@ -10,7 +10,7 @@
  */
 $this->renderPartial('_nav');
 echo CHtml::link('新增', array('create'), array('class' => 'btn btn-danger addBtn'));
-echo CHtml::link('批量删除', array('delList', array('ids' => $ids)), array('class' => 'btn btn-danger delBtn'));
+echo CHtml::link('批量删除', array('delList', 'ids' => $ids), array('class' => 'btn btn-danger delBtn'));
 $form = $this->beginWidget('CActiveForm', array(
     'id' => 'search-form',
     'htmlOptions' => array(

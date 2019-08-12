@@ -111,6 +111,9 @@ class Admins extends CActiveRecord
             'ActiveAdd' => '添加活动',
             'ActiveScore' => '活动评分',
             'ActiveBindVolunteer' => '活动申请审核',
+            'volunteerType1' => '平安建设志愿者',
+            'volunteerType2' => '人民调解志愿者',
+            'volunteerType3' => '法治宣传志愿者',
         );
 
         $lang['tools']['desc'] = '小工具';

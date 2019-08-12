@@ -213,3 +213,59 @@ function setProductFaceimg(id, dom, imgurl, imgsrc) {
     $('#Products_faceImg').val(id);
     $('#product-avatar').attr('src', imgurl);
 }
+
+/* xiao_f */
+function Dialog(msg) {
+    this.message = msg || '你确定这样做？';
+    this.init(msg);
+    this.listen();
+
+    this._instance = null;
+}
+Dialog.getInstance = function(msg) {
+    return this._instance ? this._instance : (this._instance = new Dialog(msg));
+}
+Dialog.prototype = {
+    init: function(opt) {
+        var template = '<div class="dialog-box">\
+                            <div class="dialog">\
+                                <div class="dialog-content">' + this.message + '</div>\
+                                <div class="dialog-btns">\
+                                    <a class="dialog-btn" data-flag="false">取消</a>\
+                                    <a class="dialog-btn" data-flag="true">确认</a>\
+                                </div>\
+                            </div>\
+                        </div>';
+        this.dialog = $(template).hide();
+    },
+
+    open: function(cb) {
+        $('body').eq(0).append(this.dialog);
+        this.dialog.fadeIn(300);
+        this.callback = cb || function() {};
+    },
+
+    hide: function() {
+        this.dialog.fadeOut(300);
+    },
+
+    listen: function() {
+        var _this = this;
+        $(document).click(function(evt) {
+            var target = $(evt.target);
+            if( target.hasClass('delete') || target.hasClass('dialog-content') || target.hasClass('dialog-btn') ) {
+                evt.stopPropagation();
+            }
+            else if( target.hasClass('dialog-btn') ) {
+                var flag = target.data('flag');
+                this.result = Boolean(flag);
+
+                _this.hide();
+                return _this.callback(Boolean(flag) ? true : false);
+            }
+            if( target.hasClass('dialog-box') ) {
+                _this.hide();
+            }
+        });
+    }
+}
