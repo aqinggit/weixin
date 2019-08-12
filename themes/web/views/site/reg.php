@@ -1,6 +1,8 @@
 <div class="login-reg-module row">
     <div class="hidden-xs col-sm-8 col-lg-8">
         <?php $this->renderPartial('/site/login-carousel');?>
+         <div style="background: url('<?php echo zmf::config('baseurl') . 'jsCssSrc/images/reg.jpg' ?>') no-repeat;width: 815px;height: 440px;position: absolute;background-size: cover">
+        </div>
     </div>
     <div class="col-xs-12 col-sm-4 col-lg-4">
         <div class="login-form reg-form">
