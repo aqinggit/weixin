@@ -698,7 +698,7 @@
     .apply {
         position: absolute;
         width: 100%;
-        bottom: 10%;
+        bottom: 20px;
         margin: 0 auto;
     }
 
@@ -706,9 +706,7 @@
 
 <div class="weui-tab">
     <div class="weui-cells__title">项目信息
-        <?php if ($item['status'] == 1) { ?>
-            <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary r"><?php echo Activity::Status($item['status'])?></a>
-        <?php } ?>
+        <a href="javascript:;" class="weui-btn weui-btn_mini weui-btn_primary r"><?php echo Activity::Status($item['status'])?></a>
     </div>
     <div class="weui-panel weui-panel_access page__bd">
         <article class="weui-article">
@@ -730,10 +728,9 @@
             <?php echo $item['content']; ?>
         </article>
     </div>
-
-</div>
 <div class="apply">
     <div class="weui-btn-area">
         <a href="<?php echo zmf::createUrl('/activity/Apply', ['aid' => $item['id']]) ?>" class="weui-btn weui-btn_primary">我要报名</a>
     </div>
+</div>
 </div>

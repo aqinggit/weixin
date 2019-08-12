@@ -13,10 +13,12 @@ class ActivityController extends Q
 
     public function actionDetail()
     {
+        $this->isMobile = true;
+
         $id = zmf::val('id');
         $item = Activity::getOne($id);
-        if (!$item || $item['status'] != 1) {
-            $this->message(0, '这场活动不存在,或者已经结束');
+        if (!$item) {
+            $this->message(0, '这场活动不存在');
         }
         $data = [
             'item' => $item

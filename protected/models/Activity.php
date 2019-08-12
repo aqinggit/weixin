@@ -43,7 +43,7 @@ class Activity extends CActiveRecord
         return array(
             array('title, content, count, place,startTime,endTime,phone,responsible,volunteerType', 'required'),
             array('id, cTime, status, count, uid, score', 'numerical', 'integerOnly' => true),
-            array('title, content, place, faceImg', 'length', 'max' => 255),
+            array('title, place, faceImg', 'length', 'max' => 255),
             // The following rule is used by search().
             array('id, title', 'safe', 'on' => 'search'),
             array('status', 'default', 'setOnEmpty' => true, 'value' => Users::STATUS_NOTPASSED),
