@@ -730,10 +730,11 @@
             <?php echo $item['content']; ?>
         </article>
     </div>
+
 </div>
- <div class="apply">
-        <div class="weui-btn-area">
-            <a href="<?php echo zmf::createUrl('/activity/Apply', ['aid' => $item['id']]) ?>"
-               class="weui-btn weui-btn_primary">我要报名</a>
-        </div>
+
+<div class="apply">
+    <div class="weui-btn-area">
+        <?php echo zmf::link('我要报名',['/activity/Apply', ['aid' => $item['id']]],['class'=>'weui-btn weui-btn_primary'])?>
     </div>
+</div>
