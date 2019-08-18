@@ -123,7 +123,7 @@
     <div style="padding: 10px 40px 0 0">
         <div>
             <i class="iconfont">&#xe613;</i><?php echo $this->userInfo['truename']; ?>
-            <span class="integral">130积分</span> <i style="color: #d58512" class="iconfont">&#xe6a4;</i>
+            <span class="integral">积分:130</span> <i style="color: #d58512" class="iconfont">&#xe6a4;</i>
         </div>
         <div class="v-type"><?php echo Users::VolunteerType($this->userInfo['volunteerType']); ?></div>
     </div>
