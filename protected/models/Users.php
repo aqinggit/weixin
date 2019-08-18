@@ -75,7 +75,7 @@ class Users extends CActiveRecord {
             array('cTime', 'default', 'setOnEmpty' => true, 'value' => zmf::now()),
             array('status', 'default', 'setOnEmpty' => true, 'value' => Users::STATUS_PASSED),
             array('ip', 'default', 'setOnEmpty' => true, 'value' => ip2long(Yii::app()->request->userHostAddress)),
-            array('hits, sex, isAdmin, status', 'numerical', 'integerOnly' => true),
+            array('hits, sex, isAdmin, status,volunteerType', 'numerical', 'integerOnly' => true),
             array('truename,ip', 'length', 'max' => 16),
             array('cTime', 'length', 'max' => 10),
             array('phone', 'length', 'max' => 11),
@@ -85,6 +85,11 @@ class Users extends CActiveRecord {
             array('password2', 'compare', 'compareAttribute' => 'password', 'message' => '两次输入的密码不一致'),
             array('phone','unique','message'=>'这个手机号已经注册过了'),
             array('cardId','unique','message'=>'这个身份证已经注册过了'),
+            array('phone','match','pattern'=>'/^[1][34578][0-9]{9}$/'),
+            array('cardId','match','pattern'=>'/^[1-9]([0-9]{14}|[0-9]{17})$/'),
+            array('cardIdType','in','range'=>[1,2,3,4,5]),
+            array('volunteerType','in','range'=>[1,2,3]),
+            array('education','in','range'=>[1,2,3,4,5,6,7,8,9,10,11]),
         );
     }
 
