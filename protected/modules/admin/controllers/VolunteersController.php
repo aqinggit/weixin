@@ -49,6 +49,17 @@ class VolunteersController extends Admin
         $startScore = zmf::val('startScore', 2);
         $endScore = zmf::val('endScore', 2);
 
+        //对应志愿者管理员才会显示对应的志愿者
+        $powerTypes = [];
+        if ($this->checkPower('volunteerType1','',true)){
+            $powerTypes[] = 1;
+        }elseif ($this->checkPower('volunteerType2','',true)){
+            $powerTypes[] = 2;
+        }elseif ($this->checkPower('volunteerType3','',true)){
+            $powerTypes[] = 3;
+        }
+        $criteria->addInCondition('volunteerType',$powerTypes);
+
 
         $criteria->addCondition('status !=3');
         $criteria->select = $select;
@@ -117,6 +128,7 @@ class VolunteersController extends Admin
         if ($id) {
             //$this->checkPower('updateVolunteers');
             $model = $this->loadModel($id);
+            $this->checkOutTypePower($model);
         } else {
             //$this->checkPower('addVolunteers');
             $model = new Users();
@@ -130,7 +142,6 @@ class VolunteersController extends Admin
             } else {
                 $data['password'] = md5($data['password']);
                 $data['password2'] = md5($data['password2']);
-                zmf::test($data['password2']);
             }
             if (!$data['birthday']) {
                 unset($data['birthday']);
@@ -140,7 +151,7 @@ class VolunteersController extends Admin
             if ($data['birthday']) {
                 $model->birthday = strtotime($model->birthday);
             }
-
+            $this->checkOutTypePower($model);
             if ($model->save()) {
                 if (!$id) {
                     Yii::app()->user->setFlash('addVolunteersSuccess', "保存成功！您可以继续添加。");
@@ -190,7 +201,9 @@ class VolunteersController extends Admin
         $ids = zmf::val('ids');
         $ids = explode(',', $ids);
         foreach ($ids as $id) {
-            $this->loadModel($id)->updateByPk($id, array('status' => Users::STATUS_DELED));
+            $model = $this->loadModel($id);
+
+            $model->updateByPk($id, array('status' => Users::STATUS_DELED));
         }
         // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
         if ($this->isAjax) {
@@ -203,7 +216,8 @@ class VolunteersController extends Admin
     public function actionPass($id)
     {
         //$this->checkPower('delVolunteers');
-        $this->loadModel($id)->updateByPk($id, array('status' => Users::STATUS_PASSED));
+        $model = $this->loadModel($id);
+        $model->updateByPk($id, array('status' => Users::STATUS_PASSED));
 
         // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
         if ($this->isAjax) {
@@ -224,6 +238,7 @@ class VolunteersController extends Admin
     public function loadModel($id)
     {
         $model = Users::model()->findByPk($id);
+        $this->checkOutTypePower($model);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;
@@ -238,6 +253,19 @@ class VolunteersController extends Admin
         if (isset($_POST['ajax']) && $_POST['ajax'] === 'volunteers-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
+        }
+    }
+
+    public function checkOutTypePower($model){
+
+        if ($model->volunteerType == 1){
+            $this->checkPower('volunteerType1');
+        }
+        if ($model->volunteerType == 2){
+            $this->checkPower('volunteerType3');
+        }
+        if ($model->volunteerType == 3){
+            $this->checkPower('volunteerType2');
         }
     }
 }

@@ -58,6 +58,29 @@ class VolunteerActiveController extends Admin
         $pager->pageSize = 30;
         $pager->applyLimit($criteria);
         $posts = $model->findAll($criteria);
+
+        foreach ($posts as $k=>$post)
+        {
+            if ($post->UsersInfo->volunteerType == 1){
+                if(!$this->checkPower('volunteerType1','',true)){
+                    unset($posts[$k]);
+                }
+                continue;
+            }
+            if ($post->UsersInfo->volunteerType == 2){
+                if(!$this->checkPower('volunteerType2','',true)){
+                    unset($posts[$k]);
+                }
+                continue;
+            }
+            if ($post->UsersInfo->volunteerType == 3){
+                if(!$this->checkPower('volunteerType3','',true)){
+                    unset($posts[$k]);
+                }
+                continue;
+            }
+        }
+
         $this->render('index', array(
             'pages' => $pager,
             'posts' => $posts,
@@ -160,7 +183,9 @@ class VolunteerActiveController extends Admin
      */
     public function loadModel($id)
     {
-        $model = VolunteerActive::model()->findByPk($id);
+        $model = VolunteerActive::model();
+        $this->checkOutTypePower($model->UsersInfo);
+        $model->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;
@@ -189,6 +214,20 @@ class VolunteerActiveController extends Admin
             $this->jsonOutPut(1, '已通过');
         } else {
             header('location: ' . $_SERVER['HTTP_REFERER']);
+        }
+    }
+
+
+    public function checkOutTypePower($model){
+
+        if ($model->volunteerType == 1){
+            $this->checkPower('volunteerType1');
+        }
+        if ($model->volunteerType == 2){
+            $this->checkPower('volunteerType3');
+        }
+        if ($model->volunteerType == 3){
+            $this->checkPower('volunteerType2');
         }
     }
 
