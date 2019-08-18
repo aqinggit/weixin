@@ -151,6 +151,7 @@ class WeixinController extends Q
         if (Yii::app()->user->isGuest) {
             $this->redirect(zmf::createUrl('weixin/login'));
         }
+
         $uid = zmf::uid();
         $model = new Activity;
         $criteria = new CDbCriteria();
@@ -158,8 +159,29 @@ class WeixinController extends Q
         $criteria->addCondition("va.vid = {$uid}");
         $criteria->addCondition('t.status != 3');
         $criteria->select = 't.id,t.title,t.place,t.count,va.status';
+        $criteria->order='t.cTime DESC';
         $activity = $model->findAll($criteria);
-        $this->render('main', array('activity' => $activity));
+
+
+        $now = zmf::now();
+        $startTime = zmf::time($now,'Y');
+        $startTime = $startTime . '-1-1';
+        $endTime = ($startTime + 1) .'-1-1';
+        $startTime = strtotime($startTime);
+        $endTime = strtotime($endTime) -1;
+        $where = "cTime >= {$startTime} AND cTime <= {$endTime} AND ";
+
+        $sql = "select count(*) as t,SUM(score) as m From pre_volunteer_active WHERE {$where} vid = {$uid} AND status = 1";
+        $items = Yii::app()->db->createCommand($sql)->queryRow();
+        $activityCount = $items['t'] ? $items['t'] : 0;
+        $activityScore = $items['m'] ? $items['m'] : 0;
+
+        $data = [
+            'activity'  =>$activity,
+            'activityCount'=>$activityCount,
+            'activityScore'=>$activityScore
+        ];
+        $this->render('main', $data);
 
 
     }

@@ -735,6 +735,6 @@
 
 <div class="apply">
     <div class="weui-btn-area">
-        <?php echo zmf::link('我要报名',['/activity/Apply', ['aid' => $item['id']]],['class'=>'weui-btn weui-btn_primary'])?>
+        <?php echo zmf::link('我要报名',['/activity/Apply', 'aid' => $item['id']],['class'=>'weui-btn weui-btn_primary'])?>
     </div>
 </div>
