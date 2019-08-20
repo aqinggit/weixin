@@ -147,7 +147,7 @@ class ActivityController extends Admin
 
         // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
         if ($this->isAjax) {
-            $this->jsonOutPut(1, '已通过');
+            $this->jsonOutPut(1, '已开始招募');
         } else {
             header('location: ' . $_SERVER['HTTP_REFERER']);
         }
@@ -160,7 +160,7 @@ class ActivityController extends Admin
 
         // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
         if ($this->isAjax) {
-            $this->jsonOutPut(1, '已开始招募');
+            $this->jsonOutPut(1, '已结束');
         } else {
             header('location: ' . $_SERVER['HTTP_REFERER']);
         }

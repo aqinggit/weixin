@@ -48,9 +48,9 @@ $form = $this->beginWidget('CActiveForm', array(
             <td><?php echo $data->score; ?></td>
             <td>
                 <?php echo CHtml::link('编辑', array('update', 'id' => $data->id)); ?>
-                <?php echo CHtml::link('删除', array('delete', 'id' => $data->id)); ?>
-                <?php echo CHtml::link('通过', array('pass', 'id' => $data->id)); ?>
-                <?php echo CHtml::link('结束', array('end', 'id' => $data->id)); ?>
+                <?php echo CHtml::link('删除', array('delete', 'id' => $data->id),array('class'=>'delete')); ?>
+                <?php echo CHtml::link('招募', array('pass', 'id' => $data->id),array('class'=>'delete')); ?>
+                <?php echo CHtml::link('结束', array('end', 'id' => $data->id),array('class'=>'delete')); ?>
             </td>
         </tr>
     <?php endforeach; ?>

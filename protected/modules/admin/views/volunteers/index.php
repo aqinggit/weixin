@@ -10,7 +10,7 @@
  */
 $this->renderPartial('_nav');
 echo CHtml::link('新增', array('create'), array('class' => 'btn btn-danger addBtn'));
-echo CHtml::link('批量删除', array('delList', 'ids' => $ids), array('class' => 'btn btn-danger delBtn'));
+echo CHtml::link('批量删除', array('delList', 'ids' => $ids), array('class' => 'delete btn btn-danger delBtn'));
 $form = $this->beginWidget('CActiveForm', array(
     'id' => 'search-form',
     'htmlOptions' => array(
@@ -26,6 +26,7 @@ $form = $this->beginWidget('CActiveForm', array(
     <div class="form-group">
         <?php echo CHtml::textField("phone", $_GET["phone"], array("class" => "form-control", "placeholder" => $model->getAttributeLabel("phone"))); ?></div>
     <div class="form-group">
+        <?php echo CHtml::textField("key", 'shit', array("class" => "form-control","style"=>"display:none")); ?>
         <button class="btn btn-default" type="submit">搜索</button>
     </div>
     <div style="display: block">
@@ -90,9 +91,9 @@ $form = $this->beginWidget('CActiveForm', array(
             <td><?php echo Users::volunteerType($data->volunteerType); ?></td>
             <td>
                 <?php echo CHtml::link('编辑', array('update', 'id' => $data->id)); ?>
-                <?php echo CHtml::link('删除', array('delete', 'id' => $data->id)); ?>
+                <?php echo CHtml::link('删除', array('delete', 'id' => $data->id),array('class'=>'delete')); ?>
                 <?php if ($data->status == 0) { ?>
-                    <?php echo CHtml::link('通过', array('pass', 'id' => $data->id)); ?>
+                    <?php echo CHtml::link('通过', array('pass', 'id' => $data->id),array('class'=>'delete')); ?>
                 <?php } ?>
             </td>
         </tr>

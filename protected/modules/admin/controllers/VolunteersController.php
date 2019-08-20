@@ -49,6 +49,15 @@ class VolunteersController extends Admin
         $startScore = zmf::val('startScore', 2);
         $endScore = zmf::val('endScore', 2);
 
+
+        $startCount = $startCount ? $startCount : 0;
+        $endCount = $endCount ? $endCount : 999999;
+        $startScore = $startScore ? $startScore : 0;
+        $endScore = $endScore ? $endScore : 999999;
+
+
+
+
         //对应志愿者管理员才会显示对应的志愿者
         $powerTypes = [];
         if ($this->checkPower('volunteerType1','',true)){
@@ -83,25 +92,26 @@ class VolunteersController extends Admin
             $post->activityScore = $items['m'] ? $items['m'] : 0;
 
 
-            if ($items['t'] < $startCount && $startCount >=0) {
+            if ($post->activityCount < $startCount) {
                 unset($posts[$K]);
                 continue;
             }
-            if ($items['t'] > $endCount && $endCount >=0) {
+            if ($post->activityCount > $endCount) {
                 unset($posts[$K]);
                 continue;
             }
-            if ($items['m'] < $startScore && $startScore >=0) {
+            if ($post->activityScore < $startScore) {
                 unset($posts[$K]);
                 continue;
             }
-            if ($items['m'] > $endScore && $endScore >=0) {
+            if ($post->activityScore > $endScore) {
                 unset($posts[$K]);
                 continue;
             }
             $ids[] = $post->id;
         }
         $ids = join(',', $ids);
+        $posts->count = count($posts);
         $this->render('index', array(
             'pages' => $pager,
             'posts' => $posts,
