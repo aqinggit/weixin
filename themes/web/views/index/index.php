@@ -1,6 +1,6 @@
 <style>
     .index_banner {
-        background: url('<?php echo zmf::config('baseurl') . 'jsCssSrc/images/web_index.jpg' ?>') no-repeat;
+        background: url('<?php echo zmf::config('baseurl') . 'jsCssSrc/images/web_index2.jpg' ?>') no-repeat;
         position: relative;
         overflow: hidden;
         height: 750px;
