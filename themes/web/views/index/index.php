@@ -88,7 +88,7 @@
     }
 
     .index_banner .fixed-tip ._tip {
-        font-size: 28px;
+        font-size: 32px;
     }
 
     .index_banner .fixed-tip .sub-title {
