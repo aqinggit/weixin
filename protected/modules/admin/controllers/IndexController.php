@@ -10,7 +10,7 @@ class IndexController extends Admin {
     public function actionIndex() {
 
         $activity = Activity::model()->count('status =1');
-        $volunteers = Users::model()->count();
+        $volunteers = Users::model()->count('status = 1');
         $volunteersNoPass = Users::model()->count('status = 0');
         $volunteerActive = VolunteerActive::model()->count('status = 0');
         $data = [
