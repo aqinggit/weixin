@@ -44,32 +44,43 @@ class VolunteersController extends Admin
             $endTime = strtotime($endTime);
 
         }
-        $startCount = zmf::val('startCount', 2);
-        $endCount = zmf::val('endCount', 2);
-        $startScore = zmf::val('startScore', 2);
-        $endScore = zmf::val('endScore', 2);
+        $startCount = zmf::val('startCount', 1);
+        $endCount = zmf::val('endCount', 1);
+        $startScore = zmf::val('startScore', 1);
+        $endScore = zmf::val('endScore', 1);
 
 
-        $startCount = $startCount ? $startCount : 0;
-        $endCount = $endCount ? $endCount : 999999;
-        $startScore = $startScore ? $startScore : 0;
-        $endScore = $endScore ? $endScore : 999999;
+        if (zmf::val('key')) {
+            if ($startScore != '' && $endScore == '') {
+                $endScore = 999999;
+            }
 
+            if ($startScore == '' && $endScore != '') {
+                $startScore = -0.1;
+            }
 
+            if ($startCount != '' && $endCount == '') {
+                $endCount = 999999;
+            }
+
+            if ($startCount == '' && $endCount != '') {
+                $startCount = -0.1;
+            }
+        }
 
 
         //对应志愿者管理员才会显示对应的志愿者
         $powerTypes = [];
-        if ($this->checkPower('volunteerType1','',true)){
+        if ($this->checkPower('volunteerType1', '', true)) {
             $powerTypes[] = 1;
         }
-        if ($this->checkPower('volunteerType2','',true)){
+        if ($this->checkPower('volunteerType2', '', true)) {
             $powerTypes[] = 2;
         }
-        if ($this->checkPower('volunteerType3','',true)){
+        if ($this->checkPower('volunteerType3', '', true)) {
             $powerTypes[] = 3;
         }
-        $criteria->addInCondition('volunteerType',$powerTypes);
+        $criteria->addInCondition('volunteerType', $powerTypes);
 
 
         $criteria->addCondition('status !=3');
@@ -92,19 +103,19 @@ class VolunteersController extends Admin
             $post->activityScore = $items['m'] ? $items['m'] : 0;
 
 
-            if ($post->activityCount < $startCount) {
+            if ($post->activityCount < $startCount && $startCount != '') {
                 unset($posts[$K]);
                 continue;
             }
-            if ($post->activityCount > $endCount) {
+            if ($post->activityCount > $endCount && $endCount != '') {
                 unset($posts[$K]);
                 continue;
             }
-            if ($post->activityScore < $startScore) {
+            if ($post->activityScore < $startScore && $startScore != '') {
                 unset($posts[$K]);
                 continue;
             }
-            if ($post->activityScore > $endScore) {
+            if ($post->activityScore > $endScore && $endScore != '') {
                 unset($posts[$K]);
                 continue;
             }
@@ -268,15 +279,16 @@ class VolunteersController extends Admin
         }
     }
 
-    public function checkOutTypePower($model){
+    public function checkOutTypePower($model)
+    {
 
-        if ($model->volunteerType == 1){
+        if ($model->volunteerType == 1) {
             $this->checkPower('volunteerType1');
         }
-        if ($model->volunteerType == 2){
+        if ($model->volunteerType == 2) {
             $this->checkPower('volunteerType3');
         }
-        if ($model->volunteerType == 3){
+        if ($model->volunteerType == 3) {
             $this->checkPower('volunteerType2');
         }
     }
