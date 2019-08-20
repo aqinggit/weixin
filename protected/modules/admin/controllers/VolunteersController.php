@@ -60,7 +60,6 @@ class VolunteersController extends Admin
         if ($this->checkPower('volunteerType3','',true)){
             $powerTypes[] = 3;
         }
-        zmf::test($powerTypes);
         $criteria->addInCondition('volunteerType',$powerTypes);
 
 
