@@ -53,11 +53,14 @@ class VolunteersController extends Admin
         $powerTypes = [];
         if ($this->checkPower('volunteerType1','',true)){
             $powerTypes[] = 1;
-        }elseif ($this->checkPower('volunteerType2','',true)){
+        }
+        if ($this->checkPower('volunteerType2','',true)){
             $powerTypes[] = 2;
-        }elseif ($this->checkPower('volunteerType3','',true)){
+        }
+        if ($this->checkPower('volunteerType3','',true)){
             $powerTypes[] = 3;
         }
+        zmf::test($powerTypes);
         $criteria->addInCondition('volunteerType',$powerTypes);
 
 
