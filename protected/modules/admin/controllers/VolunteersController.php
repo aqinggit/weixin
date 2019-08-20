@@ -83,19 +83,19 @@ class VolunteersController extends Admin
             $post->activityScore = $items['m'] ? $items['m'] : 0;
 
 
-            if ($items['t'] < $startCount && $startCount) {
+            if ($items['t'] < $startCount && $startCount >=0) {
                 unset($posts[$K]);
                 continue;
             }
-            if ($items['t'] > $endCount && $endCount) {
+            if ($items['t'] > $endCount && $endCount >=0) {
                 unset($posts[$K]);
                 continue;
             }
-            if ($items['m'] < $startScore && $startScore) {
+            if ($items['m'] < $startScore && $startScore >=0) {
                 unset($posts[$K]);
                 continue;
             }
-            if ($items['m'] > $endScore && $endScore) {
+            if ($items['m'] > $endScore && $endScore >=0) {
                 unset($posts[$K]);
                 continue;
             }
