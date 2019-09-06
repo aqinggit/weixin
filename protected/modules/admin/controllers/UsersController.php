@@ -65,13 +65,16 @@ class UsersController extends Admin
             } elseif ($_POST['Users']['password'] != $model->password) {
                 $_POST['Users']['password'] = md5($_POST['Users']['password']);
             }
+
+
             //判断能否设置用户组
             if (!$this->checkPower('admins', $this->uid, true)) {
                 unset($_POST['Users']['isAdmin']);
                 unset($_POST['Users']['powerGroupId']);
             }
+
             $model->attributes = $_POST['Users'];
-            $model->password2 = md5($model->password2);
+            $model->password2 = $model->password;
             if ($model->save()) {
                 $this->redirect(array('users/index'));
             }
