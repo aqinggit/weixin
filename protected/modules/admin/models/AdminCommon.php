@@ -46,6 +46,23 @@ class AdminCommon extends CActiveRecord
 
             )
         );
+        $attr['navQuestions'] = array(
+            'title' => '<i class="fa fa-line-chart"></i> 知识竞赛',
+            'url' => '#',
+            'active' => in_array($c, array('QuestionsList', 'QuestionsAs')),
+            'seconds' => array(
+                'QuestionsList' => array(
+                    'title' => '题库管理',
+                    'url' => Yii::app()->createUrl('admin/questions/index',array('type' => 'nopass')),
+                    'active' => in_array($c, array('QuestionsList'))
+                ), 'QuestionsAs' => array(
+                    'title' => '参与名单',
+                    'url' => Yii::app()->createUrl('admin/question/index'),
+                    'active' => in_array($c, array('QuestionsAs'))
+                ),
+
+            )
+        );
         $attr['navUsers'] = array(
             'title' => '<i class="fa fa-users"></i> 用户',
             'url' => '#',

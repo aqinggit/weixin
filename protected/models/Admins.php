@@ -116,6 +116,17 @@ class Admins extends CActiveRecord
             'volunteerType3' => '法治宣传志愿者',
         );
 
+
+
+        $lang['Questions']['desc'] = '知识竞赛';
+        $lang['Questions']['detail'] = array(
+            'QuestionsList' => '知识题库',
+            'QuestionsAs' => '答题列表',
+        );
+
+
+
+
         $lang['tools']['desc'] = '小工具';
         $lang['tools']['detail'] = array(
             'tools' => '小工具',

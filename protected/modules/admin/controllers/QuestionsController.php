@@ -5,7 +5,7 @@
  * @author 阿年飞少 <ph7pal@qq.com>
  * @link http://www.newsoul.cn
  * @copyright Copyright©2019 阿年飞少
- * @datetime 2019-08-04 09:58:00
+ * @datetime 2019-09-05 09:44:29
  */
 
 class QuestionsController extends Admin
@@ -17,14 +17,50 @@ class QuestionsController extends Admin
     public function actionIndex()
     {
         //$this->checkPower('questions');
-        $select = "id,title,content,status,cTime,uid,answers,score,type";
+        $select = "id,title,content,status,cTime,uid,answers,analysis,score,type";
         $model = new Questions;
         $criteria = new CDbCriteria();
-
+        $id = zmf::val("id", 1);
+        if ($id) {
+            $criteria->addSearchCondition("id", $id);
+        }
         $title = zmf::val("title", 1);
         if ($title) {
             $criteria->addSearchCondition("title", $title);
         }
+        $content = zmf::val("content", 1);
+        if ($content) {
+            $criteria->addSearchCondition("content", $content);
+        }
+        $status = zmf::val("status", 1);
+        if ($status) {
+            $criteria->addSearchCondition("status", $status);
+        }
+        $cTime = zmf::val("cTime", 1);
+        if ($cTime) {
+            $criteria->addSearchCondition("cTime", $cTime);
+        }
+        $uid = zmf::val("uid", 1);
+        if ($uid) {
+            $criteria->addSearchCondition("uid", $uid);
+        }
+        $answers = zmf::val("answers", 1);
+        if ($answers) {
+            $criteria->addSearchCondition("answers", $answers);
+        }
+        $analysis = zmf::val("analysis", 1);
+        if ($analysis) {
+            $criteria->addSearchCondition("analysis", $analysis);
+        }
+        $score = zmf::val("score", 1);
+        if ($score) {
+            $criteria->addSearchCondition("score", $score);
+        }
+        $type = zmf::val("type", 1);
+        if ($type) {
+            $criteria->addSearchCondition("type", $type);
+        }
+        $criteria->addCondition('status != 3');
         $criteria->select = $select;
         $count = $model->count($criteria);
         $pager = new CPagination($count);
@@ -98,7 +134,7 @@ class QuestionsController extends Admin
     public function actionDelete($id)
     {
         //$this->checkPower('delQuestions');
-        $this->loadModel($id)->updateByPk($id, array('status' => Posts::STATUS_DELED));
+        $this->loadModel($id)->updateByPk($id, array('status' => Users::STATUS_DELED));
 
         // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
         if ($this->isAjax) {

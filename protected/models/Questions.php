@@ -36,10 +36,10 @@ class Questions extends CActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('title, content, answers, score, type', 'required'),
+            array('title, answers, type', 'required'),
             array('id, status, cTime, uid, score, type', 'numerical', 'integerOnly' => true),
             array('title', 'length', 'max' => 255),
-            array('content, answers', 'length', 'max' => 2550),
+            array('content, answers, analysis', 'length', 'max'=>2550),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
             array('id, title, content, status, cTime, uid, answers, score, type', 'safe', 'on' => 'search'),
@@ -56,7 +56,7 @@ class Questions extends CActiveRecord
     {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
-        return array();
+        return array('UserInfo' => array(self::BELONGS_TO, 'Users', 'uid'),);
     }
 
     /**
@@ -71,6 +71,7 @@ class Questions extends CActiveRecord
             'status' => '状态',
             'cTime' => '创建时间',
             'uid' => '创建人',
+            'analysis' => '解析',
             'answers' => '答案',
             'score' => '分值',
             'type' => '类型',
@@ -101,6 +102,7 @@ class Questions extends CActiveRecord
         $criteria->compare('status', $this->status);
         $criteria->compare('cTime', $this->cTime);
         $criteria->compare('uid', $this->uid);
+        $criteria->compare('analysis',$this->analysis,true);
         $criteria->compare('answers', $this->answers, true);
         $criteria->compare('score', $this->score);
         $criteria->compare('type', $this->type);
