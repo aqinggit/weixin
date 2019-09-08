@@ -1,5 +1,15 @@
+<style>
+    .answer_title {
+        font-size: 15px;
+        white-space: normal;
+    }
+    .option{
+        font-size: 14px;
+        white-space: normal;
+    }
+</style>
 <p class="answer_title"><?php echo $question['title']; ?></p>
-<div class="weui-cells weui-cells_radio margin0" id="<?php echo $question['id'];?>">
+<div class="weui-cells weui-cells_radio margin0 option" id="<?php echo $question['id'];?>">
     <label class="weui-cell weui-check__label" for="<?php echo $question['id'];?>_1">
         <div class="weui-cell__bd">
             <p>A.是</p>

@@ -49,7 +49,7 @@
         width: 45%;
         display: inline-block;
         color: #c91f19;
-        font-size: 12px;
+        font-size: 13px;
         position: absolute;
         left: 5%;
         top: 38%;

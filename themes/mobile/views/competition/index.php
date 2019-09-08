@@ -127,6 +127,7 @@
         <p class="color-9b" style="margin-bottom: 10px">请输入您的手机号码</p>
         <input type="number" maxlength="11" class="phone color-9b"><br>
     </div>
+
     <div class="bottom-btn">
         <button class="button01">我要参与</button>
         <button class="button02">个人中心</button>
