@@ -16,8 +16,26 @@ class CompetitionController extends Q
 
     public function actionAnswer()
     {
+        $end = 0;
         $phone = zmf::val('phone');
-        $phone = '13340685430';
+        if (!preg_match('#^1[3,4,5,7,8,9]{1}[\d]{9}$#', $phone)){
+            $this->message(0,'请输入正确的手机号码');
+        }
+        $startTime =mktime(0,0,0,date('m'),date('d'),date('Y'));
+        $endTime = $startTime + 86399;
+
+        $_C = QuestionsLog::model()->count("status = 1 AND cTime>= {$startTime} AND cTime <= {$endTime} AND phone = {$phone}");
+        if ($_C >0)
+        {
+            $this->message(0,'您今天已经答过题了,明天再来吧');
+        }
+        $ip = ip2long(Yii::app()->request->userHostAddress);
+        $_C = QuestionsLog::model()->count("status = 1 AND cTime>= {$startTime} AND cTime <= {$endTime} AND ip = {$ip}");
+        if ($_C >5)
+        {
+            $this->message(0,'您这个网络也答题太多次了,换个网络吧');
+        }
+
         if (!$phone) {
             $this->redirect('index');
         }
@@ -30,6 +48,7 @@ class CompetitionController extends Q
         if (isset($_POST['yt1']) OR isset($_POST['yt0'])) {
             $ids = zmf::val('ids');
             $ids = explode(',', $ids);
+            $_answers = [];
             if (count($ids) != 15) {
                 $this->message(0, '客官,您这是什么操作!');
             }
@@ -37,6 +56,7 @@ class CompetitionController extends Q
                 $question = Questions::getOne($id);
                 $questions[] = $question;
                 $answers = zmf::val($id, 3);
+                $_answers[] = ['qid'=>$id,'answers'=>$answers];
                 if ($answers) {
                     $count = $count + 1;
                     $answer = $question['answers'];
@@ -60,6 +80,22 @@ class CompetitionController extends Q
                     $questions[$k]['analysisStatus'] = 1;
                 }
             }
+            //保存数据
+            if (isset($_POST['yt1']))
+            {
+                $log = new QuestionsLog();
+                $log->phone = $phone;
+                $log->answers = json_encode($_answers);
+                $log->questions = json_encode($ids);
+                $log->socre = $score;
+                if (!$log->save())
+                {
+                    $this->message(0,'数据记录失败!');
+                }
+                $end = 1;
+            }
+
+
         } else {
             //DX
             $_questions = Questions::model()->findAll([
@@ -136,6 +172,7 @@ class CompetitionController extends Q
             'phone' => $phone,
             'score' => $score,
             'count' => $count,
+            'end'=>$end
         ];
         $this->render('answer', $data);
     }

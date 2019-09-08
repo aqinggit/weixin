@@ -119,7 +119,8 @@
         font-weight: bold;
         padding: 25px 15px;
     }
-    .margin0{
+
+    .margin0 {
         margin-top: 0;
     }
 </style>
@@ -128,8 +129,8 @@
     <div style="margin: 0 auto;padding: 0;">
         <div class="content">
             <div class="header" style="margin-top: 8%;">
-                <span class="tips">-总计<?php echo count($questions)?>-已答:<?php echo $count?></span>
-                <span class="title"><em><?php echo $score;?></em>分</span>
+                <span class="tips">-总计<?php echo count($questions) ?>-已答:<?php echo $count ?><?php echo $end ? '-已交卷' : '' ?></span>
+                <span class="title"><em><?php echo $score; ?></em>分</span>
             </div>
         </div>
     </div>
@@ -140,31 +141,36 @@
 
     <div class="mui-slider">
         <div class="mui-slider-group">
-            <?php foreach ($questions as $question){
-                switch ($question['type']){
+            <?php foreach ($questions as $question) {
+                switch ($question['type']) {
                     case 1:
-                        $this->renderPartial('select',['question'=>$question]);
+                        $this->renderPartial('select', ['question' => $question]);
                         break;
                     case 2:
-                        $this->renderPartial('Mselect',['question'=>$question]);
+                        $this->renderPartial('Mselect', ['question' => $question]);
                         break;
                     case 3:
-                        $this->renderPartial('judge',['question'=>$question]);
+                        $this->renderPartial('judge', ['question' => $question]);
                         break;
                 }
-            }?>
+            } ?>
             <label>
                 <input value="<?php echo $ids ?>" name="ids" hidden>
+            </label>
+            <label>
+                <input value="<?php echo $phone ?>" name="phone" hidden>
             </label>
         </div>
     </div>
     <div>
         <img class="bottom_img" src="http://cqfb.people.com.cn/h5/20190403zs/img/bottom.png" alt="建國">
     </div>
-    <div class="btn">
-        <?php echo CHtml::submitButton('检查', array('class' => 'button02-2')); ?>
-        <?php echo CHtml::submitButton('交卷', array('class' => 'button02-2')); ?>
-    </div>
+    <?php if (!$end) { ?>
+        <div class="btn">
+            <?php echo CHtml::submitButton('检查', array('class' => 'button02-2')); ?>
+            <?php echo CHtml::submitButton('交卷', array('class' => 'button02-2')); ?>
+        </div>
+    <?php } ?>
 
     <?php $this->endWidget(); ?>
 </div>

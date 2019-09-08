@@ -37,11 +37,11 @@ class AdminCommon extends CActiveRecord
                 'VolunteerChecks' => array(
                     'title' => '待审核志愿者',
                     'url' => Yii::app()->createUrl('admin/volunteers/index',array('type' => 'nopass')),
-                    'active' => in_array($c, array('VolunteerChecks'))
+                    'active' => in_array($c, array('volunteers'))
                 ), 'Volunteers' => array(
                     'title' => '全部志愿者',
                     'url' => Yii::app()->createUrl('admin/volunteers/index'),
-                    'active' => in_array($c, array('Volunteers'))
+                    'active' => in_array($c, array('volunteers'))
                 ),
 
             )
@@ -54,11 +54,11 @@ class AdminCommon extends CActiveRecord
                 'QuestionsList' => array(
                     'title' => '题库管理',
                     'url' => Yii::app()->createUrl('admin/questions/index'),
-                    'active' => in_array($c, array('QuestionsList'))
+                    'active' => in_array($c, array('questions'))
                 ), 'QuestionsAs' => array(
                     'title' => '参与名单',
-                    'url' => Yii::app()->createUrl('admin/question/index'),
-                    'active' => in_array($c, array('QuestionsAs'))
+                    'url' => Yii::app()->createUrl('admin/questionsLog/index'),
+                    'active' => in_array($c, array('questionsLog'))
                 ),
 
             )
