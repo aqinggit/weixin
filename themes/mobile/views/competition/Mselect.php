@@ -10,7 +10,8 @@
     .analysis{
         font-size: 14px;
         white-space: normal;
-        padding: 15px;color: red;
+        padding: 0 15px 15px 15px;
+        color: red;
     }
 </style>
 <p class="answer_title"><?php echo $question['title']; ?></p>
