@@ -7,6 +7,11 @@
         font-size: 14px;
         white-space: normal;
     }
+    .analysis{
+        font-size: 14px;
+        white-space: normal;
+        padding: 15px;color: red;
+    }
 </style>
 <p class="answer_title"><?php echo $question['title']; ?></p>
 <div class="weui-cells weui-cells_checkbox margin0" id="<?php echo $question['id'];?>">
@@ -22,5 +27,5 @@
     </label>
     <?php } ?>
      <!--解析-->
-    <p><?php echo $question['analysis'];?></p>
+    <p class="analysis"><?php echo $question['analysis'];?></p>
 </div>
