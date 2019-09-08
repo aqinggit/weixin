@@ -21,7 +21,9 @@ class CompetitionController extends Q
         if (!$phone) {
             $this->redirect('index');
         }
+
         $questions = [];
+        $score = 0;
         if (isset($_POST['yt1'])) {
             $ids = zmf::val('ids');
             $ids = explode(',', $ids);
@@ -35,6 +37,8 @@ class CompetitionController extends Q
                 if ($answers) {
                     if ($answers != $question['answers']){
                         $questions[$id]['analysisStatus'] = 2;
+                    }else{
+                        $score = $score + $question['score'];
                     }
                 } else {
                     $questions[$k]['analysis'] = '您这还没做完唷!';
@@ -80,13 +84,13 @@ class CompetitionController extends Q
             }
             $ids[] = $question['id'];
             $question->content = $answers;
-            $questions[$question['id']] = $question;
         }
         $ids = join(',', $ids);
         $data = [
             'questions' => $questions,
             'ids' => $ids,
-            'phone' => $phone
+            'phone' => $phone,
+            'score' => $score,
         ];
         $this->render('answer', $data);
     }

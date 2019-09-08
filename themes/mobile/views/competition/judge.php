@@ -16,7 +16,7 @@
             <p>A.是</p>
         </div>
         <div class="weui-cell__ft">
-            <input type="radio" class="weui-check" name="<?php echo $question['id'];?>" id="<?php echo $question['id'];?>_1" value="1">
+            <input type="radio" class="weui-check" name="<?php echo $question['id'];?>" id="<?php echo $question['id'];?>_1" value="1" <?php echo zmf::val($question['id']) == 1? 'checked' : ''; ?>>
             <span class="weui-icon-checked"></span>
         </div>
     </label>
@@ -26,7 +26,7 @@
             <p>B.否</p>
         </div>
         <div class="weui-cell__ft">
-            <input type="radio" name="<?php echo $question['id'];?>" class="weui-check" id="<?php echo $question['id'];?>_0" value="0">
+            <input type="radio" name="<?php echo $question['id'];?>" class="weui-check" id="<?php echo $question['id'];?>_0" value="0" <?php echo zmf::val($question['id']) == 0? 'checked' : ''; ?>>
             <span class="weui-icon-checked"></span>
         </div>
     </label>

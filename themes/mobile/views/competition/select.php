@@ -16,7 +16,7 @@
             <p class="option"><?php echo $answer;?></p>
         </div>
         <div class="weui-cell__ft">
-            <input type="radio" class="weui-check" name="<?php echo $question['id']?>" id="<?php echo $question['id'] .'_'. $k;?>" value="<?php echo $k;?>">
+            <input type="radio" class="weui-check" name="<?php echo $question['id']?>" id="<?php echo $question['id'] .'_'. $k;?>" value="<?php echo $k;?>" <?php echo zmf::val($question['id']) == $k? 'checked' : ''; ?> >
             <span class="weui-icon-checked"></span>
         </div>
     </label>

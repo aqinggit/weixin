@@ -14,7 +14,7 @@
     <?php foreach ($question['content'] as $k => $answer) { ?>
     <label class="weui-cell weui-check__label option" for="<?php echo $question['id'] . '_' . $k ;?>">
         <div class="weui-cell__hd">
-            <input type="checkbox" class="weui-check" name="<?php echo $question['id'];?>" id="<?php echo $question['id'] . '_' . $k ;?>" value="<?php echo $k;?>">
+            <input type="checkbox" class="weui-check" name="<?php echo $question['id'];?>" id="<?php echo $question['id'] . '_' . $k ;?>" value="<?php echo $k;?>" <?php echo zmf::val($question['id']) == $k? 'checked' : ''; ?>>
             <i class="weui-icon-checked"></i>
         </div>
         <div class="weui-cell__bd">
