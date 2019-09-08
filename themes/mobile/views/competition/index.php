@@ -111,7 +111,7 @@
         <p class="fs14">2019年“弘扬社会主义法治精神•献礼新中国成立70周年”法治知识竞赛</p>
     </div>
 
-    <img src='/weixin/jsCssSrc/images/title.png' class="img1" alt="知识竞赛">
+    <img src='<?php echo zmf::config('baseurl') . 'jsCssSrc/images/title.png' ?>' class="img1" alt="知识竞赛">
     <div class="organizer fs14">
         <span>主办单位：中共重庆市綦江区委政法委员会、中共重庆市綦江区委全面依法治区委员会办公室</span><br>
         <span>承办单位：重庆市綦江区法学会</span><br>
