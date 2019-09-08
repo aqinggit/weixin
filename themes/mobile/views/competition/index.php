@@ -3,7 +3,7 @@
         width: 100%;
         height: 100%;
         position: absolute;
-        background: url("<?php echo zmf::config('baseurl') . 'jsCssSrc/images/answer (2).jpg' ?>") no-repeat;
+        background: url("<?php echo zmf::config('baseurl') . 'jsCssSrc/images/competition-bg.jpg' ?>") no-repeat;
         background-size: 100% 100%;
 
 
@@ -13,7 +13,7 @@
         width: 280px;
         height: 88px;
         display: block;
-        margin: 15px auto 6px auto;
+        margin: 50px auto 6px auto;
     }
 
     .organizer {
@@ -23,12 +23,13 @@
         line-height: 1.5em;
         font-family: 'Microsoft Yahei', 'Helvetica Neue', Helvetica, STHeiTi, Arial, sans-serif;
         margin-top: 20px;
+        padding: 0 20px;
     }
 
     .box {
         width: 255px;
         height: 162px;
-        margin: 60px auto 70px auto;
+        margin: 50px auto;
         text-align: center;
 
     }
@@ -92,38 +93,28 @@
         padding: 7px 0;
     }
 
-    .bottom_img {
-        position: absolute;
-        height: 16%;
-        bottom: 8%;
-        left: 0;
-        width: 100%;
-    }
 
     .bottom_img img {
         width: 100%;
     }
 
-    .fs16 {
-        font-size: 16px;
+    .bottom-btn {
+        margin: 0 auto;
+        width: 280px;
     }
 
-    .fs12 {
-        font-size: 13px;
-    }
 
 </style>
 
 <div class="homepage">
-    <div style="padding: 20px;text-align: center;font-weight:bold ">
-        <p class="fs12">中共重庆市綦江区委政法委政法委员会</p>
-        <p class="fs12">关于开展2019年《学习政法工作条例·献礼新中国成立70周年》</p>
-        <p class="fs12">法治竞赛活动</p>
+    <div style="padding: 20px;text-align: center;font-weight:bold;margin-top:20px">
+        <p class="fs14">2019年“弘扬社会主义法治精神•献礼新中国成立70周年”法治知识竞赛</p>
     </div>
 
     <img src='/weixin/jsCssSrc/images/title.png' class="img1" alt="知识竞赛">
-    <div class="organizer fs16">主办单位：</span>
-        <span>綦江政法</span><br>
+    <div class="organizer fs14">
+        <span>主办单位：中共重庆市綦江区委政法委员会、中共重庆市綦江区委全面依法治区委员会办公室</span><br>
+        <span>承办单位：重庆市綦江区法学会</span><br>
 
     </div>
     <div class="box">
@@ -136,7 +127,7 @@
         <p class="color-9b" style="margin-bottom: 10px">请输入您的手机号码</p>
         <input type="number" maxlength="11" class="phone color-9b"><br>
     </div>
-    <div style="margin: 0 auto;width: 280px">
+    <div class="bottom-btn">
         <button class="button01">我要参与</button>
         <button class="button02">个人中心</button>
     </div>
