@@ -128,8 +128,8 @@
     <div style="margin: 0 auto;padding: 0;">
         <div class="content">
             <div class="header" style="margin-top: 8%;">
-                <span class="tips">-左右滑动切换题目-</span>
-                <span class="title">第<em>1/10</em>题</span>
+                <span class="tips">-总计<?php echo count($questions)?>-已答:<?php echo $count?></span>
+                <span class="title"><em><?php echo $score;?></em>分</span>
             </div>
         </div>
     </div>
@@ -162,7 +162,7 @@
         <img class="bottom_img" src="http://cqfb.people.com.cn/h5/20190403zs/img/bottom.png" alt="建國">
     </div>
     <div class="btn">
-        <?php echo CHtml::submitButton('返回', array('class' => 'button02-2')); ?>
+        <?php echo CHtml::submitButton('检查', array('class' => 'button02-2')); ?>
         <?php echo CHtml::submitButton('交卷', array('class' => 'button02-2')); ?>
     </div>
 

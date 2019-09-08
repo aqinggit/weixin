@@ -13,10 +13,10 @@
     <?php foreach ($question['content'] as $k=>$answer){?>
     <label class="weui-cell weui-check__label" for="<?php echo $question['id'] .'_'. $k;?>">
         <div class="weui-cell__bd">
-            <p class="option"><?php echo $answer;?></p>
+            <p class="option"><?php echo $answer['title'];?></p>
         </div>
         <div class="weui-cell__ft">
-            <input type="radio" class="weui-check" name="<?php echo $question['id']?>" id="<?php echo $question['id'] .'_'. $k;?>" value="<?php echo $k;?>" <?php echo zmf::val($question['id']) == $k? 'checked' : ''; ?> >
+            <input type="radio" class="weui-check" name="<?php echo $question['id']?>" id="<?php echo $question['id'] .'_'. $k;?>" value="<?php echo $answer['item'];?>" <?php echo zmf::val($question['id']) == $answer['item']? 'checked' : ''; ?> >
             <span class="weui-icon-checked"></span>
         </div>
     </label>

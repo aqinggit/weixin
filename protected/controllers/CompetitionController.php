@@ -23,22 +23,37 @@ class CompetitionController extends Q
         }
 
         $questions = [];
+        //得分
         $score = 0;
-        if (isset($_POST['yt1'])) {
+        //答题数量
+        $count = 0;
+        if (isset($_POST['yt1']) OR isset($_POST['yt0'])) {
             $ids = zmf::val('ids');
             $ids = explode(',', $ids);
             if (count($ids) != 15) {
                 $this->message(0, '客官,您这是什么操作!');
             }
-            foreach ($ids as $k=>$id) {
+            foreach ($ids as $k => $id) {
                 $question = Questions::getOne($id);
-                $questions[]=$question;
-                $answers = zmf::val($id);
+                $questions[] = $question;
+                $answers = zmf::val($id, 3);
                 if ($answers) {
-                    if ($answers != $question['answers']){
-                        $questions[$id]['analysisStatus'] = 2;
-                    }else{
-                        $score = $score + $question['score'];
+                    $count = $count + 1;
+                    $answer = $question['answers'];
+                    if ($question['type'] == 3) {
+                        $answer = ($answer == '对' && $question['type'] == 3) ? "A" : "B";
+                    }
+                    if ($question['type'] == 2) {
+                        $answers = join('', $answers);
+                    }
+                    if ($answers != $answer) {
+                        if (isset($_POST['yt1'])) {
+                            $questions[$k]['analysisStatus'] = 2;
+                        }
+                    } else {
+                        if (isset($_POST['yt1'])) {
+                            $score = $score + $question['score'] + 1;
+                        }
                     }
                 } else {
                     $questions[$k]['analysis'] = '您这还没做完唷!';
@@ -79,7 +94,36 @@ class CompetitionController extends Q
                 if (!$answer) {
                     unset($answers[$k]);
                 } else {
-                    $answers[$k] = $answer;
+                    switch ($k) {
+                        case 0:
+                            $item = 'A';
+                            break;
+                        case 1:
+                            $item = 'B';
+                            break;
+                        case 2:
+                            $item = 'C';
+                            break;
+                        case 3:
+                            $item = 'D';
+                            break;
+                        case 4:
+                            $item = 'E';
+                            break;
+                        case 5:
+                            $item = 'F';
+                            break;
+                        case 6:
+                            $item = 'G';
+                            break;
+                        case 7:
+                            $item = 'H';
+                            break;
+                        case 8:
+                            $item = 'K';
+                            break;
+                    }
+                    $answers[$k] = ['title' => $answer, 'item' => $item];
                 }
             }
             $ids[] = $question['id'];
@@ -91,6 +135,7 @@ class CompetitionController extends Q
             'ids' => $ids,
             'phone' => $phone,
             'score' => $score,
+            'count' => $count,
         ];
         $this->render('answer', $data);
     }

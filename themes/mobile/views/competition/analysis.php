@@ -13,6 +13,7 @@
         <?php if ($question['analysisStatus'] >= 2) { ?>
             答案:<?php echo $question['answers']; ?>
         <?php } ?>
+        <br>
         <?php echo $question['analysis']; ?>
     </p>
 <?php } ?>
