@@ -14,6 +14,11 @@ class CompetitionController extends Q
 
     public function actionAnswer()
     {
+        if (isset($_POST['questions'])){
+
+            zmf::test($_POST);
+            die();
+        }
         //DX
         $questions1 = Questions::model()->findAll([
             'condition' => 'type =1',

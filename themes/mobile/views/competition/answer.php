@@ -133,6 +133,11 @@
             </div>
         </div>
     </div>
+    <?php $form = $this->beginWidget('CActiveForm', array(
+        'id' => 'questions-form',
+        'enableAjaxValidation' => false,
+    )); ?>
+
     <div class="mui-slider">
         <div class="mui-slider-group">
             <?php foreach ($questions1 as $question) {
@@ -150,7 +155,9 @@
         <img class="bottom_img" src="http://cqfb.people.com.cn/h5/20190403zs/img/bottom.png" alt="建國">
     </div>
     <div class="btn">
-        <button class="button01-1">返回</button>
-        <button class="button02-2">交卷</button>
+        <?php echo CHtml::submitButton('返回', array('class' => 'button02-2')); ?>
+        <?php echo CHtml::submitButton('交卷', array('class' => 'button02-2')); ?>
     </div>
+
+    <?php $this->endWidget(); ?>
 </div>

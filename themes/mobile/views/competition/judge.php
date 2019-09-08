@@ -15,7 +15,7 @@
             <p>A.是</p>
         </div>
         <div class="weui-cell__ft">
-            <input type="radio" class="weui-check" name="radio1" id="<?php echo $question['id'];?>_1">
+            <input type="radio" class="weui-check" name="<?php echo $question['id'];?>_1" id="<?php echo $question['id'];?>_1">
             <span class="weui-icon-checked"></span>
         </div>
     </label>
@@ -25,8 +25,10 @@
             <p>B.否</p>
         </div>
         <div class="weui-cell__ft">
-            <input type="radio" name="radio1" class="weui-check" id="<?php echo $question['id'];?>_0">
+            <input type="radio" name="<?php echo $question['id'];?>_1" class="weui-check" id="<?php echo $question['id'];?>_0">
             <span class="weui-icon-checked"></span>
         </div>
     </label>
+        <!--解析-->
+    <p><?php echo $question['analysis'];?></p>
 </div>

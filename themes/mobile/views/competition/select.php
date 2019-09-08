@@ -16,9 +16,11 @@
             <p class="option"><?php echo $answer;?></p>
         </div>
         <div class="weui-cell__ft">
-            <input type="radio" class="weui-check" name="radio1" id="<?php echo $question['id']?>_<?php echo $k;?>">
+            <input type="radio" class="weui-check" name="<?php echo $question['id'] . '_' . $k ;?>" id="<?php echo $question['id']?>_<?php echo $k;?>">
             <span class="weui-icon-checked"></span>
         </div>
     </label>
     <?php } ?>
+     <!--解析-->
+    <p><?php echo $question['analysis'];?></p>
 </div>

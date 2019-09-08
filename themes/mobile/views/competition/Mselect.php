@@ -13,7 +13,7 @@
     <?php foreach ($question['content'] as $k => $answer) { ?>
     <label class="weui-cell weui-check__label option" for="<?php echo $question['id'] . '_' . $k ;?>">
         <div class="weui-cell__hd">
-            <input type="checkbox" class="weui-check" name="radio1" id="<?php echo $question['id'] . '_' . $k ;?>">
+            <input type="checkbox" class="weui-check" name="<?php echo $question['id'] . '_' . $k ;?>" id="<?php echo $question['id'] . '_' . $k ;?>">
             <i class="weui-icon-checked"></i>
         </div>
         <div class="weui-cell__bd">
@@ -21,4 +21,6 @@
         </div>
     </label>
     <?php } ?>
+     <!--解析-->
+    <p><?php echo $question['analysis'];?></p>
 </div>
