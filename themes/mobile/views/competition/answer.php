@@ -140,15 +140,22 @@
 
     <div class="mui-slider">
         <div class="mui-slider-group">
-            <?php foreach ($questions1 as $question) {
-                $this->renderPartial('select',['question'=>$question]);
+            <?php foreach ($questions as $question){
+                switch ($question['type']){
+                    case 1:
+                        $this->renderPartial('select',['question'=>$question]);
+                        break;
+                    case 2:
+                        $this->renderPartial('Mselect',['question'=>$question]);
+                        break;
+                    case 3:
+                        $this->renderPartial('judge',['question'=>$question]);
+                        break;
+                }
             }?>
-            <?php foreach ($questions2 as $question) {
-                $this->renderPartial('Mselect',['question'=>$question]);
-            }?>
-            <?php foreach ($questions3 as $question) {
-                $this->renderPartial('judge',['question'=>$question]);
-            }?>
+            <label>
+                <input value="<?php echo $ids ?>" name="ids" hidden>
+            </label>
         </div>
     </div>
     <div>

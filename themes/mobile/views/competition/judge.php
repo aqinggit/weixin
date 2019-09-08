@@ -7,11 +7,7 @@
         font-size: 14px;
         white-space: normal;
     }
-    .analysis{
-        font-size: 14px;
-        white-space: normal;
-        padding: 15px;color: red;
-    }
+
 </style>
 <p class="answer_title"><?php echo $question['title']; ?></p>
 <div class="weui-cells weui-cells_radio margin0 option" id="<?php echo $question['id'];?>">
@@ -20,7 +16,7 @@
             <p>A.是</p>
         </div>
         <div class="weui-cell__ft">
-            <input type="radio" class="weui-check" name="<?php echo $question['id'];?>_1" id="<?php echo $question['id'];?>_1">
+            <input type="radio" class="weui-check" name="<?php echo $question['id'];?>" id="<?php echo $question['id'];?>_1" value="1">
             <span class="weui-icon-checked"></span>
         </div>
     </label>
@@ -30,10 +26,9 @@
             <p>B.否</p>
         </div>
         <div class="weui-cell__ft">
-            <input type="radio" name="<?php echo $question['id'];?>_1" class="weui-check" id="<?php echo $question['id'];?>_0">
+            <input type="radio" name="<?php echo $question['id'];?>" class="weui-check" id="<?php echo $question['id'];?>_0" value="0">
             <span class="weui-icon-checked"></span>
         </div>
     </label>
-        <!--解析-->
-    <p class="analysis"><?php echo $question['analysis'];?></p>
+    <?php $this->renderPartial('analysis',['question'=>$question]); ?>
 </div>

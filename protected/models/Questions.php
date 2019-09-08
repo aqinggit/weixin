@@ -20,6 +20,8 @@
  */
 class Questions extends CActiveRecord
 {
+
+    public $analysisStatus = 0;
     /**
      * @return string the associated database table name
      */
@@ -91,7 +93,6 @@ class Questions extends CActiveRecord
      */
     public function search()
     {
-        // @todo Please modify the following code to remove attributes that should not be searched.
 
         $criteria = new CDbCriteria;
 

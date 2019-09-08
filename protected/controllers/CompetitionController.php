@@ -1,5 +1,7 @@
 <?php
 
+use mysql_xdevapi\Session;
+
 class CompetitionController extends Q
 {
     public function actionIndex()
@@ -14,42 +16,61 @@ class CompetitionController extends Q
 
     public function actionAnswer()
     {
-        if (isset($_POST['questions'])){
-
-            zmf::test($_POST);
-            die();
+        $phone = zmf::val('phone');
+        $phone = '13340685430';
+        if (!$phone) {
+            $this->redirect('index');
         }
-        //DX
-        $questions1 = Questions::model()->findAll([
-            'condition' => 'type =1',
-            'limit' => 5,
-            'order' => 'rand()'
-        ]);
-        foreach ($questions1 as $question1) {
-            $content = $question1->content;
+        $questions = [];
+        if (isset($_POST['yt1'])) {
+            $ids = zmf::val('ids');
+            $ids = explode(',', $ids);
+            if (count($ids) != 15) {
+                $this->message(0, '客官,您这是什么操作!');
+            }
+            foreach ($ids as $k=>$id) {
+                $question = Questions::getOne($id);
+                $questions[]=$question;
+                $answers = zmf::val($id);
+                if ($answers) {
+                    if ($answers != $question['answers']){
+                        $questions[$id]['analysisStatus'] = 2;
+                    }
+                } else {
+                    $questions[$k]['analysis'] = '您这还没做完唷!';
+                    $questions[$k]['analysisStatus'] = 1;
+                }
+            }
+        } else {
+            //DX
+            $_questions = Questions::model()->findAll([
+                'condition' => 'type =1',
+                'limit' => 5,
+                'order' => 'rand()'
+            ]);
+            //DXS
+            $questions = array_merge($questions, $_questions);
+            $_questions = Questions::model()->findAll([
+                'condition' => 'type =2',
+                'limit' => 5,
+                'order' => 'rand()'
+            ]);
+            //pD
+            $questions = array_merge($questions, $_questions);
+            $_questions = Questions::model()->findAll([
+                'condition' => 'type =3',
+                'limit' => 5,
+                'order' => 'rand()'
+            ]);
+            $questions = array_merge($questions, $_questions);
+        }
+
+        $ids = [];
+        foreach ($questions as $question) {
+            $content = $question->content;
             $answers = explode("</p>", $content);
             foreach ($answers as $k => $answer) {
                 $answer = strip_tags($answer);
-                 $answer = trim($answer);
-                if (!$answer) {
-                    unset($answers[$k]);
-                } else {
-                    $answers[$k] = $answer;
-                }
-            }
-            $question1->content = $answers;
-        }
-        //DXS
-        $questions2 = Questions::model()->findAll([
-            'condition' => 'type =2',
-            'limit' => 5,
-            'order' => 'rand()'
-        ]);
-        foreach ($questions2 as $question2) {
-            $content = $question2->content;
-            $answers = explode("</p>",$content);
-            foreach ($answers as $k => $answer) {
-                $answer = strip_tags($answer);
                 $answer = trim($answer);
                 if (!$answer) {
                     unset($answers[$k]);
@@ -57,34 +78,15 @@ class CompetitionController extends Q
                     $answers[$k] = $answer;
                 }
             }
-            $question2->content = $answers;
+            $ids[] = $question['id'];
+            $question->content = $answers;
+            $questions[$question['id']] = $question;
         }
-
-        //PD
-        $questions3 = Questions::model()->findAll([
-            'condition' => 'type =3',
-            'limit' => 5,
-            'order' => 'rand()'
-        ]);
-        foreach ($questions3 as $question3) {
-            $content = $question3->content;
-            $answers = explode("</p>",$content);
-            foreach ($answers as $k => $answer) {
-                $answer = strip_tags($answer);
-                $answer = trim($answer);
-                if (!$answer) {
-                    unset($answers[$k]);
-                } else {
-                    $answers[$k] = $answer;
-                }
-            }
-            $question3->content = $answers;
-        }
-
+        $ids = join(',', $ids);
         $data = [
-            'questions1' => $questions1,
-            'questions2' => $questions2,
-            'questions3' => $questions3
+            'questions' => $questions,
+            'ids' => $ids,
+            'phone' => $phone
         ];
         $this->render('answer', $data);
     }
