@@ -155,6 +155,7 @@ class Admins extends CActiveRecord
         $lang['adminNavbar']['detail'] = array(
             'navActivity' => '活动',
             'navVolunteer' => '志愿者',
+            'navQuestions' => '知识竞赛',
             'navUsers' => '用户',
             'navSystem' => '系统',
         );

@@ -53,7 +53,7 @@ class AdminCommon extends CActiveRecord
             'seconds' => array(
                 'QuestionsList' => array(
                     'title' => '题库管理',
-                    'url' => Yii::app()->createUrl('admin/questions/index',array('type' => 'nopass')),
+                    'url' => Yii::app()->createUrl('admin/questions/index'),
                     'active' => in_array($c, array('QuestionsList'))
                 ), 'QuestionsAs' => array(
                     'title' => '参与名单',

@@ -15,7 +15,7 @@ $this->renderPartial('_nav');
         'htmlOptions' => array(
             'class'=>'search-form'
         ),
-        'action'=>Yii::app()->createUrl('/zmf/questions/index'),
+        'action'=>Yii::app()->createUrl('/admin/questions/index'),
 	'enableAjaxValidation'=>false,
         'method'=>'GET'
 )); ?>
