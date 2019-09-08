@@ -41,7 +41,6 @@ class Questions extends CActiveRecord
             array('title', 'length', 'max' => 255),
             array('content, answers, analysis', 'length', 'max'=>2550),
             // The following rule is used by search().
-            // @todo Please remove those attributes that should not be searched.
             array('id, title, content, status, cTime, uid, answers, score, type', 'safe', 'on' => 'search'),
             array('status', 'default', 'setOnEmpty' => true, 'value' => Users::STATUS_NOTPASSED),
             array('cTime', 'default', 'setOnEmpty' => true, 'value' => zmf::now()),

@@ -28,9 +28,9 @@ class QuestionsController extends Admin
         if ($title) {
             $criteria->addSearchCondition("title", $title);
         }
-        $content = zmf::val("content", 1);
-        if ($content) {
-            $criteria->addSearchCondition("content", $content);
+        $_content = zmf::val("content", 1);
+        if ($_content) {
+            $criteria->addSearchCondition("content", $_content);
         }
         $status = zmf::val("status", 1);
         if ($status) {
@@ -185,5 +185,45 @@ class QuestionsController extends Admin
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
+    }
+
+
+    public function actionRemoveA() {
+        $_page = zmf::val('page', 2);
+        $page = $_page < 1 ? 1 : $_page;
+        $limit = 100;
+        $start = ($page - 1) * $limit;
+        $sql = "select id,content from ".Questions::tableName()." ORDER BY id ASC LIMIT $start,$limit";
+        $items = Yii::app()->db->createCommand($sql)->queryAll();
+        if (empty($items)) {
+            $this->redirect(array('index'));
+        }
+        foreach ($items as $item) {
+            $_content = strip_tags($item['content'], '<b><strong><em><span><p><u><i><img><br><br/><div><blockquote><h1><h2><h3><h4><h5><h6><ol><ul><li><hr>');
+            $_content=preg_replace("/\[url=([^\]]+?)\](.+?)\[\/url\]/i", "$2", $_content);
+            $pat = "/<(\/?)(script|i?frame|style|html|body|li|i|map|title|img|link|span|u|font|table|tr|b|marquee|td|strong|div|a|meta|\?|\%)([^>]*?)>/isU";
+           $_content = preg_replace($pat,"",$_content);
+           $_content = preg_replace("/<a[^>]*>/i", "", $_content);
+           $_content = preg_replace("/<\/a>/i", "", $_content); 
+           $_content = preg_replace("/<div[^>]*>/i", "", $_content);
+           $_content = preg_replace("/<\/div>/i", "", $_content);    
+           
+           $_content = preg_replace("/<!--[^>]*-->/i", "", $_content);//注释内容
+              
+           $_content = preg_replace("/style=.+?['|\"]/i",'',$_content);//去除样式
+           $_content = preg_replace("/class=.+?['|\"]/i",'',$_content);//去除样式
+           $_content = preg_replace("/id=.+?['|\"]/i",'',$_content);//去除样式   
+           $_content = preg_replace("/lang=.+?['|\"]/i",'',$_content);//去除样式    
+           $_content = preg_replace("/width=.+?['|\"]/i",'',$_content);//去除样式 
+           $_content = preg_replace("/height=.+?['|\"]/i",'',$_content);//去除样式 
+           $_content = preg_replace("/border=.+?['|\"]/i",'',$_content);//去除样式 
+           $_content = preg_replace("/face=.+?['|\"]/i",'',$_content);//去除样式 
+        
+           $_content = preg_replace("/face=.+?['|\"]/",'',$_content);//去除样式 只允许小写 正则匹配没有带 i 参数
+
+            
+            Questions::model()->updateByPk($item['id'], array('content' => $_content));
+        }
+        $this->message(1, '即将处理第' . ($page + 1) . '页', Yii::app()->createUrl('admin/questions/removeA', array('page' => ($page + 1))), 1);
     }
 }

@@ -133,115 +133,17 @@
             </div>
         </div>
     </div>
-
     <div class="mui-slider">
         <div class="mui-slider-group">
-
-
-            <p class="answer_title">1.志愿者活动有什么意义？</p>
-            <div class="weui-cells weui-cells_radio margin0">
-                <label class="weui-cell weui-check__label" for="x11">
-                    <div class="weui-cell__bd">
-                        <p>A.cell standard</p>
-                    </div>
-                    <div class="weui-cell__ft">
-                        <input type="radio" class="weui-check" name="radio1" id="x11">
-                        <span class="weui-icon-checked"></span>
-                    </div>
-                </label>
-                <label class="weui-cell weui-check__label" for="x12">
-
-                    <div class="weui-cell__bd">
-                        <p>B.cell standard</p>
-                    </div>
-                    <div class="weui-cell__ft">
-                        <input type="radio" name="radio1" class="weui-check" id="x12" checked="checked">
-                        <span class="weui-icon-checked"></span>
-                    </div>
-                </label>
-                <label class="weui-cell weui-check__label" for="x13">
-
-                    <div class="weui-cell__bd">
-                        <p>C.cell standard</p>
-                    </div>
-                    <div class="weui-cell__ft">
-                        <input type="radio" name="radio1" class="weui-check" id="x13" checked="checked">
-                        <span class="weui-icon-checked"></span>
-                    </div>
-                </label>
-                <label class="weui-cell weui-check__label" for="x14">
-
-                    <div class="weui-cell__bd">
-                        <p>D.cell standard</p>
-                    </div>
-                    <div class="weui-cell__ft">
-                        <input type="radio" name="radio1" class="weui-check" id="x14" checked="checked">
-                        <span class="weui-icon-checked"></span>
-                    </div>
-                </label>
-            </div>
-            <p class="answer_title">2.是否愿意参加志愿者的各项活动？</p>
-            <div class="weui-cells weui-cells_radio margin0">
-                <label class="weui-cell weui-check__label" for="x15">
-                    <div class="weui-cell__bd">
-                        <p>A.是</p>
-                    </div>
-                    <div class="weui-cell__ft">
-                        <input type="radio" class="weui-check" name="radio1" id="x15">
-                        <span class="weui-icon-checked"></span>
-                    </div>
-                </label>
-                <label class="weui-cell weui-check__label" for="x16">
-
-                    <div class="weui-cell__bd">
-                        <p>B.否</p>
-                    </div>
-                    <div class="weui-cell__ft">
-                        <input type="radio" name="radio1" class="weui-check" id="x16" checked="checked">
-                        <span class="weui-icon-checked"></span>
-                    </div>
-                </label>
-            </div>
-            <p class="answer_title">3.通过哪些方式了解志愿者？</p>
-            <div class="weui-cells weui-cells_checkbox margin0">
-                <label class="weui-cell weui-check__label" for="s11">
-                    <div class="weui-cell__hd">
-                        <input type="checkbox" class="weui-check" name="checkbox1" id="s11" checked="checked">
-                        <i class="weui-icon-checked"></i>
-                    </div>
-                    <div class="weui-cell__bd">
-                        <p>A.电视</p>
-                    </div>
-                </label>
-                <label class="weui-cell weui-check__label" for="s12">
-                    <div class="weui-cell__hd">
-                        <input type="checkbox" name="checkbox1" class="weui-check" id="s12">
-                        <i class="weui-icon-checked"></i>
-                    </div>
-                    <div class="weui-cell__bd">
-                        <p>B.朋友</p>
-                    </div>
-                </label>
-                <label class="weui-cell weui-check__label" for="s13">
-                    <div class="weui-cell__hd">
-                        <input type="checkbox" name="checkbox1" class="weui-check" id="s13">
-                        <i class="weui-icon-checked"></i>
-                    </div>
-                    <div class="weui-cell__bd">
-                        <p>C.手机</p>
-                    </div>
-                </label>
-            </div>
-            <p class="answer_title">4.怎样评价志愿者？</p>
-            <div class="weui-cells weui-cells_form margin0">
-                <div class="weui-cell">
-                    <div class="weui-cell__bd">
-                        <textarea class="weui-textarea" placeholder="请输入文本" rows="3"></textarea>
-                        <div class="weui-textarea-counter"><span>0</span>/200</div>
-                    </div>
-                </div>
-            </div>
-
+            <?php foreach ($questions1 as $question) {
+                $this->renderPartial('select',['question'=>$question]);
+            }?>
+            <?php foreach ($questions2 as $question) {
+                $this->renderPartial('Mselect',['question'=>$question]);
+            }?>
+            <?php foreach ($questions3 as $question) {
+                $this->renderPartial('judge',['question'=>$question]);
+            }?>
         </div>
     </div>
     <div>
