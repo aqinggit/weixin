@@ -126,7 +126,7 @@
     }
 </style>
 <div class="rank">
-    <p>個人名次排名</p>
+    <p>个人名次排名</p>
     <div class="mui-scroll box">
         <div class="title">
             <span style="width: 20%;">名次</span>
