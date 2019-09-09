@@ -143,7 +143,7 @@
     </div>
 
     <div class="bottom-btn">
-        <button class="button01">我要参与</button>
+        <button class="button01 ">我要参与</button>
     </div>
     <?php $this->endWidget(); ?>
 </div>
