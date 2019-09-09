@@ -123,6 +123,11 @@
     .margin0 {
         margin-top: 0;
     }
+
+    .answer_title em{
+        color: red;
+    }
+
 </style>
 
 <div class="answer">

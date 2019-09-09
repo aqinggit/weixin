@@ -49,7 +49,7 @@ class CompetitionController extends Q
             $ids = zmf::val('ids');
             $ids = explode(',', $ids);
             $_answers = [];
-            if (count($ids) != 15) {
+            if (count($ids) != 10) {
                 $this->message(0, '客官,您这是什么操作!');
             }
             foreach ($ids as $k => $id) {
@@ -100,29 +100,30 @@ class CompetitionController extends Q
             //DX
             $_questions = Questions::model()->findAll([
                 'condition' => 'type =1',
-                'limit' => 5,
+                'limit' => 4,
                 'order' => 'rand()'
             ]);
             //DXS
             $questions = array_merge($questions, $_questions);
             $_questions = Questions::model()->findAll([
                 'condition' => 'type =2',
-                'limit' => 5,
+                'limit' => 2,
                 'order' => 'rand()'
             ]);
             //pD
             $questions = array_merge($questions, $_questions);
             $_questions = Questions::model()->findAll([
                 'condition' => 'type =3',
-                'limit' => 5,
+                'limit' => 4,
                 'order' => 'rand()'
             ]);
             $questions = array_merge($questions, $_questions);
         }
 
         $ids = [];
-        foreach ($questions as $question) {
+        foreach ($questions as $k=>$question) {
             $content = $question->content;
+            $question->title = ($k+1) . '.' . $question->title;
             $answers = explode("</p>", $content);
             foreach ($answers as $k => $answer) {
                 $answer = strip_tags($answer);

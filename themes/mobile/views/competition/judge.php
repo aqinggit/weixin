@@ -9,7 +9,7 @@
     }
 
 </style>
-<p class="answer_title"><?php echo $question['title']; ?></p>
+<p class="answer_title"><em>判断：</em><?php echo $question['title']; ?></p>
 <div class="weui-cells weui-cells_radio margin0 option" id="<?php echo $question['id'];?>">
     <label class="weui-cell weui-check__label" for="<?php echo $question['id'];?>_1">
         <div class="weui-cell__bd">

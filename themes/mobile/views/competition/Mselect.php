@@ -1,6 +1,6 @@
 <style>
       .answer_title {
-          font-size: 15px;
+          font-size: 18px;
           white-space: normal;
       }
     .option{
@@ -9,7 +9,7 @@
     }
 
 </style>
-<p class="answer_title"><?php echo $question['title']; ?></p>
+<p class="answer_title"><em>多选：</em><?php echo $question['title']; ?></p>
 <div class="weui-cells weui-cells_checkbox margin0" id="<?php echo $question['id'];?>[]">
     <?php foreach ($question['content'] as $k => $answer) { ?>
     <label class="weui-cell weui-check__label option" for="<?php echo $question['id'] . '_' . $k ;?>">
