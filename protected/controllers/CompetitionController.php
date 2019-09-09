@@ -171,6 +171,7 @@ class CompetitionController extends Q
             $question->content = $answers;
         }
         $ids = join(',', $ids);
+        $this->pageTitle = '知识竞赛';
         $data = [
             'questions' => $questions,
             'ids' => $ids,
