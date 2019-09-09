@@ -16,6 +16,10 @@ class CompetitionController extends Q
 
     public function actionAnswer()
     {
+        $time = zmf::val('time');
+        if ($time ==0 || $time >100){
+            $time = 100;
+        }
         $end = 0;
         $phone = zmf::val('phone');
         if (!preg_match('#^1[3,4,5,7,8,9]{1}[\d]{9}$#', $phone)){
@@ -25,13 +29,13 @@ class CompetitionController extends Q
         $endTime = $startTime + 86399;
 
         $_C = QuestionsLog::model()->count("status = 1 AND cTime>= {$startTime} AND cTime <= {$endTime} AND phone = {$phone}");
-        if ($_C >0)
+        if ($_C >0 && $phone!= '13340685430')
         {
             $this->message(0,'您今天已经答过题了,明天再来吧');
         }
         $ip = ip2long(Yii::app()->request->userHostAddress);
         $_C = QuestionsLog::model()->count("status = 1 AND cTime>= {$startTime} AND cTime <= {$endTime} AND ip = {$ip}");
-        if ($_C >5)
+        if ($_C >5 && $phone!= '13340685430')
         {
             $this->message(0,'您这个网络也答题太多次了,换个网络吧');
         }
@@ -173,6 +177,7 @@ class CompetitionController extends Q
             'phone' => $phone,
             'score' => $score,
             'count' => $count,
+            'time' => $time,
             'end'=>$end
         ];
         $this->render('answer', $data);

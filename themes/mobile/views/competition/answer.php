@@ -54,7 +54,8 @@
         left: 5%;
         top: 38%;
     }
-    .time{
+
+    .time {
         width: 25%;
         position: absolute;
         left: 45%;
@@ -139,16 +140,13 @@
 
 </style>
 
-<form id="frm" action="http://m.z.qiiing.com">
-
 <div class="answer">
-        <div style="margin: 0 auto;padding: 0;">
+    <div style="margin: 0 auto;padding: 0;">
         <div class="content">
             <div class="header" style="margin-top: 8%">
-                <span class="tips">-总计<?php echo count($questions) ?>-已答:<?php echo $count ?><?php echo $end ? '-已交卷' : '' ?></span>
+                <span class="tips">-总计<?php echo count($questions) ?>-已答:<?php echo $count ?></span>
                 <span id="time" class="time"></span>
                 <span class="title"><em><?php echo $score; ?></em>分</span>
-
             </div>
         </div>
     </div>
@@ -178,6 +176,9 @@
             <label>
                 <input value="<?php echo $phone ?>" name="phone" hidden>
             </label>
+            <label>
+                <input value="<?php echo $time ?>" name="time" hidden>
+            </label>
         </div>
     </div>
     <div>
@@ -186,27 +187,29 @@
     <?php if (!$end) { ?>
         <div class="btn">
             <?php echo CHtml::submitButton('检查', array('class' => 'button02-2')); ?>
-            <?php echo CHtml::submitButton('交卷', array('class' => 'button02-2')); ?>
+            <?php echo CHtml::submitButton('交卷', array('class' => 'button02-2', 'id' => 'fa')); ?>
         </div>
     <?php } ?>
 
     <?php $this->endWidget(); ?>
 </div>
-</form>
-<script>
-    var times = 100;//剩余时间,单位秒
-    var timeDiv = document.getElementById("time");
-    var timeObj = null;
-    function timer(){
-        if(times == 0){
-            //倒计时结束，提交表单
-            document.getElementById("frm").submit();
-            window.clearInterval(timeObj);
-            return;
+<?php if (!$end) { ?>
+    <script>
+        var times = <?php echo $time;?>;//剩余时间,单位秒
+        var timeDiv = document.getElementById("time");
+        var timeObj = null;
+
+        function timer() {
+            if (times === 0) {
+                $("#fa").click();
+                window.clearInterval(timeObj);
+                return;
+            }
+            var t = Math.floor(times / 60) + "分" + times % 60 + "秒"
+            timeDiv.innerHTML = t;
+            times--;
         }
-        var t = Math.floor(times/60) +"分"+times%60+"秒"
-        timeDiv.innerHTML = t;
-        times --;
-    }
-    timeObj = window.setInterval(timer,1000);
-</script>
+
+        timeObj = window.setInterval(timer, 1000);
+    </script>
+<?php } ?>
