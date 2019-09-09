@@ -10,10 +10,9 @@
     }
 
     .img1 {
-        width: 280px;
-        height: 88px;
+        width: 270px;
         display: block;
-        margin: 50px auto 6px auto;
+        margin: 20px auto 6px auto;
     }
 
     .organizer {
@@ -22,15 +21,16 @@
         font-weight: bold;
         line-height: 1.5em;
         font-family: 'Microsoft Yahei', 'Helvetica Neue', Helvetica, STHeiTi, Arial, sans-serif;
-        margin-top: 20px;
+        margin-top: 10px;
         padding: 0 20px;
     }
 
     .box {
         width: 255px;
         height: 162px;
-        margin: 50px auto;
+        margin: 40px auto;
         text-align: center;
+
 
     }
 
@@ -57,6 +57,10 @@
         outline: 0;
         background-color: #fff;
         -webkit-appearance: none;
+        font-size: 16px;
+        width: 150px;
+        text-align: center;
+        letter-spacing: 0.8px;
 
 
     }
@@ -68,6 +72,9 @@
     }
 
     .button01 {
+        position: absolute;
+        left: 0;
+        top: 0;
         z-index: 10;
         width: 134px;
         background: #c81f18;
@@ -80,18 +87,18 @@
         margin-right: 1%;
     }
 
-    .button02 {
-        z-index: 10;
-        width: 134px;
-        background: #fdeee7;
-        border: 1px solid #c81f18;
-        color: #110f0f;
-        font-size: 20px;
-        text-align: center;
-        margin-left: 1%;
-        border-radius: 10px;
-        padding: 7px 0;
-    }
+    /*.button02 {*/
+    /*    z-index: 10;*/
+    /*    width: 134px;*/
+    /*    background: #fdeee7;*/
+    /*    border: 1px solid #c81f18;*/
+    /*    color: #110f0f;*/
+    /*    font-size: 20px;*/
+    /*    text-align: center;*/
+    /*    margin-left: 1%;*/
+    /*    border-radius: 10px;*/
+    /*    padding: 7px 0;*/
+    /*}*/
 
 
     .bottom_img img {
@@ -101,13 +108,14 @@
     .bottom-btn {
         margin: 0 auto;
         width: 140px;
+        position: relative;
     }
 
 
 </style>
 
 <div class="homepage">
-    <div style="padding: 20px;text-align: center;font-weight:bold;margin-top:20px">
+    <div style="padding: 20px 40px;text-align: center;font-weight:bold;margin-top:10px">
         <p class="fs14">2019年“弘扬社会主义法治精神•献礼新中国成立70周年”</p>
     </div>
 
@@ -130,7 +138,7 @@
         'enableAjaxValidation' => false,
         'action'=>'answer.html'
     )); ?>
-        <p class="color-9b" style="margin-bottom: 10px">请输入您的手机号码</p>
+        <p class="color-9b" style="margin-bottom: 10px;font-size: 16px">请输入您的手机号码</p>
         <input type="number" name="phone" maxlength="11" class="phone color-9b"><br>
     </div>
 

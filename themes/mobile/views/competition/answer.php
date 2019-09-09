@@ -46,13 +46,22 @@
     }
 
     .content .header .tips {
-        width: 45%;
+        width: 30%;
         display: inline-block;
         color: #c91f19;
         font-size: 13px;
         position: absolute;
         left: 5%;
         top: 38%;
+    }
+    .time{
+        width: 25%;
+        position: absolute;
+        left: 45%;
+        top: 33%;
+        font-size: 16px;
+        font-weight: bold;
+
     }
 
     .title {
@@ -124,18 +133,22 @@
         margin-top: 0;
     }
 
-    .answer_title em{
+    .answer_title em {
         color: red;
     }
 
 </style>
 
+<form id="frm" action="http://m.z.qiiing.com">
+
 <div class="answer">
-    <div style="margin: 0 auto;padding: 0;">
+        <div style="margin: 0 auto;padding: 0;">
         <div class="content">
-            <div class="header" style="margin-top: 8%;">
+            <div class="header" style="margin-top: 8%">
                 <span class="tips">-总计<?php echo count($questions) ?>-已答:<?php echo $count ?><?php echo $end ? '-已交卷' : '' ?></span>
+                <span id="time" class="time"></span>
                 <span class="title"><em><?php echo $score; ?></em>分</span>
+
             </div>
         </div>
     </div>
@@ -179,3 +192,21 @@
 
     <?php $this->endWidget(); ?>
 </div>
+</form>
+<script>
+    var times = 100;//剩余时间,单位秒
+    var timeDiv = document.getElementById("time");
+    var timeObj = null;
+    function timer(){
+        if(times == 0){
+            //倒计时结束，提交表单
+            document.getElementById("frm").submit();
+            window.clearInterval(timeObj);
+            return;
+        }
+        var t = Math.floor(times/60) +"分"+times%60+"秒"
+        timeDiv.innerHTML = t;
+        times --;
+    }
+    timeObj = window.setInterval(timer,1000);
+</script>
