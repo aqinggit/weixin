@@ -17,7 +17,7 @@
 
     .organizer {
         height: auto;
-        text-align: center;
+        /*text-align: center;*/
         font-weight: bold;
         line-height: 1.5em;
         font-family: 'Microsoft Yahei', 'Helvetica Neue', Helvetica, STHeiTi, Arial, sans-serif;
@@ -121,9 +121,9 @@
 
     <img src='<?php echo zmf::config('baseurl') . 'jsCssSrc/images/title.png' ?>' class="img1" alt="法治知识竞赛">
     <div class="organizer fs14">
-        <span>主办单位：中共重庆市綦江区委政法委员会</span><br>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;中共重庆市綦江区委全面依法治区委员会办公室</span><br>
-        <span>承办单位：重庆市綦江区法学会</span><br>
+        <span>主办单位:中共重庆市綦江区委政法委员会</span><br>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;中共重庆市綦江区委全面依法治区委员会办公室</span><br>
+        <span>承办单位:重庆市綦江区法学会</span><br>
 
     </div>
     <div class="box">
