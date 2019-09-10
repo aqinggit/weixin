@@ -179,6 +179,12 @@
             <label>
                 <input value="<?php echo $time ?>" name="time" hidden>
             </label>
+            <label>
+                <input value="<?php echo $type ?>" name="type" hidden>
+            </label>
+            <label>
+                <input value="<?php echo $selectType ?>" name="selectType" hidden>
+            </label>
         </div>
     </div>
     <div>

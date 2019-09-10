@@ -136,7 +136,7 @@
     <?php $form = $this->beginWidget('CActiveForm', array(
         'id' => 'questions-form',
         'enableAjaxValidation' => false,
-        'action'=>'answer.html'
+        'action'=>'rank.html'
     )); ?>
         <p class="color-9b" style="margin-bottom: 10px;font-size: 16px">请输入您的手机号码</p>
         <input type="number" name="phone" maxlength="11" class="phone color-9b"><br>

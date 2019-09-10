@@ -11,11 +11,51 @@ class CompetitionController extends Q
 
     public function actionRank()
     {
-        $this->render('rank');
+        $this->pageTitle = '排行榜';
+        $type = zmf::val('type');
+        if (!in_array($type, ['Department', 'Street'])) {
+            $type = 'Department';
+        }
+
+        $score = [];
+        if ($type == 'Department') {
+            $items = self::Department();
+        }
+
+        if ($type == 'Street') {
+            $items = self::Street();
+        }
+        $_type = strtolower($type);
+        foreach ($items as $k => $item) {
+            $sql = "SELECT SUM(socre) as F FROM {{Questions_log}} WHERE {$_type} = {$k} AND status = 1";
+            $_data = Yii::app()->db->createCommand($sql)->queryRow();
+            $_data = $_data['F'] ? $_data['F']  : 0;
+            $score[]=[
+                'title'=>$item,
+                'data'=>$_data
+            ];
+        }
+        // 取得列的列表
+        $score = CHtml::listData($score,'title','data');
+        arsort($score);
+        $data = [
+            'items' => $items,
+            'score' => $score,
+            'type' => $type
+        ];
+        $this->render('rank', $data);
     }
 
     public function actionAnswer()
     {
+        $type = zmf::val('type');
+        $selectType = zmf::val('selectType');
+
+        $info = self::Department($selectType);
+        if (is_array($info) || !$type) {
+            $this->message(0, '请选择所属行政区域或部门');
+        }
+
         $time = zmf::val('time');
         if ($time == 0 || $time > 100) {
             $time = 100;
@@ -89,6 +129,13 @@ class CompetitionController extends Q
                 $log->answers = json_encode($_answers);
                 $log->questions = json_encode($ids);
                 $log->socre = $score;
+                if ($type == 'Department') {
+                    $log->department = $selectType;
+                }
+                if ($type == 'Street') {
+                    $log->street = $selectType;
+                }
+
                 if (!$log->save()) {
                     $this->message(0, '数据记录失败!');
                 }
@@ -175,6 +222,8 @@ class CompetitionController extends Q
             'score' => $score,
             'count' => $count,
             'time' => $time,
+            'type' => $type,
+            'selectType' => $selectType,
             'end' => $end
         ];
         $this->render('answer', $data);
