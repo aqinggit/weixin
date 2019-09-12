@@ -27,7 +27,7 @@ class CompetitionController extends Q
         }
         $_type = strtolower($type);
         foreach ($items as $k => $item) {
-            $sql = "SELECT SUM(socre) as F FROM {{questions_log}} WHERE {$_type} = {$k} AND status = 1";
+            $sql = "SELECT count(*) as F FROM {{questions_log}} WHERE {$_type} = {$k} AND status = 1";
             $_data = Yii::app()->db->createCommand($sql)->queryRow();
             $_data = $_data['F'] ? $_data['F']  : 0;
             $score[]=[

@@ -216,7 +216,7 @@
         <div class="title">
             <span style="width: 20%;">名次</span>
             <span style="width: 50%;">部门</span>
-            <span style="width: 30%;">得分</span>
+            <span style="width: 30%;">人次</span>
         </div>
         <ul class="mui-table-view" style="margin-top: 50px;">
             <?php $x = 1;
