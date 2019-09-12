@@ -17,11 +17,10 @@
 
     .organizer {
         height: auto;
-        text-align: center;
         font-weight: bold;
         line-height: 1.5em;
         font-family: 'Microsoft Yahei', 'Helvetica Neue', Helvetica, STHeiTi, Arial, sans-serif;
-        padding: 0 20px;
+        padding: 0 36px;
     }
 
     .box {
@@ -120,9 +119,9 @@
 
     <img src='<?php echo zmf::config('baseurl') . 'jsCssSrc/images/title.png' ?>' class="img1" alt="法治知识竞赛">
     <div class="organizer fs14" style="font-size: 10px">
-        <div>主办单位:中共重庆市綦江区委政法委员会</div>
-        <div>中共重庆市綦江区委全面依法治区委员会办公室</div>
-        <div>承办单位:重庆市綦江区法学会</div>
+        <div style="text-align: left">主办单位:中共重庆市綦江区委政法委员会</div>
+        <div style="text-align: right">中共重庆市綦江区委全面依法治区委员会办公室</div>
+        <div style="text-align: left">承办单位:重庆市綦江区法学会</div>
 
     </div>
     <div class="box">
