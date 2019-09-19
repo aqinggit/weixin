@@ -72,11 +72,11 @@ class CompetitionController extends Q
         if ($_C > 0 && $phone != '13340685430') {
             $this->message(0, '您今天已经答过题了,明天再来吧');
         }
-        $ip = ip2long(Yii::app()->request->userHostAddress);
-        $_C = QuestionsLog::model()->count("status = 1 AND cTime>= {$startTime} AND cTime <= {$endTime} AND ip = {$ip}");
-        if ($_C > 5 && $phone != '13340685430') {
-            $this->message(0, '您这个网络也答题太多次了,换个网络吧');
-        }
+//        $ip = ip2long(Yii::app()->request->userHostAddress);
+//        $_C = QuestionsLog::model()->count("status = 1 AND cTime>= {$startTime} AND cTime <= {$endTime} AND ip = {$ip}");
+//        if ($_C > 5 && $phone != '13340685430') {
+//            $this->message(0, '您这个网络也答题太多次了,换个网络吧');
+//        }
 
         if (!$phone) {
             $this->redirect('index');

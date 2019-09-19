@@ -119,6 +119,7 @@
 
     <img src='<?php echo zmf::config('baseurl') . 'jsCssSrc/images/title.png' ?>' class="img1" alt="法治知识竞赛">
     <div class="organizer fs14" style="font-size: 10px">
+        <div></div>
         <div style="text-align: left">主办单位:中共重庆市綦江区委政法委员会</div>
         <div style="text-align: right">中共重庆市綦江区委全面依法治区委员会办公室</div>
         <div style="text-align: left">承办单位:重庆市綦江区法学会</div>
