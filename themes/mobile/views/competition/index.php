@@ -16,11 +16,14 @@
     }
 
     .organizer {
-        height: auto;
         font-weight: bold;
         line-height: 1.5em;
         font-family: 'Microsoft Yahei', 'Helvetica Neue', Helvetica, STHeiTi, Arial, sans-serif;
-        padding: 0 36px;
+        font-size: 12px;
+        display: block;
+        margin: 0 auto;
+        height: 54px;
+        width: 312px;
     }
 
     .box {
@@ -118,13 +121,21 @@
     </div>
 
     <img src='<?php echo zmf::config('baseurl') . 'jsCssSrc/images/title.png' ?>' class="img1" alt="法治知识竞赛">
-    <div class="organizer fs14" style="font-size: 10px">
-        <div></div>
-        <div style="text-align: left">主办单位:中共重庆市綦江区委政法委员会</div>
-        <div style="text-align: right">中共重庆市綦江区委全面依法治区委员会办公室</div>
-        <div style="text-align: left">承办单位:重庆市綦江区法学会</div>
 
+    <div class="organizer">
+        <div style="display: flex">
+            <span>主办单位：</span>
+            <div>中共重庆市綦江区委政法委员会
+                <div>
+                </div>
+                中共重庆市綦江区委全面依法治区委员会办公室
+            </div>
+        </div>
+        <div>承办单位：重庆市綦江区法学会</div>
     </div>
+
+
+    <!--    </div>-->
     <div class="box">
         <div class="icon_box" style="margin-bottom: 10px">
             <img src="<?php echo zmf::config('baseurl') . 'jsCssSrc/images/competition1.png' ?>" alt="所在单位">
@@ -132,11 +143,11 @@
             <img src="<?php echo zmf::config('baseurl') . 'jsCssSrc/images/competition3.png' ?>" alt="结果分享">
             <img src="<?php echo zmf::config('baseurl') . 'jsCssSrc/images/competition4.png' ?>" alt="综合排名">
         </div>
-    <?php $form = $this->beginWidget('CActiveForm', array(
-        'id' => 'questions-form',
-        'enableAjaxValidation' => false,
-        'action'=>'rank.html'
-    )); ?>
+        <?php $form = $this->beginWidget('CActiveForm', array(
+            'id' => 'questions-form',
+            'enableAjaxValidation' => false,
+            'action' => 'rank.html'
+        )); ?>
         <p class="color-9b" style="margin-bottom: 10px;font-size: 16px">请输入您的手机号码</p>
         <input type="number" name="phone" maxlength="11" class="phone color-9b"><br>
     </div>
