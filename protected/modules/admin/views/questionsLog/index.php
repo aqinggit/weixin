@@ -21,6 +21,8 @@ $form = $this->beginWidget('CActiveForm', array(
     <div class="form-group">
         <?php echo CHtml::textField("phone", $_GET["phone"], array("class" => "form-control", "placeholder" => $model->getAttributeLabel("phone"))); ?></div>
     <div class="form-group">
+        <?php echo CHtml::textField("socre", $_GET["socre"], array("class" => "form-control", "placeholder" => $model->getAttributeLabel("socre"))); ?></div>
+    <div class="form-group">
         <button class="btn btn-default" type="submit">搜索</button>
     </div>
 </div>

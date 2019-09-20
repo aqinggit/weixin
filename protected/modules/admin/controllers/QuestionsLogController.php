@@ -24,6 +24,12 @@ class QuestionsLogController extends Admin
         if ($phone) {
             $criteria->addSearchCondition("phone", $phone);
         }
+
+        $socre = zmf::val("socre", 1);
+        if ($socre) {
+            $criteria->addSearchCondition("socre", $socre);
+        }
+
         $criteria->select = $select;
         $count = $model->count($criteria);
         $pager = new CPagination($count);
