@@ -3,4 +3,4 @@
     <?php echo $content; ?>
 </section>
 
-<?php $this->renderPartial('/layouts/_nav');echo zmf::config('tongji');$this->endContent();
+<?php if ($this->nav){$this->renderPartial('/layouts/_nav');}echo zmf::config('tongji');$this->endContent();

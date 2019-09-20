@@ -4,6 +4,12 @@ use mysql_xdevapi\Session;
 
 class CompetitionController extends Q
 {
+    public function init()
+    {
+        $this->nav = 0;
+        parent::init();
+    }
+
     public function actionIndex()
     {
         $this->render('index');

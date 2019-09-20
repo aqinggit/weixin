@@ -39,6 +39,7 @@ class Q extends Controller {
     public $webTheme='web';
     public $htmlCache=false;
     public $Volunteers = [] ; //自愿者信息
+    public $nav = 1;
 
     public function beforeAction($action) {
         $this->validateCsrfToken();
@@ -179,8 +180,8 @@ class Q extends Controller {
             }
         }
     }
-    
-    public function page404($msg=null){        
+
+    public function page404($msg=null){
         throw new CHttpException(404, $msg ? $msg : 'The requested page does not exist.');
     }
 

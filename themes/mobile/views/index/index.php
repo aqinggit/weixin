@@ -39,20 +39,6 @@
     </div>
 </div>
 <div class="clearfix" style="height:65px;"></div>
-<div class="weui-tabbar">
-    <a href="<?php echo zmf::createUrl('/index/index')?>" class="weui-tabbar__item weui-bar__item_on">
-        <img src="<?php echo zmf::config('baseurl') . 'jsCssSrc/images/tab_home.png' ?>" alt="首页" class="weui-tabbar__icon">
-        <p class="weui-tabbar__label">首页</p>
-    </a>
-    <a href="<?php echo zmf::createUrl('/Competition/index')?>" class="weui-tabbar__item ">
-        <img src="<?php echo zmf::config('baseurl') . 'jsCssSrc/images/tab_activity.png' ?>" alt="活动"
-             class="weui-tabbar__icon">
-        <p class="weui-tabbar__label">志愿活动</p>
-    </a>
-
-    <a href="<?php echo zmf::createUrl('/weixin/index')?>" class="weui-tabbar__item ">
-        <img src="<?php echo zmf::config('baseurl') . 'jsCssSrc/images/tab_user.png' ?>" alt="个人中心"
-             class="weui-tabbar__icon">
-        <p class="weui-tabbar__label">我的</p>
-    </a>
-</div>
+<?php
+    zmf::test($this->nav);
+if ($this->nav){$this->renderPartial('/layouts/_nav');}?>
