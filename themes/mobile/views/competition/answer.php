@@ -115,7 +115,7 @@
         position: absolute;
         width: 70%;
         margin-left: 15%;
-        bottom: 12%;
+        bottom: 5%;
     }
 
     .content .header .title em {

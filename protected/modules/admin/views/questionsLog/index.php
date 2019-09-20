@@ -13,7 +13,6 @@ $form = $this->beginWidget('CActiveForm', array(
     'htmlOptions' => array(
         'class' => 'search-form'
     ),
-    'action' => Yii::app()->createUrl('/admin/questionslog/index'),
     'enableAjaxValidation' => false,
     'method' => 'GET'
 )); ?>
