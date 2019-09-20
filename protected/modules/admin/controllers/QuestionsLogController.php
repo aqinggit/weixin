@@ -30,6 +30,18 @@ class QuestionsLogController extends Admin
             $criteria->addSearchCondition("socre", $socre);
         }
 
+        $startTime = zmf::val("startTime", 3);
+        if ($startTime) {
+            $_startTIme = strtotime($startTime);
+            $criteria->addCondition("cTime >= {$_startTIme}");
+        }
+
+        $endTime = zmf::val("endTime", 3);
+        if ($endTime) {
+            $_endTime = strtotime($endTime) + 86400 - 1;
+            $criteria->addCondition("cTime <= {$_endTime}");
+        }
+
         $criteria->select = $select;
         $count = $model->count($criteria);
         $pager = new CPagination($count);

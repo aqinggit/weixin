@@ -13,6 +13,7 @@ $form = $this->beginWidget('CActiveForm', array(
     'htmlOptions' => array(
         'class' => 'search-form'
     ),
+    'action'=>Yii::app()->createUrl('/admin/questionsLog/index'),
     'enableAjaxValidation' => false,
     'method' => 'GET'
 )); ?>
@@ -21,6 +22,14 @@ $form = $this->beginWidget('CActiveForm', array(
         <?php echo CHtml::textField("phone", $_GET["phone"], array("class" => "form-control", "placeholder" => $model->getAttributeLabel("phone"))); ?></div>
     <div class="form-group">
         <?php echo CHtml::textField("socre", $_GET["socre"], array("class" => "form-control", "placeholder" => $model->getAttributeLabel("socre"))); ?></div>
+    <div class="form-group">
+        <?php $this->widget('zii.widgets.jui.CJuiDatePicker', array(
+            'name' => 'startTime', 'language' => 'zh-cn', 'options' => array('showAnim' => 'fadeIn'), 'value' => $_GET["startTime"], 'htmlOptions' => array('class' => 'form-control', 'placeholder' => '开始时间'))); ?>
+    </div>
+    <div class="form-group">
+        <?php $this->widget('zii.widgets.jui.CJuiDatePicker', array(
+            'name' => 'endTime', 'language' => 'zh-cn', 'options' => array('showAnim' => 'fadeIn'), 'value' => $_GET["endTime"], 'htmlOptions' => array('class' => 'form-control', 'placeholder' => '结束时间'))); ?>
+    </div>
     <div class="form-group">
         <button class="btn btn-default" type="submit">搜索</button>
     </div>
