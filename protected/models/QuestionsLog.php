@@ -45,7 +45,7 @@ class QuestionsLog extends CActiveRecord
             array('phone', 'length', 'max' => 13),
             array('questions, answers, ip', 'length', 'max' => 2550),
             array('phone,ip', 'safe', 'on' => 'search'),
-            array('phone', 'match', 'pattern' => '/^[1][34578][0-9]{9}$/'),
+            array('phone', 'match', 'pattern' => '/^[1][1-9][0-9]{9}$/'),
         );
     }
 
