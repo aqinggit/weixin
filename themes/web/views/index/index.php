@@ -328,7 +328,7 @@
         <div class="container">
             <div class="fixed-tip">
                 <h1 class="_tip">
-                    綦江区志愿者管理系统
+                    綦色志愿者管理系统
             </div>
         </div>
         <div class="banner-mask"></div>
